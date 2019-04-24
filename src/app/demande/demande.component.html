@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist" style="display: flex; justify-content: center">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">DEMANDE D'ATTESTATION DE SCOLARITE</a>
+      <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">DEMANDE D'INSCRIPTION</a>
+      <a class="nav-item nav-link" id="nav-menu-tab" data-toggle="tab" href="#nav-menu" role="tab" aria-controls="nav-menu" aria-selected="false">DEMANDE DE RELEVE DE NOTES</a>
+      <a class="nav-item nav-link" id="nav-bar-tab" data-toggle="tab" href="#nav-bar" role="tab" aria-controls="nav-bar" aria-selected="false">LISTE DES DEMANDES</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><app-demande-scolarite-create></app-demande-scolarite-create></div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> <app-demande-inscription-create></app-demande-inscription-create></div>
+    <div class="tab-pane fade" id="nav-menu" role="tabpanel" aria-labelledby="nav-menu-tab"> <app-demande-releve-notes-create></app-demande-releve-notes-create></div>
+    <div class="tab-pane fade" id="nav-bar" role="tabpanel" aria-labelledby="nav-bar-tab"> <app-demande-list></app-demande-list></div>
+  </div>
+</div>
