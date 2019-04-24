@@ -1,0 +1,154 @@
+
+<nav class="navbar navbar-light navbar-expand-lg  bg-light ">
+  <a class="navbar-brand">ESPACE ETUDIANT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav ml-auto">
+
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <div class="row" style="padding-top:6% ">
+
+
+
+
+    <div class="col-lg-12 DivDuForm">
+
+      <h1 align="center">DEMANDE D'ATTESTATION DE SCOLARITE</h1> <br>
+
+      <div>
+
+
+
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >CNE</span>
+                </div>
+                <input  class="form-control form-control-sm"  [(ngModel)]="demandeScolarite.refEtudiant"  >
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >NOM</span>
+                </div>
+                <input  [(ngModel)]="demandeScolarite.nom"   class="form-control form-control-sm" >
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >PRENOM</span>
+                </div>
+                <input  [(ngModel)]="demandeScolarite.prenom"   class="form-control form-control-sm" >
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >EMAIL</span>
+                </div>
+                <input  [(ngModel)]="demandeScolarite.email"   class="form-control form-control-sm" >
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >Filiere</span>
+                </div>
+                <select  [(ngModel)]="demandeScolarite.refFiliere"   class="form-control form-control-sm" >
+                  <option  value="{{f.libelle}}" *ngFor="let f of filieres " > {{f.libelle }}</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <br>
+        <div class="sub" style="text-align:center">
+          <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="btnModel">ENVOYER</button>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">CONFIRMATION</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Êtes-vous sûr de vouloir continuer ?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDemandeScolarite()" >CONTINUER</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" >ANNULER</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
