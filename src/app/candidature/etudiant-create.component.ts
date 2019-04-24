@@ -46,7 +46,8 @@ export class EtudiantCreateComponent implements OnInit {
 
   public pushChoix() {
     this.listAvailable.splice(this.listAvailable.indexOf(this.choix.numChoix),1);
-    return this.etudiantService.pushChoix(this.etudiant, this.choix);
+     this.etudiantService.pushChoix(this.etudiant, this.choix);
+     this.choix = new Choix("","");
   }
 
   public deleteChoix(choix: Choix) {
