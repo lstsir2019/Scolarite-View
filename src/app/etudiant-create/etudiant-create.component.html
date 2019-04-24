@@ -1,0 +1,255 @@
+<div class="col-sm-12">
+  <br>
+  <div class="row" style=" justify-content: center;">
+    <h4 style="text-align: center; width: 50%">PRÉ-INSCRIPTION AU CONCOURS D'ACCÈS EN PREMIÈRE ANNÉE DU CYCLE ANNEE
+      UNIVERSITAIRE {{today | date:'y'}} {{nextyear | date:'y'}}</h4>
+  </div>
+</div>
+<div class="container">
+  <mat-horizontal-stepper labelPosition="left" #stepper>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>edit</mat-icon>
+    </ng-template>
+
+    <!--1ere Etape-->
+
+    <mat-step [stepControl]="firstFormGroup">
+      <div>
+        <ng-template matStepLabel>Informations Personnelles</ng-template>
+        <br>
+        <div id="infoEtudiants" class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">CNE</span>
+                </div>
+                <input type="number" class="form-control" [(ngModel)]="etudiant.cne">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">CIN</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.cin">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Nom</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.nom">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Prenom</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.prenom">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Email</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.email">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Tel</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.tel">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Date Naissance</span>
+                </div>
+                <input type="date" class="form-control form-control-range">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">statue</span>
+                </div>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Adresse Personnelle</span>
+                </div>
+                <input type="text" class="form-control" [(ngModel)]="etudiant.cin">
+              </div>
+            </div>
+          </div>
+          <div class="row" style="justify-content: center">
+            <div class="form-group">
+              <button class="btn btn-primary" matStepperNext>suivant</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </mat-step>
+
+    <!--2eme Etape-->
+
+    <mat-step [stepControl]="secondFormGroup">
+      <div>
+        <br>
+        <ng-template matStepLabel>Diplômes obtenus</ng-template>
+        <div class="row" style="margin-bottom: 0.5%">
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">niveau d'etudes</span>
+              </div>
+              <select (click)="initializeListeNotes()" [(ngModel)]="etudiant.niveau"
+                      class="form-control form-control-sm">
+                <option value="Bac+2">Bac+2</option>
+                <option value="Bac+3">Bac+3</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Type Diplome</span>
+              </div>
+              <select [(ngModel)]="etudiant.diplomeEtudiantVo.refDiplome" class="form-control form-control-sm">
+                <option> cccc</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 0.5%">
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Mention</span>
+              </div>
+              <select [(ngModel)]="etudiant.diplomeEtudiantVo.mention" class="form-control form-control-sm">
+                <option value=" Passable">Passable</option>
+                <option value="Assez bien">Assez bien</option>
+                <option value="Bien">Bien</option>
+                <option value="Tres Bien">Très Bien</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Année d'Obtention</span>
+              </div>
+              <select [(ngModel)]="etudiant.diplomeEtudiantVo.anneeObtention" class="form-control form-control-sm">
+                <option value="2017"> 2017</option>
+                <option value="2018"> 2018</option>
+
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <div class="row" style="margin-bottom: 0.5%; justify-content: left">
+          <div *ngFor="let n of list" class="col-sm-6">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text"> Moyenne du {{n.refSemestre}}</span>
+              </div>
+              <input [(ngModel)]="n.note" type="number" class="form-control">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row" style="justify-content: center">
+          <button class="btn btn-outline-secondary" style="margin-right: 1%" matStepperPrevious>precedent</button>
+          <button class="btn btn-primary" matStepperNext>suivant</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!--3eme Etape-->
+
+    <mat-step>
+      <ng-template matStepLabel>Filière(s) Choisie(s)</ng-template>
+
+
+      <div id="concours" class="container">
+        <br>
+        <div class="row" style="justify-content: center">
+          <div class="col-sm-4">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Concours</span>
+              </div>
+              <select [(ngModel)]="choix.refConcours" class="form-control form-control-sm">
+                <option disabled value>Selectionner un concours</option>
+                <option *ngFor="let cc of concourss ">{{cc.reference}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group input-group-sm mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Numero</span>
+              </div>
+              <select [(ngModel)]="choix.numChoix" class="form-control form-control-sm">
+                <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+                <option *ngFor="let num of listAvailable">{{num}}</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-0">
+            <input type="button" (click)="pushChoix()" value="ajouter choix" class="btn btn-sm btn-outline-success">
+          </div>
+
+        </div>
+        <br>
+        <h4 style="text-align: center">Mes Choixs</h4>
+
+        <div style=" overflow-y: scroll; overflow-x: hidden ; height: 33vh;padding-left: 5%;padding-right: 5%">
+          <div *ngFor="let c of etudiant.choixVos" class=" list-group-item list-group-item-info">
+            <div>
+              Choix numero {{c.numChoix}} : {{c.refConcours}}
+              <button style="border:0px solid transparent; " class="btn btn-outline-secondary btn-sm"
+                      (click)="deleteChoix(c)"><span class="fa fa-remove"></span></button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" style="justify-content: center">
+        <button class="btn btn-outline-secondary" style="margin-right: 1%" matStepperPrevious>Back</button>
+        <button class="btn btn-primary" (click)="saveEtudiant()">valider ma postulation</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+
+
+
