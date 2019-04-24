@@ -1,38 +1,31 @@
-import {Injectable} from '@angular/core';
-import {Etudiant} from '../model/candidat.model';
+import { Injectable } from '@angular/core';
+import {Etudiant} from '../model/etudiant.model';
+import {Filiere} from '../model/filiere.model';
 import {HttpClient} from '@angular/common/http';
-import {Choix} from '../model/choix.model';
-import {forEach} from '@angular/router/src/utils/collection';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtudiantService {
 
-  constructor(public http: HttpClient) {
-  }
+  public url: string = 'http://localhost:8091/efaculte-v1-api/etudiants/';
+  filiere: Filiere;
+  public etudiantCreate = new Etudiant(0, '', '',  '');
 
-  public url: string = 'http://localhost:8099/inscription/etudiants/';
+  constructor(private http: HttpClient) { }
+  // public addEtudiant() {
+  //   const etudiantClone = new Etudiant(this.etudiantCreate.cne, this.etudiantCreate.nom, this.etudiantCreate.prenom, this.etudiantCreate.filiere);
+  //   this.etudiantCreate.etudiants.push(etudiantClone);
+  // }
 
-  public create(etudiant: Etudiant) {
-    this.http.post(this.url, etudiant).subscribe(
+  public save() {
+    this.http.post<Etudiant>(this.url, this.etudiantCreate).subscribe(
       data => {
-        console.log('ok');
-      }, error1 => {
-        console.log('erreur de la creation de letudiant');
-      }
+        console.log('Done');
+    }, error => {
+        console.log('error');
+    }
     );
-  };
-
-  public pushChoix(etudiant: Etudiant, choix: Choix) {
-    let ChoixClone = new Choix(choix.refConcours, choix.numChoix);
-    console.log(choix.numChoix);
-    etudiant.choixVos.push(ChoixClone);
-
-  }
-
-  public removeChoix(etudiant: Etudiant, choix: Choix) {
-     etudiant.choixVos.splice(etudiant.choixVos.indexOf(choix),1);
   }
 
 }
