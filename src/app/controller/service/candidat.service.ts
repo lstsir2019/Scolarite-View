@@ -7,7 +7,7 @@ import {forEach} from '@angular/router/src/utils/collection';
 @Injectable({
   providedIn: 'root'
 })
-export class EtudiantService {
+export class CandidatService {
 
   constructor(public http: HttpClient) {
   }
