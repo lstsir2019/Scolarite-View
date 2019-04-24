@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ApplicationRef, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { EtudiantCreateComponent } from './etudiant-create/etudiant-create.component';
+import { EtudiantCreateComponent } from './candidature/etudiant-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
@@ -15,6 +15,7 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from "./app-routing.module";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    AppRoutingModule
 
 
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Etudiant} from '../model/etudiant.model';
+import {Etudiant} from '../model/candidat.model';
 import {HttpClient} from '@angular/common/http';
 import {Choix} from '../model/choix.model';
 import {forEach} from '@angular/router/src/utils/collection';

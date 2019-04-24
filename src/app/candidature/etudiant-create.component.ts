@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Etudiant} from '../controller/model/etudiant.model';
+import {Etudiant} from '../controller/model/candidat.model';
 import {EtudiantService} from '../controller/service/etudiant.service';
 import {Choix} from '../controller/model/choix.model';
 import {ConcoursService} from '../controller/service/concours.service';

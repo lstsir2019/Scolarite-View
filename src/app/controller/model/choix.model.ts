@@ -1,4 +1,4 @@
-import {Etudiant} from './etudiant.model';
+import {Etudiant} from './candidat.model';
 
 export class Choix {
   public etudiantConcoursVo: Etudiant=new Etudiant("","","","","","","");

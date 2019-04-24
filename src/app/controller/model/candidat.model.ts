@@ -9,3 +9,4 @@ export class Etudiant {
   constructor(public cne:string,public cin:string,public nom:string,public prenom:string,public tel:string,public email:string,
               public niveau:string) {}
 }
+
