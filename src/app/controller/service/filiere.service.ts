@@ -30,14 +30,14 @@ export class FiliereService {
     );
   }
   public findAll() {
-      this._http.get<Array<Filiere>>(this._url).subscribe(
-        data => {
-          this.filieres = data;
-        }, error => {
-          console.log('error while loading filieres ...');
+    this._http.get<Array<Filiere>>(this._url).subscribe(
+      data => {
+        this.filieres = data;
+      }, error => {
+        console.log('error while loading filieres ...');
       }
-      );
-    }
+    );
+  }
 
 
   get url(): string {
