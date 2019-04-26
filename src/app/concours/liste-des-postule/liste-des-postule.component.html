@@ -1,0 +1,56 @@
+<br>
+<h5>Selectionner Un Concours</h5>
+<br>
+
+<div class="row" style="justify-content: center">
+  <div class="col-sm-4">
+    <div class="input-group input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Année du Concours</span>
+      </div>
+      <select  class="form-control form-control">
+        <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="input-group input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Concours</span>
+      </div>
+      <select class="form-control form-control">
+        <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-sm-0">
+    <button type="button" class="btn btn-outline-success"><span class="fa fa-search"> Chercher</span></button>
+  </div>
+</div>
+<h5> Liste</h5>
+<br>
+<table  class="table table-sm table-borderless">
+  <thead class="thead-light" >
+  <tr>
+    <th style="border-top-left-radius:10px; " scope="col">Cne</th>
+    <th scope="col">Cin</th>
+    <th scope="col">Nom</th>
+    <th scope="col">Prenom</th>
+    <th scope="col">Email</th>
+    <th scope="col">Telephone</th>
+    <th style="border-top-right-radius:10px; " scope="col">Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let e of etudiants">
+    <td>{{e.cne}}</td>
+    <td>{{e.cin}}</td>
+    <td>{{e.nom}}</td>
+    <td>{{e.prenom}}</td>
+    <td>{{e.email}}</td>
+    <td>{{e.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  </tbody>
+</table>
