@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <div class="row" style="padding-top:2%" >
+    <div class="col-lg-12 DivDuForm">
+      <div class="col-lg-12 card-header">Etudiants</div>
+      <div class="form-group">
+        <label for="cne">CNE</label><br>
+        <input type="text" class="form-control" placeholder="CNE" [(ngModel)]="etudiant.cne" required/>
+      </div>
+      <div class="form-group">
+        <label for="type">N°Apogee</label>
+        <input type="text" class="form-control"  placeholder="NAPOGEE" [(ngModel)]="etudiant.napogee" required/>
+      </div>
+      <div class="form-group">
+        <label for="type">REFERENCE</label>
+        <input type="text" class="form-control"  placeholder="PRENOM" [(ngModel)]="etudiant.reference" required/>
+      </div>
+      <div class="form-group">
+        <label for="type">FILIERE</label>
+        <input type="text" class="form-control"  placeholder="FILIERE" [(ngModel)]="etudiant.filiere" required/>
+      </div>
+      <div class="sub">
+        <button class=" btn btn-primary" (click)="saveEtudiant()"> add </button>
+      </div>
+    </div>
+    <div class="col-lg-12 DivDuForm">
+      <div class="card-header" align="center">Filiere</div>
+      <table class="table table-hover table-sm">
+        <thead>
+        <tr>
+          <th scope="col">CNE</th>
+          <th scope="col">NOM</th>
+          <th scope="col">PRENOM</th>
+          <th scope="col">FILIERE</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of etudiants" name="tbnmk">
+          <td>{{e.cne}}</td>
+          <td>{{e.napogee}}</td>
+          <td>{{e.reference}}</td>
+          <td>{{e.filiere}}</td>
+          <td>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >UPDATE</button><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">DELETE</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="DivDuForm2">
+          <div class="form-group">
+            <label for="cne">CNE</label><br>
+            <input type="text" class="form-control" placeholder="CNE"/>
+          </div>
+          <div class="form-group">
+            <label for="type">NOM</label>
+            <input type="text" class="form-control"  placeholder="NOM"/>
+          </div>
+          <div class="form-group">
+            <label for="type">PRENOM</label>
+            <input type="text" class="form-control"  placeholder="PRENOM"/>
+          </div>
+          <div class="form-group">
+            <label for="type">FILIERE</label>
+            <input type="text" class="form-control"  placeholder="FILIERE"/>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class=" btn btn-primary ">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">DELETE ETUDIANT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Voulez vous vraiment supprimer cet etudiant?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

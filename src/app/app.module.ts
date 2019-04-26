@@ -16,13 +16,38 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from './header/header.component';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from "./app-routing.module";
+import {DemandeListComponent} from "./demande/demande-list/demande-list.component";
+import {DemandeInscriptionCreateComponent} from "./demande/demande-inscription-create/demande-inscription-create.component";
+import {DemandeReleveNotesCreateComponent} from "./demande/demande-releve-notes-create/demande-releve-notes-create.component";
+import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-create/demande-scolarite-create.component";
+import {DemandeScolariteListComponent} from "./demande/demande-scolarite-list/demande-scolarite-list.component";
+import {DemandeInscriptionListComponent} from "./demande/demande-inscription-list/demande-inscription-list.component";
+import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-list/demande-releve-notes-list.component";
+import { ConcoursComponent } from './concours/concours.component';
+import { ListeDesPostuleComponent } from './concours/liste-des-postule/liste-des-postule.component';
+import { ListeDesRetenusEcritComponent } from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
+import { ListeDesRetenusOralComponent } from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
+import { ListeDesAdmisComponent } from './concours/liste-des-admis/liste-des-admis.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     EtudiantCreateComponent,
-    HeaderComponent
+    HeaderComponent,
+    DemandeListComponent,
+    DemandeInscriptionCreateComponent,
+    DemandeReleveNotesCreateComponent,
+    DemandeScolariteCreateComponent,
+    DemandeScolariteListComponent,
+    DemandeInscriptionListComponent,
+    DemandeReleveNotesListComponent,
+    ConcoursComponent,
+    ListeDesPostuleComponent,
+    ListeDesRetenusEcritComponent,
+    ListeDesRetenusOralComponent,
+    ListeDesAdmisComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +60,10 @@ import {AppRoutingModule} from "./app-routing.module";
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSidenavModule
+
+
 
 
 

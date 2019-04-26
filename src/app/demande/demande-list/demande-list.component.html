@@ -1,0 +1,41 @@
+
+<div class="container">
+  <div class="row" style="padding-top:6% ">
+
+
+
+
+    <div class="col-lg-12 DivDuForm">
+
+      <h1 align="center">LISTE DES DEMANDES</h1> <br>
+
+    </div>
+
+
+
+
+
+    <div class="container-fluid">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist" style="display: flex; justify-content: center">
+          <a class="nav-item nav-link active" id="nav-dem-tab" data-toggle="tab" href="#nav-dem" role="tab" aria-controls="nav-dem" aria-selected="true">ATTESTATION DE SCOLARITE</a>
+          <a class="nav-item nav-link" id="nav-demm-tab" data-toggle="tab" href="#nav-demm" role="tab" aria-controls="nav-demm" aria-selected="false">INSCRIPTION</a>
+          <a class="nav-item nav-link" id="nav-demmm-tab" data-toggle="tab" href="#nav-demmm" role="tab" aria-controls="nav-demmm" aria-selected="false">RELEVE DE NOTES</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-dem" role="tabpanel" aria-labelledby="nav-dem-tab"><app-demande-scolarite-list></app-demande-scolarite-list></div>
+        <div class="tab-pane fade" id="nav-demm" role="tabpanel" aria-labelledby="nav-demm-tab"> <app-demande-inscription-list></app-demande-inscription-list></div>
+        <div class="tab-pane fade" id="nav-demmm" role="tabpanel" aria-labelledby="nav-demmm-tab"> <app-demande-releve-notes-list></app-demande-releve-notes-list></div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div></div>

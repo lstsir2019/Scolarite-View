@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {Etudiant} from '../model/candidat.model';
 import {HttpClient} from '@angular/common/http';
 import {Choix} from '../model/choix.model';
-import {forEach} from '@angular/router/src/utils/collection';
-
+import Swal from "sweetalert2";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +16,20 @@ export class CandidatService {
   public create(etudiant: Etudiant) {
     this.http.post(this.url, etudiant).subscribe(
       data => {
-        console.log('ok');
+        console.log(etudiant.adressePersonnelle)
+        if (data== 1){
+          Swal.fire({
+            title: 'Création élément',
+            text: 'Création réussite',
+            type: 'success',
+          });
+        }else {
+          Swal.fire({
+            title:"Création élément",
+            text: 'Erreur de la création',
+            type: 'error',
+          });
+        }
       }, error1 => {
         console.log('erreur de la creation de letudiant');
       }
@@ -36,3 +48,4 @@ export class CandidatService {
   }
 
 }
+
