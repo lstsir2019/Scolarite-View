@@ -30,11 +30,12 @@ export class NoteService {
   private _notesCheck: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesExisted: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesCheckClone: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
-  private _noteCreate = new NotesCreate('', '');
+  private _noteCreate = new NotesCreate('', '',0);
   private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '');
   private _url = 'http://localhost:8097/efaculte-api-notes/notes/xlpath/';
   private _url1 = 'http://localhost:8097/efaculte-api-notes/notes/';
   private _noteSelected: NoteEtudiantModule;
+  public firstline: number;
 
 
   constructor(private _http: HttpClient) { }
@@ -50,7 +51,7 @@ export class NoteService {
       Swal.fire('Error!!!', 'La liste est pas vide', 'error');
     } else {
       if (this.noteCreate.xpath !== '' ) {
-        this._http.get<Array<NoteEtudiantModule>>(this._url + this.noteCreate.xpath + '/module/' + this._note1.refModule + '/semestre/' + this._note1.refSemestre).subscribe(
+        this._http.get<Array<NoteEtudiantModule>>(this._url + this.noteCreate.xpath + '/module/' + this._note1.refModule + '/semestre/' + this._note1.refSemestre + '/firstline/' + this.noteCreate.startLine).subscribe(
           data => {
             console.log(data);
             if (data.length === 0 ) {

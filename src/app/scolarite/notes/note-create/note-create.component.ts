@@ -26,6 +26,9 @@ export class NoteCreateComponent implements OnInit {
   public get notess() {
     return this.noteService.notess;
   }
+  public get firstline() {
+    return this.noteService.firstline;
+  }
   public get notesExisted() {
     return this.noteService.notesExisted;
   }
