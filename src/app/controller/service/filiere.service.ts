@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Filiere} from '../model/filiere.model';
 import {HttpClient} from '@angular/common/http';
-import {Etudiant} from '../model/etudiant1.model';
+import {Etudiant} from '../model/etudiant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,20 +23,21 @@ export class FiliereService {
     this._http.post<Filiere>(this._url, this._filiereCreate).subscribe(
       data => {
         console.log('Done');
+        this._filiereCreate = new Filiere('', '', '');
       }, error => {
         console.log('error');
       }
     );
   }
   public findAll() {
-    this._http.get<Array<Filiere>>(this._url).subscribe(
-      data => {
-        this.filieres = data;
-      }, error => {
-        console.log('error while loading filieres ...');
+      this._http.get<Array<Filiere>>(this._url).subscribe(
+        data => {
+          this.filieres = data;
+        }, error => {
+          console.log('error while loading filieres ...');
       }
-    );
-  }
+      );
+    }
 
 
   get url(): string {
@@ -81,5 +82,4 @@ export class FiliereService {
   set http(value: HttpClient) {
     this._http = value;
   }
-
 }
