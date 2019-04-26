@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FiliereService} from '../../controller/service/filiere.service';
+import {FiliereService} from '../../../controller/service/filiere.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({

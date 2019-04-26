@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {NoteService} from '../../controller/service/note.service';
+import {NoteService} from '../../../controller/service/note.service';
 import * as $ from 'jquery';
-import {NoteEtudiantModule} from '../../controller/model/noteetudiantmodule.model';
+import {NoteEtudiantModule} from '../../../controller/model/noteetudiantmodule.model';
 @Component({
   selector: 'app-note-create',
   templateUrl: './note-create.component.html',

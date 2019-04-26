@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ModuleService} from '../../controller/service/module.service';
-import {FiliereService} from '../../controller/service/filiere.service';
+import {ModuleService} from '../../../controller/service/module.service';
+import {FiliereService} from '../../../controller/service/filiere.service';
 
 @Component({
   selector: 'app-module-create',

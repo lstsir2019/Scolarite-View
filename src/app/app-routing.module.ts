@@ -6,6 +6,9 @@ import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-creat
 import {DemandeInscriptionCreateComponent} from "./demande/demande-inscription-create/demande-inscription-create.component";
 import {DemandeListComponent} from "./demande/demande-list/demande-list.component";
 import {ConcoursComponent} from "./concours/concours.component";
+import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
+import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
+import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:EtudiantCreateComponent},
@@ -14,6 +17,10 @@ const routes: Routes = [
   { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   { path: 'ListeDemandes', component:DemandeListComponent},
   { path: 'Concours', component:ConcoursComponent},
+  { path: 'filiere', component:FiliereCreateComponent},
+  { path: 'note', component:NoteCreateComponent},
+  { path: 'modules', component:ModuleCreateComponent},
+  { path: 'etudiants', component:EtudiantCreateComponent},
 
 ];
 

@@ -29,6 +29,10 @@ import { ListeDesRetenusEcritComponent } from './concours/liste-des-retenus-ecri
 import { ListeDesRetenusOralComponent } from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
 import { ListeDesAdmisComponent } from './concours/liste-des-admis/liste-des-admis.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ScolariteComponent } from './scolarite/scolarite.component';
+import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
+import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
+import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 
 
 @NgModule({
@@ -47,7 +51,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ListeDesPostuleComponent,
     ListeDesRetenusEcritComponent,
     ListeDesRetenusOralComponent,
-    ListeDesAdmisComponent
+    ListeDesAdmisComponent,
+    ScolariteComponent,
+    EtudiantCreateComponent,
+    NoteCreateComponent,
+    FiliereCreateComponent,
+    ModuleCreateComponent
   ],
   imports: [
     BrowserModule,
