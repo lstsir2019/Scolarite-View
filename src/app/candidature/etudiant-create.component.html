@@ -69,7 +69,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Tel</span>
                 </div>
-                <input type="text" class="form-control" [(ngModel)]="etudiant.tel">
+                <input type="text" class="form-control"  [(ngModel)]="etudiant.tel">
               </div>
             </div>
           </div>
@@ -79,7 +79,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Date Naissance</span>
                 </div>
-                <input type="date" class="form-control form-control-range">
+                <input  [(ngModel)]="etudiant.dateNaissance"  type="date" class="form-control form-control-range">
               </div>
             </div>
             <div class="col-sm-6">
@@ -87,7 +87,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">statue</span>
                 </div>
-                <input type="text" class="form-control">
+                <input  [(ngModel)]="etudiant.statue"  type="text" class="form-control">
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">Adresse Personnelle</span>
                 </div>
-                <input type="text" class="form-control" [(ngModel)]="etudiant.cin">
+                <input [(ngModel)]="etudiant.adressePersonnelle" type="text" class="form-control" >
               </div>
             </div>
           </div>

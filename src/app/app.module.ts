@@ -23,6 +23,12 @@ import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-creat
 import {DemandeScolariteListComponent} from "./demande/demande-scolarite-list/demande-scolarite-list.component";
 import {DemandeInscriptionListComponent} from "./demande/demande-inscription-list/demande-inscription-list.component";
 import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-list/demande-releve-notes-list.component";
+import { ConcoursComponent } from './concours/concours.component';
+import { ListeDesPostuleComponent } from './concours/liste-des-postule/liste-des-postule.component';
+import { ListeDesRetenusEcritComponent } from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
+import { ListeDesRetenusOralComponent } from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
+import { ListeDesAdmisComponent } from './concours/liste-des-admis/liste-des-admis.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 
 @NgModule({
@@ -36,7 +42,12 @@ import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-li
     DemandeScolariteCreateComponent,
     DemandeScolariteListComponent,
     DemandeInscriptionListComponent,
-    DemandeReleveNotesListComponent
+    DemandeReleveNotesListComponent,
+    ConcoursComponent,
+    ListeDesPostuleComponent,
+    ListeDesRetenusEcritComponent,
+    ListeDesRetenusOralComponent,
+    ListeDesAdmisComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +60,9 @@ import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-li
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSidenavModule
+
 
 
 

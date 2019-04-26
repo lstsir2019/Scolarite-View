@@ -5,6 +5,7 @@ import {DemandeReleveNotesCreateComponent} from "./demande/demande-releve-notes-
 import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-create/demande-scolarite-create.component";
 import {DemandeInscriptionCreateComponent} from "./demande/demande-inscription-create/demande-inscription-create.component";
 import {DemandeListComponent} from "./demande/demande-list/demande-list.component";
+import {ConcoursComponent} from "./concours/concours.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:EtudiantCreateComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'DemandeScolarite', component:DemandeScolariteCreateComponent},
   { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   { path: 'ListeDemandes', component:DemandeListComponent},
+  { path: 'Concours', component:ConcoursComponent},
 
 ];
 

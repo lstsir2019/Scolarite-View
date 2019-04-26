@@ -30,7 +30,7 @@ export class EtudiantCreateComponent implements OnInit {
     this.concoursService.findAll();
   }
   public listAvailable: Array<String>=["1","2","3","4"];
-  public etudiant: Etudiant = new Etudiant('', '', '', '', '', '', '');
+  public etudiant: Etudiant = new Etudiant('', '', '', '', '', '', '',"","","");
   public list: Array<NoteSemestre> = [];
   public choix: Choix = new Choix('', '');
   private c: number;
