@@ -1,21 +1,32 @@
-<div class="container-fluid">
-  <div class="row" style="padding-top:2%" >
-    <div class="col-lg-12 DivDuForm">
-      <div class="col-lg-12 card-header">Filiere</div>
-      <div class="form-group">
-        <label for= "libellé">Libellé</label><br>
-        <input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="filiere.libelle"/>
-      </div>
-      <div class="form-group">
-        <label for= "type">Reference</label>
-        <input type="text" class="form-control" id="code" placeholder="Reference" [(ngModel)]="filiere.reference"/>
-      </div>
-      <div class="form-group">
-        <label for= "type">Departement</label>
-        <input type="text" class="form-control" id="code" placeholder="Departement" [(ngModel)]="filiere.refDepartement"/>
-      </div>
-      <div class="sub">
-        <button class=" btn btn-primary" (click)="save()"> ADD </button>
+<div class="container">
+  <div class="card">
+    <div class="col-lg-12 card">
+      <div class="col-lg-12 card-header fa fa-book " align="center"><b>Filiere</b></div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 110px"><b>LIBELLE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="filiere.libelle"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 110px"><b>REFERENCE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Reference" [(ngModel)]="filiere.reference"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 110px"><b>DEPARTEMENT</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Departement" [(ngModel)]="filiere.refDepartement"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success btn-md fa fa-plus" (click)="save()"><b>ADD</b></button>
+        </div>
       </div>
     </div>
     <div class="col-lg-12 DivDuForm">
@@ -37,7 +48,7 @@
         </tbody>
       </table>
     </div>
-</div>
+  </div>
 </div>
 
 
