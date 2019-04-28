@@ -1,4 +1,3 @@
 export class Concours {
-  constructor(reference:string, dateConcours:string,nbreetudiant:string){}
-
+  constructor(reference:string, dateConcours:string,nbreetudiant:string, refFilire:string){}
 }

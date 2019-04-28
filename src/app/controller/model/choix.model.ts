@@ -1,6 +1,7 @@
-import {Etudiant} from './candidat.model';
+import {Candidat} from './candidat.model';
 
 export class Choix {
-  public etudiantConcoursVo: Etudiant=new Etudiant("","","","","","","","","","");
+  public etudiantConcoursVo: Candidat=new Candidat("","","","","","","","","","");
   constructor(public refConcours:string, public numChoix:string){}
 }
+

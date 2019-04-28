@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Etudiant} from '../controller/model/candidat.model';
+import {Candidat} from '../controller/model/candidat.model';
 import {CandidatService} from '../controller/service/candidat.service';
 import {Choix} from '../controller/model/choix.model';
 import {ConcoursService} from '../controller/service/concours.service';
@@ -11,7 +11,7 @@ import {NoteSemestre} from '../controller/model/note-semestre.model';
   templateUrl: './etudiant-create.component.html',
   styleUrls: ['./etudiant-create.component.css']
 })
-export class EtudiantCreateComponent implements OnInit {
+export class CandidatCreateComponent implements OnInit {
   today: number = Date.now();
   title = 'materialApp';
   firstFormGroup: FormGroup;
@@ -30,7 +30,7 @@ export class EtudiantCreateComponent implements OnInit {
     this.concoursService.findAll();
   }
   public listAvailable: Array<String>=["1","2","3","4"];
-  public etudiant: Etudiant = new Etudiant('', '', '', '', '', '', '',"","","");
+  public etudiant: Candidat = new Candidat('', '', '', '', '', '', '',"","","");
   public list: Array<NoteSemestre> = [];
   public choix: Choix = new Choix('', '');
   private c: number;

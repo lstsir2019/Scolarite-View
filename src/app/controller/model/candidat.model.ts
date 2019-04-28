@@ -2,7 +2,7 @@ import {DiplomeEtudiant} from './diplome-etudiant.model';
 import {Choix} from './choix.model';
 import {NoteSemestre} from './note-semestre.model';
 
-export class Etudiant {
+export class Candidat {
   public diplomeEtudiantVo: DiplomeEtudiant = new DiplomeEtudiant("", "", "");
   public choixVos: Array<Choix> = [];
   public notesSemestreVos: Array<NoteSemestre> = [];
