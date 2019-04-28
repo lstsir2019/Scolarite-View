@@ -1,25 +1,39 @@
-<div class="container-fluid">
-  <div class="row" style="padding-top:2%" >
-    <div class="col-lg-12 DivDuForm">
+<div class="container">
+  <div class="card">
+    <div class="card">
       <div class="col-lg-12 card-header">Etudiants</div>
-      <div class="form-group">
-        <label for="cne">CNE</label><br>
-        <input type="text" class="form-control" placeholder="CNE" [(ngModel)]="etudiant.cne" required/>
-      </div>
-      <div class="form-group">
-        <label for="type">N°Apogee</label>
-        <input type="text" class="form-control"  placeholder="NAPOGEE" [(ngModel)]="etudiant.napogee" required/>
-      </div>
-      <div class="form-group">
-        <label for="type">REFERENCE</label>
-        <input type="text" class="form-control"  placeholder="PRENOM" [(ngModel)]="etudiant.reference" required/>
-      </div>
-      <div class="form-group">
-        <label for="type">FILIERE</label>
-        <input type="text" class="form-control"  placeholder="FILIERE" [(ngModel)]="etudiant.filiere" required/>
-      </div>
-      <div class="sub">
-        <button class=" btn btn-primary" (click)="saveEtudiant()"> add </button>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>CNE</b></span>
+            </div>
+          <input type="text" class="form-control" placeholder="CNE" [(ngModel)]="etudiant.cne"/>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>N°Apogee</b></span>
+            </div>
+          <input type="text" class="form-control" placeholder="NAPOGEE" [(ngModel)]="etudiant.napogee"/>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>REFERENCE</b></span>
+            </div>
+          <input type="text" class="form-control" placeholder="Reference" [(ngModel)]="etudiant.reference"/>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILIERE</b></span>
+            </div>
+          <input type="text" class="form-control" placeholder="Filiere" [(ngModel)]="etudiant.filiere"/>
+        </div>
+        </div>
+        <div class="form-group">
+          <button class=" btn btn-primary" (click)="saveEtudiant()"> add</button>
+        </div>
       </div>
     </div>
     <div class="col-lg-12 DivDuForm">
@@ -40,7 +54,8 @@
           <td>{{e.reference}}</td>
           <td>{{e.filiere}}</td>
           <td>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >UPDATE</button><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">DELETE</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">UPDATE</button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal2">DELETE</button>
           </td>
         </tr>
         </tbody>
@@ -48,61 +63,63 @@
     </div>
   </div>
 </div>
-<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Update</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="DivDuForm2">
-          <div class="form-group">
-            <label for="cne">CNE</label><br>
-            <input type="text" class="form-control" placeholder="CNE"/>
-          </div>
-          <div class="form-group">
-            <label for="type">NOM</label>
-            <input type="text" class="form-control"  placeholder="NOM"/>
-          </div>
-          <div class="form-group">
-            <label for="type">PRENOM</label>
-            <input type="text" class="form-control"  placeholder="PRENOM"/>
-          </div>
-          <div class="form-group">
-            <label for="type">FILIERE</label>
-            <input type="text" class="form-control"  placeholder="FILIERE"/>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class=" btn btn-primary ">Update</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal2" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">DELETE ETUDIANT</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Voulez vous vraiment supprimer cet etudiant?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-danger">Supprimer</button>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class=" modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+     <!--aria-hidden="true">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<h5 class="modal-title" id="exampleModalLabel">Update</h5>-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="modal-body">-->
+        <!--<form class="DivDuForm2">-->
+          <!--<div class="form-group">-->
+            <!--<label>CNE</label><br>-->
+            <!--<input type="text" class="form-control" placeholder="CNE"/>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label>NOM</label>-->
+            <!--<input type="text" class="form-control" placeholder="NOM"/>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label>PRENOM</label>-->
+            <!--<input type="text" class="form-control" placeholder="PRENOM"/>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label>FILIERE</label>-->
+            <!--<input type="text" class="form-control" placeholder="FILIERE"/>-->
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+      <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class=" btn btn-primary ">Update</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="exampleModal2" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel"-->
+     <!--aria-hidden="true">-->
+  <!--<div class="modal-dialog" role="document">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<h5 class="modal-title" id="exampleModalLabel">DELETE ETUDIANT</h5>-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+          <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="modal-body">-->
+        <!--Voulez vous vraiment supprimer cet etudiant?-->
+      <!--</div>-->
+      <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-danger">Supprimer</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 
