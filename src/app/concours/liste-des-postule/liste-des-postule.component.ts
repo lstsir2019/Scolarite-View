@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {CandidatService} from "../../controller/service/candidat.service";
+import {ConcoursService} from "../../controller/service/concours.service";
+import {EtudiantPostuleService} from "../../controller/service/etudiant-postule.service";
 
 @Component({
   selector: 'app-liste-des-postule',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeDesPostuleComponent implements OnInit {
 
-  constructor() { }
+  constructor(public  etudiantPostuleService:EtudiantPostuleService,public concoursService: ConcoursService) { }
 
   ngOnInit() {
-  }
 
+    this.concoursService.findAll();
+  }
+  public refConcours:string;
+  public finByRefConcours(){
+    this.etudiantPostuleService.finByRefConcours(this.refConcours);
+}
+  public  get listChoixs(){
+    return this.etudiantPostuleService.listChoixs;
+  }
+  public get concourss() {
+    return this.concoursService.listConcours;
+  }
 }

@@ -2,14 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import {ApplicationRef, NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { EtudiantCreateComponent } from './candidature/etudiant-create.component';
+import { CandidatCreateComponent } from './candidature/candidat-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule,
-  MatDatepickerModule,
   MatIconModule,
-  MatInputModule,
-  MatNativeDateModule,
+  MatInputModule, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -28,17 +26,17 @@ import { ListeDesPostuleComponent } from './concours/liste-des-postule/liste-des
 import { ListeDesRetenusEcritComponent } from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
 import { ListeDesRetenusOralComponent } from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
 import { ListeDesAdmisComponent } from './concours/liste-des-admis/liste-des-admis.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import { ScolariteComponent } from './scolarite/scolarite.component';
 import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
+import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    EtudiantCreateComponent,
+    CandidatCreateComponent,
     HeaderComponent,
     DemandeListComponent,
     DemandeInscriptionCreateComponent,
@@ -53,10 +51,11 @@ import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-cr
     ListeDesRetenusOralComponent,
     ListeDesAdmisComponent,
     ScolariteComponent,
-    EtudiantCreateComponent,
+    CandidatCreateComponent,
     NoteCreateComponent,
     FiliereCreateComponent,
-    ModuleCreateComponent
+    ModuleCreateComponent,
+    EtudiantCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -67,10 +66,9 @@ import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-cr
     MatIconModule,
     FormsModule,
     HttpClientModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     AppRoutingModule,
     MatSidenavModule
+
 
 
 

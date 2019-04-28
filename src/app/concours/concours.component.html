@@ -1,24 +1,31 @@
 
+<mat-drawer-container>
+  <mat-drawer mode="side" opened>
+    <nav style="display: block" class="nav nav-pills nav-fill">
+      <a class="nav-item nav-link list-group-item-action  "  data-toggle="list" href="#list-ListRetenue">Creer Concours</a>
+      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ListRetenue">Liste Des Concours</a>
+      <a class="nav-item nav-link list-group-item-action  active" data-toggle="list" href="#list-home">Liste Des Postulés</a>
+      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ConcoursList">Liste Retenus écrit</a>
+      <a class="nav-item nav-link list-group-item-action  " data-toggle="list" href="#list-ListPostule" >Liste Retenus oral</a>
+      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ListRetenue">Liste Admis</a>
 
-<div class="container-fluid" style="padding-left: 0px;">
-
-  <div class="row">
-    <div class=" col-sm-2" >
-      <div style="text-align: center" class="list-group" id="list-tab" role="tablist">
-        <a  class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Liste des postulés</a>
-        <a class="list-group-item list-group-item-action" id="list-listConcours-list" data-toggle="list" href="#list-ConcoursList" role="tab" aria-controls="profile">Retenus pour l'écrit</a>
-        <a class="list-group-item list-group-item-action" id="list-ListPostule-list" data-toggle="list" href="#list-ListPostule" role="tab" aria-controls="profile">Retenus pour l'oral</a>
-        <a class="list-group-item list-group-item-action" id="list-ListRetenueConcours-list" data-toggle="list" href="#list-ListRetenue" role="tab" aria-controls="profile">Liste Des Admis</a>
+    </nav>
+  </mat-drawer>
+  <mat-drawer-content >
+    <div  class=" container tab-content" id="nav-tabContent">
+      <div class="tab-pane fade" id="list-ConcoursList" role="tabpanel" aria-labelledby="list-profile-list">
+        <app-liste-des-retenus-ecrit></app-liste-des-retenus-ecrit>
+      </div>
+      <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+        <app-liste-des-postule></app-liste-des-postule>
+      </div>
+      <div class="tab-pane fade" id="list-ListPostule" role="tabpanel" aria-labelledby="list-profile-list">
+        <app-liste-des-retenus-oral></app-liste-des-retenus-oral>
+      </div>
+      <div class="tab-pane fade" id="list-ListRetenue" role="tabpanel" aria-labelledby="list-profile-list">
+        <app-liste-des-admis></app-liste-des-admis>
       </div>
     </div>
+  </mat-drawer-content>
+</mat-drawer-container>
 
-    <div class="col-sm-10">
-      <div class="tab-content" id="nav-tabContent" >
-        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list"><app-liste-des-postule></app-liste-des-postule></div>
-        <div class="tab-pane fade" id="list-ConcoursList" role="tabpanel" aria-labelledby="list-profile-list"><app-liste-des-retenus-ecrit></app-liste-des-retenus-ecrit></div>
-        <div class="tab-pane fade" id="list-ListPostule" role="tabpanel" aria-labelledby="list-profile-list"><app-liste-des-retenus-oral></app-liste-des-retenus-oral></div>
-        <div class="tab-pane fade" id="list-ListRetenue" role="tabpanel" aria-labelledby="list-profile-list"><app-liste-des-admis></app-liste-des-admis></div>
-      </div>
-    </div>
-  </div>
-</div>

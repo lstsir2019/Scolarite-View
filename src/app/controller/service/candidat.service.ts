@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Etudiant} from '../model/candidat.model';
+import {Candidat} from '../model/candidat.model';
 import {HttpClient} from '@angular/common/http';
 import {Choix} from '../model/choix.model';
 import Swal from "sweetalert2";
@@ -13,7 +13,7 @@ export class CandidatService {
 
   public url: string = 'http://localhost:8099/inscription/etudiants/';
 
-  public create(etudiant: Etudiant) {
+  public create(etudiant: Candidat) {
     this.http.post(this.url, etudiant).subscribe(
       data => {
         console.log(etudiant.adressePersonnelle)
@@ -36,16 +36,18 @@ export class CandidatService {
     );
   };
 
-  public pushChoix(etudiant: Etudiant, choix: Choix) {
+  public pushChoix(etudiant: Candidat, choix: Choix) {
     let ChoixClone = new Choix(choix.refConcours, choix.numChoix);
     console.log(choix.numChoix);
     etudiant.choixVos.push(ChoixClone);
 
   }
 
-  public removeChoix(etudiant: Etudiant, choix: Choix) {
+  public removeChoix(etudiant: Candidat, choix: Choix) {
      etudiant.choixVos.splice(etudiant.choixVos.indexOf(choix),1);
   }
+
+
 
 }
 

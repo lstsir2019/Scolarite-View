@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-concours',
   templateUrl: './concours.component.html',
@@ -10,6 +11,7 @@ export class ConcoursComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -6,25 +6,29 @@
   <div class="col-sm-4">
     <div class="input-group input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text">Année du Concours</span>
+        <span class="input-group-text">Année</span>
       </div>
-      <select  class="form-control form-control">
+      <select   class="form-control form-control">
         <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+
+
       </select>
     </div>
+
   </div>
   <div class="col-sm-4">
     <div class="input-group input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text">Concours</span>
       </div>
-      <select class="form-control form-control">
-        <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+      <select [(ngModel)]="refConcours" class="form-control form-control">
+        <option  disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+        <option value="{{cc.reference}}" *ngFor="let cc of concourss ">Concours {{cc.refFiliere}}</option>
       </select>
-    </div>
   </div>
+</div>
   <div class="col-sm-0">
-    <button type="button" class="btn btn-outline-success"><span class="fa fa-search"> Chercher</span></button>
+    <button type="button" (click)="finByRefConcours()" class="btn btn-outline-success"><span class="fa fa-search"> Chercher</span></button>
   </div>
 </div>
 <h5> Liste</h5>
@@ -42,15 +46,136 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let e of etudiants">
-    <td>{{e.cne}}</td>
-    <td>{{e.cin}}</td>
-    <td>{{e.nom}}</td>
-    <td>{{e.prenom}}</td>
-    <td>{{e.email}}</td>
-    <td>{{e.tel}}</td>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
     <td>
       <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
   </tr>
+ <!-- <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>
+  <tr *ngFor="let c of listChoixs">
+    <td>{{c.cne}}</td>
+    <td>{{c.cin}}</td>
+    <td>{{c.nom}}</td>
+    <td>{{c.prenom}}</td>
+    <td>{{c.email}}</td>
+    <td>{{c.tel}}</td>
+    <td>
+      <button (click)="finByCne(e)" data-toggle="modal" data-target="#exampleModal3" class="btn btn-sm btn-outline-secondary fa fa-plus"></button></td>
+  </tr>-->
+
   </tbody>
 </table>

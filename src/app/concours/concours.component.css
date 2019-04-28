@@ -1,5 +1,16 @@
-.list-group-item{
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.nav-item{
+  border-radius: 0;
+
 }
+mat-drawer-container{
+  height: 100%;
+
+}
+mat-drawer{
+  padding: 0px;
+  width: 14%;
+}
+
+
+
 
