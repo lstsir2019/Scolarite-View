@@ -27,13 +27,13 @@
     <div class="d-flex justify-content-sm-between">
       <div class="input-group">
         <div class="input-group-prepend">
-          <label class="input-group-text">CNE</label>
+          <label class="input-group-text"><b>CNE</b></label>
         </div>
         <input type="text" class="form-control" [(ngModel)]="demandeReleveNotesSearch.refEtudiant">
       </div>
       <div class="input-group mx-sm-3">
         <div class="input-group-prepend">
-          <label class="input-group-text">Filiere</label>
+          <label class="input-group-text"><b>Filiere</b></label>
         </div>
         <input type="text" class="form-control" [(ngModel)]="demandeReleveNotesSearch.refFiliere">
       </div>
@@ -41,14 +41,14 @@
 
       <div class="input-group mx-sm-4">
         <div class="input-group-prepend">
-          <label class="input-group-text">Semestre</label>
+          <label class="input-group-text"><b>Semestre</b></label>
         </div>
         <input type="text" class="form-control" [(ngModel)]="demandeReleveNotesSearch.refSemestre">
       </div>
 
 
       <div class="input-group">
-        <button class="btn btn-secondary btn-block" (click)="findDemandeReleveNotesByQuery()"><i class="fa fa-search"></i> Recherche
+        <button class="btn btn-secondary btn-block" (click)="findDemandeReleveNotesByQuery()"><i class="fa fa-search"></i> <b> RECHERCHE </b>
         </button>
       </div>
     </div>
@@ -74,7 +74,7 @@
     <td style="text-align:center" class="something">{{d.refFiliere}}</td>
     <td style="text-align:center" class="something">{{d.refSemestre}}</td>
     <td style="text-align: center" ><button class="btn btn-danger" (click)="deleteDemandeReleveNotes(d)" ><i class="fa fa-trash"></i> SUPPRIMER</button></td>
-    <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i> DOWNLOAD </button></td>
+    <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i> </button></td>
   </tr>
   </tbody>
 </table>

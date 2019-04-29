@@ -29,18 +29,18 @@
   <div class="d-flex justify-content-sm-between">
     <div class="input-group">
       <div class="input-group-prepend">
-        <label class="input-group-text">CNE</label>
+        <label class="input-group-text"><b>CNE</b></label>
       </div>
       <input type="text" class="form-control" [(ngModel)]="demandeScolariteSearch.refEtudiant">
     </div>
     <div class="input-group mx-sm-3">
       <div class="input-group-prepend">
-        <label class="input-group-text">Filiere</label>
+        <label class="input-group-text"><b>Filiere</b></label>
       </div>
       <input type="text" class="form-control" [(ngModel)]="demandeScolariteSearch.refFiliere">
     </div>
     <div class="input-group">
-      <button class="btn btn-secondary btn-block" (click)="findDemandeScolariteByQuery()"><i class="fa fa-search"></i> RECHERCHE
+      <button class="btn btn-secondary btn-block" (click)="findDemandeScolariteByQuery()"><i class="fa fa-search"></i> <b> RECHERCHE </b>
       </button>
     </div>
   </div>
@@ -71,7 +71,7 @@
     <td style="text-align:center" class="something" name = "refEtudiant" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refEtudiant">{{d.refEtudiant}}</td>
     <td style="text-align:center" class="something" name = "refFiliere" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refFiliere">{{d.refFiliere}}</td>
     <td style="text-align: center" ><button class="btn btn-danger"  (click)="deleteDemandeScolarite(d)"><i class="fa fa-trash"></i> SUPPRIMER</button></td>
-    <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i> DOWNLOAD </button></td>
+    <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i>  </button></td>
   <!--</tr>-->
   </tbody>
 </table>

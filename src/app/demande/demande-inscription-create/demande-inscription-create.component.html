@@ -15,7 +15,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" >CNE</span>
+                  <span class="input-group-text" style="width: 90px"><b>CNE</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.refEtudiant"   class="form-control form-control-sm" >
               </div>
@@ -28,7 +28,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" >NOM </span>
+                  <span class="input-group-text" style="width: 90px"><b>NOM</b> </span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.nom"   class="form-control form-control-sm" >
 
@@ -45,7 +45,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" >PRENOM</span>
+                  <span class="input-group-text" style="width: 90px" ><b>PRENOM</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.prenom"   class="form-control form-control-sm" >
 
@@ -62,7 +62,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" >EMAIL</span>
+                  <span class="input-group-text" style="width: 90px"><b>EMAIL</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.email"   class="form-control form-control-sm" >
 
@@ -81,7 +81,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" >Filiere</span>
+                  <span class="input-group-text" style="width: 90px"><b>Filiere</b></span>
                 </div>
                 <select  [(ngModel)]="demandeInscription.refFiliere"   class="form-control form-control-sm" >
                   <option  value="{{f.libelle}}" *ngFor="let f of filieres " > {{f.libelle }}</option>
