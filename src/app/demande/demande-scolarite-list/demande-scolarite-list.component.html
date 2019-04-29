@@ -70,7 +70,7 @@
     <td style="text-align: center"><button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal3"><i class="fa fa-address-book"></i> </button></td>
     <td style="text-align:center" class="something" name = "refEtudiant" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refEtudiant">{{d.refEtudiant}}</td>
     <td style="text-align:center" class="something" name = "refFiliere" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refFiliere">{{d.refFiliere}}</td>
-    <td style="text-align: center" ><button class="btn btn-danger"  (click)="deleteDemandeScolarite()"><i class="fa fa-trash"></i> SUPPRIMER</button></td>
+    <td style="text-align: center" ><button class="btn btn-danger"  (click)="deleteDemandeScolarite(d)"><i class="fa fa-trash"></i> SUPPRIMER</button></td>
     <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i> DOWNLOAD </button></td>
   <!--</tr>-->
   </tbody>

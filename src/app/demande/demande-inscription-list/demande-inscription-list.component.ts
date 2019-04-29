@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DemandeInscriptionService} from '../../controller/service/demande-inscription.service';
+import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
+import {DemandeInscription} from '../../controller/model/demande-inscription.model';
 
 @Component({
   selector: 'app-demande-inscription-list',
@@ -22,8 +24,8 @@ export class DemandeInscriptionListComponent implements OnInit {
     return this.demandeInscriptionService.demandeInscriptions;
   }
 
-  public deleteDemandeInscription(){
-    return this.demandeInscriptionService.deleteDemandeInscription();
+  public deleteDemandeInscription(demandeInscription : DemandeInscription){
+    this.demandeInscriptionService.deleteDemandeInscription(demandeInscription);
   }
 
   public get demandeInscriptionSearch(){

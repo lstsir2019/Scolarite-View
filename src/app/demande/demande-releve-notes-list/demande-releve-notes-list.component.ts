@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DemandeReleveNotesService} from '../../controller/service/demande-releve-notes.service';
+import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
+import {DemandeReleveNotes} from '../../controller/model/demande-releve-notes.model';
 
 @Component({
   selector: 'app-demande-releve-notes-list',
@@ -19,6 +21,10 @@ export class DemandeReleveNotesListComponent implements OnInit {
   }
   public get demandeReleveNotess(){
     return this.demandeReleveNotesService.demandeReleveNotess;
+  }
+
+  public deleteDemandeReleveNotes(demandeReleveNotes : DemandeReleveNotes){
+    this.demandeReleveNotesService.deleteDemandeReleveNotes(demandeReleveNotes);
   }
 
   public get demandeReleveNotesSearch(){

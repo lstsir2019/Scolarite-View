@@ -41,18 +41,18 @@ export class DemandeScolariteService {
     );
   }
 
-public deleteDemandeScolarite(){
-  this._http.delete(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
-    (data) =>{
-      console.log("deleted ...");
-      this.demandeScolariteSelected;
-      this.findAll();
-    },error => {
-      console.log("w tgoul wesh batms7 ...");
-    }
-  );
+public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
+  this.demandeScolariteSelected = demandeScolarite;
+  if (this.demandeScolariteSelected != null) {
+    this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
+      error => {
+        console.log("deleted ...");
+        this.demandeScolariteSelected;
+      });
+    let index:number = this._demandeScolarites.indexOf(demandeScolarite);
+    this._demandeScolarites.splice(index,1);
+  }
 }
-
 
 
 
