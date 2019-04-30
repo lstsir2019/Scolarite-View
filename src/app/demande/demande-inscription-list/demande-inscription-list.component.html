@@ -39,7 +39,9 @@
         <div class="input-group-prepend">
           <label class="input-group-text"><b>Filiere</b></label>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="demandeInscriptionSearch.refFiliere">
+        <select size="1" [(ngModel)]="demandeInscriptionSearch.refFiliere" class="form-control form-control-sm">
+          <option value="{{f.libelle}}" *ngFor="let f of filieres "> {{f.libelle}}</option>
+        </select>
       </div>
       <div class="input-group">
         <button class="btn btn-secondary btn-block" (click)="findDemandeInscriptionByQuery()"><i class="fa fa-search"></i> <b> RECHERCHE</b>
@@ -53,19 +55,23 @@
 
 <table class="table table-hover table-sm table-bordered">
   <thead class="thead-dark ">
-  <th style="text-align:center" class="something" >INFO</th>
+
   <th style="text-align:center" class="something">CNE</th>
     <th style="text-align:center" class="something">FILIERE</th>
   <th style="text-align:center" class="something" >MODIFICATION</th>
-  <th style="text-align:center" class="something">PDF</th>
+
   </thead>
   <tbody>
   <tr *ngFor="let d of demandeInscriptions">
-    <td style="text-align: center"><button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal4"><i class="fa fa-address-book"></i> </button></td>
+
     <td style="text-align:center" class="something">{{d.refEtudiant}}</td>
     <td style="text-align:center" class="something">{{d.refFiliere}}</td>
-    <td style="text-align: center" ><button class="btn btn-danger" (click)="deleteDemandeInscription(d)"> <i class="fa fa-trash"></i> SUPPRIMER</button></td>
-    <td style="text-align: center"><button class="btn btn-outline-success"><i class="fa fa-download"></i> </button></td>
+    <td style="text-align: center" >
+      <button class="btn btn-outline-success"><i class="fa fa-download"></i> </button>
+      <button class="btn btn-danger" (click)="deleteDemandeInscription(d)"> <i class="fa fa-trash"></i> </button>
+      <button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal4"><i class="fa fa-address-book"></i> </button>
+    </td>
+
   </tr>
   </tbody>
 </table>

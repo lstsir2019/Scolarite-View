@@ -37,6 +37,10 @@ export class DemandeScolariteListComponent implements OnInit {
     return this.demandeScolariteService.demandeScolariteSelected;
   }
 
+  public print(){
+    this.demandeScolariteService.print();
+  }
+
 
 
   public deleteDemandeScolarite(demandeScolarite : DemandeScolarite){
@@ -54,6 +58,11 @@ export class DemandeScolariteListComponent implements OnInit {
     this.demandeScolariteService.findByCriteria();
 
   }
+
+  public get filieres(){
+    return this.filiereService.filieres;
+  }
+
 
   // public delete(){
   //   return this.demandeScolariteService.deleteDemandeScolarite();

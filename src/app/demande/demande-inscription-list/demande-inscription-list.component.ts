@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DemandeInscriptionService} from '../../controller/service/demande-inscription.service';
 import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
 import {DemandeInscription} from '../../controller/model/demande-inscription.model';
+import {FiliereService} from '../../controller/service/filiere.service';
 
 @Component({
   selector: 'app-demande-inscription-list',
@@ -10,10 +11,11 @@ import {DemandeInscription} from '../../controller/model/demande-inscription.mod
 })
 export class DemandeInscriptionListComponent implements OnInit {
 
-  constructor(public demandeInscriptionService : DemandeInscriptionService) { }
+  constructor(public demandeInscriptionService : DemandeInscriptionService, public filiereService : FiliereService) { }
 
   ngOnInit() {
     this.demandeInscriptionService.findAll();
+    this.filiereService.findAll();
   }
 
 
@@ -36,6 +38,11 @@ export class DemandeInscriptionListComponent implements OnInit {
     this.demandeInscriptionService.findByCriteria();
 
   }
+
+  public get filieres(){
+    return this.filiereService.filieres;
+  }
+
 
 
   // get demandeInscriptionListService(): DemandeInscriptionListService {

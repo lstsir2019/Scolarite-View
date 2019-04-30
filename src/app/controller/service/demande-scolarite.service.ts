@@ -11,6 +11,7 @@ export class DemandeScolariteService {
   private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/refEtudiant/";
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/chercher";
 
+
   private _demandeScolariteSearch: DemandeScolarite = new DemandeScolarite("","","","","");
 
   private _demandeScolariteSelected : DemandeScolarite=new DemandeScolarite("","","","","");
@@ -30,6 +31,7 @@ export class DemandeScolariteService {
 
 
   public saveDemandeScolarite(){
+    // this._http.get()
     this._http.post<DemandeScolarite>(this._url, this._demandeScolariteCreate).subscribe(
 
       data=>{
@@ -40,6 +42,8 @@ export class DemandeScolariteService {
       }
     );
   }
+
+
 
 public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
   this.demandeScolariteSelected = demandeScolarite;
@@ -54,10 +58,18 @@ public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
   }
 }
 
-
+  public print():any{
+    const httpOptions = {
+      responseType : 'blob' as 'json' //This also worked
+    };
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeScolarites/pdf",httpOptions).subscribe((resultBlob: Blob) => {
+      var downloadURL = URL.createObjectURL(resultBlob);
+      window.open(downloadURL);});
+  }
 
 
   public findByCriteria() {
+    console.log(this.demandeScolariteSearch);
     this.http.post<Array<DemandeScolarite>>(this._url3, this._demandeScolariteSearch).subscribe(
       data => {
         console.log("success:" + data);
@@ -94,6 +106,8 @@ public deleteD (d: DemandeScolarite){
       }
     );
   }
+
+
 
 
 
