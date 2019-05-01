@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
 import {HttpClient} from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +32,17 @@ export class DemandeScolariteService {
 
 
   public saveDemandeScolarite(){
-    // this._http.get()
-    this._http.post<DemandeScolarite>(this._url, this._demandeScolariteCreate).subscribe(
-
+    this._http.post<number>(this._url, this._demandeScolariteCreate).subscribe(
       data=>{
+        if (data == -1) {
+          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+        }
+        else if (data == -2) {
+          Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+        }
+        else { (data == 1)
+          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+        }
         console.log("ok");
         this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "");
       } ,error=>{

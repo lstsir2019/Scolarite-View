@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {DemandeReleveNotes} from '../model/demande-releve-notes.model';
 import {HttpClient} from '@angular/common/http';
 import {ReleveNotes} from '../model/releve-notes.model';
+import Swal from 'sweetalert2';
 import {DemandeInscription} from '../model/demande-inscription.model';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
 
@@ -44,9 +45,18 @@ export class DemandeReleveNotesService {
 
 
   public saveDemandeReleveNotes(){
-    this._http.post<DemandeReleveNotes>(this._url, this._demandeReleveNotesCreate).subscribe(
+    this._http.post<number>(this._url, this._demandeReleveNotesCreate).subscribe(
 
       data=>{
+        if (data == -1) {
+          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+        }
+        else if (data == -2) {
+          Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+        }
+        else { (data == 1)
+          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+        }
         console.log("ok");
         this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","");
          this._releveNotesCreate = new ReleveNotes("");
