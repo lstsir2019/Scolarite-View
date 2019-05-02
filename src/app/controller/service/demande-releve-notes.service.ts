@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import {DemandeReleveNotes} from '../model/demande-releve-notes.model';
 import {HttpClient} from '@angular/common/http';
 import {ReleveNotes} from '../model/releve-notes.model';
+import Swal from 'sweetalert2';
 import {DemandeInscription} from '../model/demande-inscription.model';
+import {DemandeScolarite} from '../model/demande-scolarite.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,14 @@ import {DemandeInscription} from '../model/demande-inscription.model';
 export class DemandeReleveNotesService {
 
   private _url:string="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/";
+  private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/refEtudiant/";
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/chercher";
 
   private _demandeReleveNotess: Array<DemandeReleveNotes>;
 
   private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","");
+
+  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","");
 
   private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","");
   private _releveNotesCreate: ReleveNotes = new ReleveNotes("");
@@ -40,9 +45,18 @@ export class DemandeReleveNotesService {
 
 
   public saveDemandeReleveNotes(){
-    this._http.post<DemandeReleveNotes>(this._url, this._demandeReleveNotesCreate).subscribe(
+    this._http.post<number>(this._url, this._demandeReleveNotesCreate).subscribe(
 
       data=>{
+        if (data == -1) {
+          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+        }
+        else if (data == -2) {
+          Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+        }
+        else { (data == 1)
+          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+        }
         console.log("ok");
         this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","");
          this._releveNotesCreate = new ReleveNotes("");
@@ -71,6 +85,20 @@ export class DemandeReleveNotesService {
         console.log("error");
       }
     );
+  }
+
+
+  public deleteDemandeReleveNotes(demandeReleveNotes: DemandeReleveNotes) {
+    this.demandeReleveNotesSelected = demandeReleveNotes;
+    if (this.demandeReleveNotesSelected != null) {
+      this._http.delete<DemandeReleveNotes>(this._url2 + this._demandeReleveNotesSelected.refEtudiant).subscribe(
+        error => {
+          console.log("deleted ...");
+          this.demandeReleveNotesSelected;
+        });
+      let index:number = this._demandeReleveNotess.indexOf(demandeReleveNotes);
+      this._demandeReleveNotess.splice(index,1);
+    }
   }
 
 
@@ -120,6 +148,23 @@ export class DemandeReleveNotesService {
 
   set demandeReleveNotesCreate(value: DemandeReleveNotes) {
     this._demandeReleveNotesCreate = value;
+  }
+
+
+  get demandeReleveNotesSelected(): DemandeReleveNotes {
+    return this._demandeReleveNotesSelected;
+  }
+
+  set demandeReleveNotesSelected(value: DemandeReleveNotes) {
+    this._demandeReleveNotesSelected = value;
+  }
+
+  get url2(): string {
+    return this._url2;
+  }
+
+  set url2(value: string) {
+    this._url2 = value;
   }
 
   get url(): string {

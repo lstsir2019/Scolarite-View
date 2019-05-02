@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
 import {HttpClient} from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class DemandeScolariteService {
   private _url:string="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/";
   private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/refEtudiant/";
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/chercher";
+
 
   private _demandeScolariteSearch: DemandeScolarite = new DemandeScolarite("","","","","");
 
@@ -30,9 +32,17 @@ export class DemandeScolariteService {
 
 
   public saveDemandeScolarite(){
-    this._http.post<DemandeScolarite>(this._url, this._demandeScolariteCreate).subscribe(
-
+    this._http.post<number>(this._url, this._demandeScolariteCreate).subscribe(
       data=>{
+        if (data == -1) {
+          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+        }
+        else if (data == -2) {
+          Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+        }
+        else { (data == 1)
+          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+        }
         console.log("ok");
         this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "");
       } ,error=>{
@@ -41,23 +51,33 @@ export class DemandeScolariteService {
     );
   }
 
-public deleteDemandeScolarite(){
-  this._http.delete(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
-    (data) =>{
-      console.log("deleted ...");
-      this.demandeScolariteSelected;
-      this.findAll();
-    },error => {
-      console.log("w tgoul wesh batms7 ...");
-    }
-  );
+
+
+public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
+  this.demandeScolariteSelected = demandeScolarite;
+  if (this.demandeScolariteSelected != null) {
+    this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
+      error => {
+        console.log("deleted ...");
+        this.demandeScolariteSelected;
+      });
+    let index:number = this._demandeScolarites.indexOf(demandeScolarite);
+    this._demandeScolarites.splice(index,1);
+  }
 }
 
-
-
+  public print():any{
+    const httpOptions = {
+      responseType : 'blob' as 'json' //This also worked
+    };
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeScolarites/pdf",httpOptions).subscribe((resultBlob: Blob) => {
+      var downloadURL = URL.createObjectURL(resultBlob);
+      window.open(downloadURL);});
+  }
 
 
   public findByCriteria() {
+    console.log(this.demandeScolariteSearch);
     this.http.post<Array<DemandeScolarite>>(this._url3, this._demandeScolariteSearch).subscribe(
       data => {
         console.log("success:" + data);
@@ -94,6 +114,8 @@ public deleteD (d: DemandeScolarite){
       }
     );
   }
+
+
 
 
 
