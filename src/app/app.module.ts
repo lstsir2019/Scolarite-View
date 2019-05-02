@@ -31,6 +31,7 @@ import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.com
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etu
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatSidenavModule
+    MatSidenavModule,
+    NgxSpinnerModule
 
 
 

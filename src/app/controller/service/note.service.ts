@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Module} from '../model/module.model';
 import {Filiere} from '../model/filiere.model';
 import {Etudiant} from '../model/etudiant.model';
 import {NotesCreate} from '../model/note.model';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NoteEtudiantModule} from '../model/noteetudiantmodule.model';
 // import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
 import {forEach} from '@angular/router/src/utils/collection';
+import {NgxSpinnerService} from "ngx-spinner";
 
 
 // import Swal from 'sweetalert2';
@@ -30,31 +31,31 @@ export class NoteService {
   private _notesCheck: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesExisted: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesCheckClone: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
-  private _noteCreate = new NotesCreate('', '',0);
+  private _noteCreate = new NotesCreate('', '', 0);
   private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '');
   private _url = 'http://localhost:8097/efaculte-api-notes/notes/xlpath/';
   private _url1 = 'http://localhost:8097/efaculte-api-notes/notes/';
   private _noteSelected: NoteEtudiantModule;
+  private _noteClone: NoteEtudiantModule = new NoteEtudiantModule('', '', '', '', '', '', '');
   public firstline: number;
 
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _spinner: NgxSpinnerService) {
+  }
 
   // public addNote() {
   //   let noteClone = new NotesCreate(this.noteCreate.etudiant, this.noteCreate.module, this.noteCreate.value);
   //   this.noteCreate.notes.push(noteClone);
   // }
 
-
   public check() {
     if (this.notesCheck.length !== 0) {
-      Swal.fire('Error!!!', 'La liste est pas vide', 'error');
+      Swal.fire('Error!!!', 'La liste nest pas vide', 'error');
     } else {
-      if (this.noteCreate.xpath !== '' ) {
+      if (this.noteCreate.xpath !== '') {
         this._http.get<Array<NoteEtudiantModule>>(this._url + this.noteCreate.xpath + '/module/' + this._note1.refModule + '/semestre/' + this._note1.refSemestre + '/firstline/' + this.noteCreate.startLine).subscribe(
           data => {
-            console.log(data);
-            if (data.length === 0 ) {
+            if (data.length === 0) {
               Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
             } else {
               this.notesCheck = data;
@@ -66,28 +67,39 @@ export class NoteService {
         // this.notesCheck.push(new NoteEtudiantModule('hjk', 'gfd' , 'gfd' , 'fds', 'hgd' , 'gfds' , 'gaezfds' ));
       } else {
         Swal.fire('Error!!!', 'please enter file name!', 'error');
-      }}
-  }
-  public save() {
-    this._http.post<Array<NoteEtudiantModule>>(this.url1, this.notesCheck).subscribe(
-      data => {
-        if (data == null) {
-          Swal.fire('Error!!!', 'la liste est vide', 'error');
-        } else {
-          this.notesExisted = data;
-          this.notesCheck = this.notesExisted;
-        }
-      }, error => {
-        Swal.fire('Error!!!', 'Error', 'error');
       }
-    );
+    }
   }
 
-  public deleteItem( n: NoteEtudiantModule ) {
+  public save() {
+    if (this.notesCheck.length == 0) {
+      Swal.fire('erreur', 'la liste est vide', 'warning');
+    } else {
+      this._http.post<Array<NoteEtudiantModule>>(this.url1, this.notesCheck).subscribe(
+        data => {
+
+          this.notesExisted = data;
+          if (this.notesExisted.length == 0) {
+            Swal.fire('Done', 'Success', 'success');
+            this.deleteAll();
+          } else {
+            Swal.fire('erreur', 'vous avez des erreurs!', 'warning');
+            this.notesCheck = this.notesExisted;
+          }
+        }, error => {
+          Swal.fire('Error!!!', 'Error', 'error');
+        }
+      );
+    }
+  }
+
+  public deleteItem(n: NoteEtudiantModule) {
     const id: number = this.notesCheck.indexOf(n);
     this.notesCheck.splice(id, 1);
     console.log('dkhlty');
   }
+
+
   public deleteAll() {
     this.notesCheck.splice(0, this.notesCheck.length);
   }
@@ -101,6 +113,7 @@ export class NoteService {
       }
     );
   }
+
   // saveFile() {
   //   const headers = new HttpHeaders();
   //   headers.append('Accept', 'text/plain');
@@ -201,5 +214,22 @@ export class NoteService {
 
   set note1(value: NoteEtudiantModule) {
     this._note1 = value;
+  }
+
+  get spinner(): NgxSpinnerService {
+    return this._spinner;
+  }
+
+  set spinner(value: NgxSpinnerService) {
+    this._spinner = value;
+  }
+
+
+  get noteClone(): NoteEtudiantModule {
+    return this._noteClone;
+  }
+
+  set noteClone(value: NoteEtudiantModule) {
+    this._noteClone = value;
   }
 }
