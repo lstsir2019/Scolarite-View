@@ -1,49 +1,19 @@
-<!--<div class="container-fluid">-->
-  <!--<nav>-->
-    <!--<div class="nav nav-tabs" id="nav-tab" role="tablist" style="display: flex; justify-content: center">-->
-      <!--<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">DEMANDE D'ATTESTATION DE SCOLARITE</a>-->
-      <!--<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">DEMANDE D'INSCRIPTION</a>-->
-      <!--<a class="nav-item nav-link" id="nav-menu-tab" data-toggle="tab" href="#nav-menu" role="tab" aria-controls="nav-menu" aria-selected="false">DEMANDE DE RELEVE DE NOTES</a>-->
-      <!--<a class="nav-item nav-link" id="nav-bar-tab" data-toggle="tab" href="#nav-bar" role="tab" aria-controls="nav-bar" aria-selected="false">LISTE DES DEMANDES</a>-->
-    <!--</div>-->
-  <!--</nav>-->
-  <!--<div class="tab-content" id="nav-tabContent">-->
-    <!--<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"><app-demande-scolarite-create></app-demande-scolarite-create></div>-->
-    <!--<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab"> <app-demande-inscription-create></app-demande-inscription-create></div>-->
-    <!--<div class="tab-pane fade" id="nav-menu" role="tabpanel" aria-labelledby="nav-menu-tab"> <app-demande-releve-notes-create></app-demande-releve-notes-create></div>-->
-    <!--<div class="tab-pane fade" id="nav-bar" role="tabpanel" aria-labelledby="nav-bar-tab"> <app-demande-list></app-demande-list></div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-
-
-
-
-
-
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
-
-
-    <nav style="display: block" class="nav nav-pills nav-fill">
-      <a class="nav-item nav-link list-group-item-action  "  >Creer Concours</a>
-      <a class="nav-item nav-link list-group-item-action " >Liste Des Concours</a>
-      <a class="nav-item nav-link list-group-item-action  "routerLink="DemandeReleveNotes"  routerLinkActive="router-link-active">Liste Des Postulés</a>
-      <a class="nav-item nav-link list-group-item-action "routerLink="DemandeScolarite"  routerLinkActive="router-link-active">Liste Retenus écrit</a>
-      <a class="nav-item nav-link list-group-item-action  " routerLink="DemandeInscription"  routerLinkActive="router-link-active">Liste Retenus oral</a>
-      <a class="nav-item nav-link list-group-item-action " routerLink="ListeDemandes"  routerLinkActive="router-link-active">Liste Admis</a>
-
-    </nav>
-  </mat-drawer>
-  <mat-drawer-content >
+      <nav style="display: block" class="nav nav-pills nav-fill">
+        <a class="nav-item nav-link list-group-item-action  "routerLink="DemandeScolarite"  routerLinkActive="router-link-active">DEMANDE D'ATTESTATION DE SCOLARITE</a>
+        <a class="nav-item nav-link list-group-item-action "routerLink="DemandeInscription"  routerLinkActive="router-link-active">DEMANDE D'INSCRIPTION</a>
+        <a class="nav-item nav-link list-group-item-action  " routerLink="DemandeReleveNotes"  routerLinkActive="router-link-active">DEMANDE DE RELEVE DE NOTES</a>
+        <a class="nav-item nav-link list-group-item-action " routerLink="ListeDemandes"  routerLinkActive="router-link-active">LISTE DES DEMANDES</a>
+      </nav>
+    </mat-drawer>
+  <mat-drawer-content>
     <div class="tab-content" id="nav-tabContent">
       <router-outlet></router-outlet>
-
-
     </div>
-
-
   </mat-drawer-content>
 </mat-drawer-container>
+
+
+
 
