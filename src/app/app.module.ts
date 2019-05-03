@@ -34,6 +34,7 @@ import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etu
 import { CandidatUpdateComponent } from './candidat-update/candidat-update.component';
 import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import {DemandeComponent} from './demande/demande.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     EtudiantCreateComponent,
     CandidatUpdateComponent,
     CandidatInfoComponent,
+    DemandeComponent,
 
 
   ],

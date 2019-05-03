@@ -15,14 +15,32 @@ import {ListeDesPostuleComponent} from "./concours/liste-des-postule/liste-des-p
 import {ListeDesRetenusEcritComponent} from "./concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component";
 import {ListeDesRetenusOralComponent} from "./concours/liste-des-retenus-oral/liste-des-retenus-oral.component";
 import {ListeDesAdmisComponent} from "./concours/liste-des-admis/liste-des-admis.component";
+import {DemandeComponent} from './demande/demande.component';
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
-  { path: 'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
-  { path: 'DemandeScolarite', component:DemandeScolariteCreateComponent},
-  { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
-  { path: 'ListeDemandes', component:DemandeListComponent},
+  // { path: 'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
+  // { path: 'DemandeScolarite', component:DemandeScolariteCreateComponent},
+  // { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
+  // { path: 'ListeDemandes', component:DemandeListComponent},
   { path: 'Concours',   redirectTo: '/Concours/listePostule', pathMatch: 'full' },
+
+
+
+
+
+  { path: 'Demande', component:DemandeComponent,
+    children: [
+      {path:'DemandeScolarite', component:DemandeScolariteCreateComponent},
+      {path:'DemandeInscription', component:DemandeInscriptionCreateComponent},
+      {path:'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
+      {path: 'ListeDemandes', component:DemandeListComponent}
+
+      ]},
+
+
+
+
 
   { path: 'Concours', component:ConcoursComponent,
   children:[
@@ -33,6 +51,17 @@ const routes: Routes = [
     { path: 'listeOral', component:ListeDesRetenusOralComponent},
     { path: 'listeAdmis', component:ListeDesAdmisComponent},
   ]},
+
+
+
+
+
+
+
+
+
+
+
 
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
