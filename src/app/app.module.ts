@@ -33,6 +33,7 @@ import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-cr
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 import { CandidatUpdateComponent } from './candidat-update/candidat-update.component';
 import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -73,6 +74,8 @@ import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.co
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    MatSidenavModule,
+    NgxSpinnerModule,
     MatSidenavModule,
     MatDialogModule,
 

@@ -2,7 +2,7 @@
   <div class="row" style="padding-top:6% ">
 
 
-    <div class="col-lg-12 DivDuForm">
+    <div class="col-lg-12 card-header card-text">
 
       <h1 align="center">DEMANDE D'ATTESTATION DE SCOLARITE</h1> <br>
 
@@ -12,7 +12,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">CNE</span>
+                  <span class="input-group-text" style="width: 90px"><b>CNE</b></span>
                 </div>
                 <input class="form-control form-control-sm" [(ngModel)]="demandeScolarite.refEtudiant">
 
@@ -28,7 +28,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">NOM</span>
+                  <span class="input-group-text" style="width: 90px"><b>NOM</b></span>
                 </div>
                 <input [(ngModel)]="demandeScolarite.nom" class="form-control form-control-sm">
 
@@ -46,7 +46,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">PRENOM</span>
+                  <span class="input-group-text" style="width: 90px"><b>PRENOM</b></span>
                 </div>
                 <input [(ngModel)]="demandeScolarite.prenom" class="form-control form-control-sm">
 
@@ -64,7 +64,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">EMAIL</span>
+                  <span class="input-group-text" style="width: 90px"><b>EMAIL</b></span>
                 </div>
                 <input [(ngModel)]="demandeScolarite.email" class="form-control form-control-sm">
 
@@ -82,7 +82,7 @@
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">Filiere</span>
+                  <span class="input-group-text" style="width: 90px"><b>Filiere</b></span>
                 </div>
                 <select [(ngModel)]="demandeScolarite.refFiliere" class="form-control form-control-sm">
                   <option value="{{f.libelle}}" *ngFor="let f of filieres "> {{f.libelle }}</option>

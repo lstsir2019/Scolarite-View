@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DemandeScolariteService} from '../../controller/service/demande-scolarite.service';
 import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
+import {Filiere} from '../../controller/model/filiere.model';
+import {FiliereService} from '../../controller/service/filiere.service';
 
 @Component({
   selector: 'app-demande-scolarite-list',
@@ -9,13 +11,13 @@ import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
 })
 export class DemandeScolariteListComponent implements OnInit {
 
-  constructor(public demandeScolariteService : DemandeScolariteService) { }
+  constructor(public demandeScolariteService : DemandeScolariteService, public filiereService : FiliereService) { }
 
 
 
   ngOnInit() {
     this.demandeScolariteService.findAll();
-
+    this.filiereService.findAll();
   }
 
   public get demandeScolarite(){
@@ -35,10 +37,14 @@ export class DemandeScolariteListComponent implements OnInit {
     return this.demandeScolariteService.demandeScolariteSelected;
   }
 
+  public print(){
+    this.demandeScolariteService.print();
+  }
 
 
-  public deleteDemandeScolarite(){
-    return this.demandeScolariteService.deleteDemandeScolarite();
+
+  public deleteDemandeScolarite(demandeScolarite : DemandeScolarite){
+    this.demandeScolariteService.deleteDemandeScolarite(demandeScolarite);
   }
 
   public deleteD (d: DemandeScolarite){
@@ -52,6 +58,11 @@ export class DemandeScolariteListComponent implements OnInit {
     this.demandeScolariteService.findByCriteria();
 
   }
+
+  public get filieres(){
+    return this.filiereService.filieres;
+  }
+
 
   // public delete(){
   //   return this.demandeScolariteService.deleteDemandeScolarite();

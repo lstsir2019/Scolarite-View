@@ -1,34 +1,56 @@
-<div class="container-fluid">
-  <div class="row" style="padding-top:2%" >
-    <div class="col-lg-12 DivDuForm">
-      <div class="col-lg-12 card-header">Module</div>
-      <div class="form-group">
-        <label for="libellé">Libellé</label><br>
-        <input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="module.libelle"/>
-      </div>
-      <div class="form-group">
-        <label for="libellé">Code</label><br>
-        <input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="module.Code"/>
-      </div>
-      <div class="form-group">
-        <label for="semestre">Semestre</label>
-        <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="module.semestre"/>
-      </div>
-      <div class="form-group">
-        <label for="filiere">Filiere</label>
-        <!--<input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="module.filiere"/>-->
-        <input type="text" class="form-control" id="code" placeholder="Code" [(ngModel)]="module.filiere"/>
-      </div>
-      <div class="form-group">
-        <label for="semestre">Date Début</label>
-        <input type="date" class="form-control" id="code" placeholder="Code" [(ngModel)]="module.dateDebut"/>
-      </div>
-      <div class="form-group">
-        <label for="semestre">Date Début</label>
-        <input type="date" class="form-control" id="code" placeholder="Code" [(ngModel)]="module.dateFin"/>
-      </div>
-      <div class="sub">
-        <button class=" btn btn-primary" (click)="save()"> add </button>
+<div class="container">
+  <div class="card">
+    <div class="card">
+      <div class="col-lg-12 card-header fa fa-book" align="center"><B>Module</B></div>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>LIBELLE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Libelle" [(ngModel)]="module.libelle"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>CODE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Code" [(ngModel)]="module.Code"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>SEMESTRE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Semestre" [(ngModel)]="module.semestre"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILIERE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Filiere" [(ngModel)]="module.filiere"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>DEBUT</b></span>
+            </div>
+            <input type="date" class="form-control" placeholder="Date de debut" [(ngModel)]="module.dateDebut"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>FIN</b></span>
+            </div>
+            <input type="date" class="form-control" placeholder="Date fin" [(ngModel)]="module.dateFin"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-success btn-md fa fa-plus" (click)="save()"><b>ADD </b></button>
+        </div>
       </div>
     </div>
     <div class="col-lg-12 DivDuForm">
