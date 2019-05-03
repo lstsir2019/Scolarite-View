@@ -43,6 +43,10 @@ export class DemandeInscriptionListComponent implements OnInit {
     return this.filiereService.filieres;
   }
 
+  public print(){
+    this.demandeInscriptionService.print();
+  }
+
 
 
   // get demandeInscriptionListService(): DemandeInscriptionListService {

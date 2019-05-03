@@ -51,6 +51,21 @@ export class DemandeReleveNotesService {
         if (data == -1) {
           Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
         }
+        else if (data == -3) {
+          Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -4) {
+          Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -5) {
+          Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
+        }
+        else if (data == -6) {
+          Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
+        }
+        else if (data == -7){
+          Swal.fire('ERREUR !', 'Le champ "SEMESTRE" ne peut pas être vide !', 'error');
+        }
         else if (data == -2) {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
         }
@@ -86,6 +101,17 @@ export class DemandeReleveNotesService {
       }
     );
   }
+
+
+  public print():any{
+    const httpOptions = {
+      responseType : 'blob' as 'json' //This also worked
+    };
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf",httpOptions).subscribe((resultBlob: Blob) => {
+      var downloadURL = URL.createObjectURL(resultBlob);
+      window.open(downloadURL);});
+  }
+
 
 
   public deleteDemandeReleveNotes(demandeReleveNotes: DemandeReleveNotes) {

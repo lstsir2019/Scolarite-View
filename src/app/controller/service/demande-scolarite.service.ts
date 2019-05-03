@@ -37,6 +37,18 @@ export class DemandeScolariteService {
         if (data == -1) {
           Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
         }
+        else if (data == -3) {
+          Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -4) {
+          Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -5) {
+          Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
+        }
+        else if (data == -6) {
+          Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
+        }
         else if (data == -2) {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
         }
