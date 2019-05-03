@@ -4,7 +4,7 @@
 
   <div class="row" style="justify-content: center">
     <div class="col-sm-4">
-      <div class="input-group input-group-sm mb-3">
+      <div class="input-group input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Année</span>
         </div>
@@ -16,18 +16,17 @@
 
     </div>
     <div class="col-sm-4">
-      <div class="input-group input-group-sm mb-3">
+      <div class="input-group input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">Concours</span>
         </div>
         <select [(ngModel)]="refConcours" class="form-control form-control">
-          <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
           <option value="{{cc.reference}}" *ngFor="let cc of concourss ">Concours {{cc.refFiliere}}</option>
         </select>
       </div>
     </div>
     <div class="col-sm-0">
-      <button type="button" (click)="finByRefConcours()" class="btn btn-sm btn-outline-primary"><span
+      <button type="button" (click)="finByRefConcours()" class="btn btn-outline-success"><span
         class="fa fa-search"> Selectionner</span>
       </button>
     </div>
