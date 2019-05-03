@@ -1,18 +1,28 @@
 
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
-    <nav style="display: block" class="nav nav-pills nav-fill">
-      <a class="nav-item nav-link list-group-item-action  "  data-toggle="list" href="#list-ListRetenue">Creer Concours</a>
-      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ListRetenue">Liste Des Concours</a>
-      <a class="nav-item nav-link list-group-item-action  active" data-toggle="list" href="#list-home">Liste Des Postulés</a>
-      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ConcoursList">Liste Retenus écrit</a>
-      <a class="nav-item nav-link list-group-item-action  " data-toggle="list" href="#list-ListPostule" >Liste Retenus oral</a>
-      <a class="nav-item nav-link list-group-item-action " data-toggle="list" href="#list-ListRetenue">Liste Admis</a>
 
-    </nav>
+
+        <nav style="display: block" class="nav nav-pills nav-fill">
+          <a class="nav-item nav-link list-group-item-action  "  >Creer Concours</a>
+          <a class="nav-item nav-link list-group-item-action " >Liste Des Concours</a>
+          <a class="nav-item nav-link list-group-item-action  "routerLink="listePostule"  routerLinkActive="router-link-active">Liste Des Postulés</a>
+          <a class="nav-item nav-link list-group-item-action "routerLink="listeEcrit"  routerLinkActive="router-link-active">Liste Retenus écrit</a>
+          <a class="nav-item nav-link list-group-item-action  " routerLink="listeOral"  routerLinkActive="router-link-active">Liste Retenus oral</a>
+          <a class="nav-item nav-link list-group-item-action " routerLink="listeAdmis"  routerLinkActive="router-link-active">Liste Admis</a>
+
+        </nav>
   </mat-drawer>
   <mat-drawer-content >
-    <div  class=" container tab-content" id="nav-tabContent">
+    <div class="tab-content" id="nav-tabContent">
+        <router-outlet></router-outlet>
+
+
+    </div>
+
+
+<!--    <div  class=" container tab-content" id="nav-tabContent">
+
       <div class="tab-pane fade" id="list-ConcoursList" role="tabpanel" aria-labelledby="list-profile-list">
         <app-liste-des-retenus-ecrit></app-liste-des-retenus-ecrit>
       </div>
@@ -25,7 +35,8 @@
       <div class="tab-pane fade" id="list-ListRetenue" role="tabpanel" aria-labelledby="list-profile-list">
         <app-liste-des-admis></app-liste-des-admis>
       </div>
-    </div>
+
+    </div>-->
   </mat-drawer-content>
 </mat-drawer-container>
 

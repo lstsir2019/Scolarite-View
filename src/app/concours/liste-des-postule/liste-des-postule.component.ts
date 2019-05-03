@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CandidatService} from "../../controller/service/candidat.service";
 import {ConcoursService} from "../../controller/service/concours.service";
-import {EtudiantPostuleService} from "../../controller/service/etudiant-postule.service";
+import {MatDialog} from "@angular/material";
+import {CandidatInfoComponent} from "../candidat-info/candidat-info.component";
+import {Candidat} from "../../controller/model/candidat.model";
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-liste-des-postule',
@@ -10,20 +14,42 @@ import {EtudiantPostuleService} from "../../controller/service/etudiant-postule.
 })
 export class ListeDesPostuleComponent implements OnInit {
 
-  constructor(public  etudiantPostuleService:EtudiantPostuleService,public concoursService: ConcoursService) { }
+  constructor(public  candidatService: CandidatService, public concoursService: ConcoursService, public dialog: MatDialog,public route: ActivatedRoute) {
+  }
 
+public cne:string
   ngOnInit() {
-
     this.concoursService.findAll();
-  }
-  public refConcours:string;
-  public finByRefConcours(){
-    this.etudiantPostuleService.finByRefConcours(this.refConcours);
+    }
+
+    openDialog(Cne:string) {
+      const dialogRef = this.dialog.open(CandidatInfoComponent, {panelClass: 'custom-dialog-container', data: {cne:Cne}});
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
+
+    public refConcours: string;
+
+    public finByRefConcours() {
+      this.candidatService.finByRefConcours(this.refConcours);
+    }
+
+    public get listCandidats() {
+      return this.candidatService.filtered;
+    }
+
+    public get concourss() {
+      return this.concoursService.listConcours;
+    }
+
+public findInListByCne(){
+    return this.candidatService.findInListByCne(this.refConcours,this.cne);
 }
-  public  get listChoixs(){
-    return this.etudiantPostuleService.listChoixs;
+  public print(){
+    this.candidatService.print(this.refConcours);
   }
-  public get concourss() {
-    return this.concoursService.listConcours;
+  public findByCne(cne:string){
+    this.candidatService.finByCne(cne);
   }
 }

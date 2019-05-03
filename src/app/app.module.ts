@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {ApplicationRef, NgModule} from '@angular/core';
+import { NgModule} from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CandidatCreateComponent } from './candidature/candidat-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule,
+  MatButtonModule, MatDialogModule,
   MatIconModule,
   MatInputModule, MatSidenavModule,
   MatStepperModule
@@ -31,6 +31,8 @@ import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.com
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
+import { CandidatUpdateComponent } from './candidat-update/candidat-update.component';
+import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
 
 
 @NgModule({
@@ -55,7 +57,11 @@ import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etu
     NoteCreateComponent,
     FiliereCreateComponent,
     ModuleCreateComponent,
-    EtudiantCreateComponent
+    EtudiantCreateComponent,
+    CandidatUpdateComponent,
+    CandidatInfoComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -67,16 +73,12 @@ import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etu
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    MatSidenavModule
-
-
-
-
-
-
+    MatSidenavModule,
+    MatDialogModule,
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[CandidatInfoComponent]
 })
 export class AppModule { }

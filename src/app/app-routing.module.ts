@@ -10,6 +10,11 @@ import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filier
 import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
+import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
+import {ListeDesPostuleComponent} from "./concours/liste-des-postule/liste-des-postule.component";
+import {ListeDesRetenusEcritComponent} from "./concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component";
+import {ListeDesRetenusOralComponent} from "./concours/liste-des-retenus-oral/liste-des-retenus-oral.component";
+import {ListeDesAdmisComponent} from "./concours/liste-des-admis/liste-des-admis.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -17,7 +22,18 @@ const routes: Routes = [
   { path: 'DemandeScolarite', component:DemandeScolariteCreateComponent},
   { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   { path: 'ListeDemandes', component:DemandeListComponent},
-  { path: 'Concours', component:ConcoursComponent},
+  { path: 'Concours',   redirectTo: '/Concours/listePostule', pathMatch: 'full' },
+
+  { path: 'Concours', component:ConcoursComponent,
+  children:[
+    { path: 'listePostule', component:ListeDesPostuleComponent,children:[
+        { path: 'Info', component:CandidatInfoComponent}
+      ]},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
+    { path: 'listeOral', component:ListeDesRetenusOralComponent},
+    { path: 'listeAdmis', component:ListeDesAdmisComponent},
+  ]},
+
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
   { path: 'modules', component:ModuleCreateComponent},
@@ -29,4 +45,6 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}
