@@ -1,11 +1,12 @@
-<button (click)="backClicked();" class="btn btn-outline">
-  <span class="text-primary fa fa-arrow-left"></span>
-  <span class="text-secondary"> retourner a la liste des Candidats</span>
-</button>
+ <div class="col-sm-6">
+    <button class="btn btn-outline" (click)="backClicked()" > <span class=" text-primary fa fa-arrow-left"></span><span class="text-secondary"> Retourner a la liste Des Etudiants</span></button>
+  </div>
+<div class="container">
+
 
 <!--info Candidat-->
-<div class="container">
-  <br>
+<div class="container" style="padding-top: 1%">
+
   <h5 style="">Infomations de l'etudiant</h5>
   <div class="row">
     <div class="col-sm-6">CNE: {{CandidatSelected.cne}}</div>
@@ -49,8 +50,8 @@
 -->
     </div>
     <div class="col-sm-6" >
-      <div style="display: flex">
-        <div class="" *ngFor="let n of CandidatSelected.notesSemestreVos" >note du {{n.refSemestre}}: {{n.note}} </div>
+      <div class="row" style="display: flex">
+        <div class="col-sm-6" *ngFor="let n of CandidatSelected.notesSemestreVos" >{{n.refSemestre}}: {{n.note}}/20 </div>
 
       </div>
     </div>
@@ -60,13 +61,13 @@
 <!--Liste des Choixs-->
 <div class="container">
   <h5 style="">Liste des choixs</h5>
-    <div *ngFor="let c of CandidatSelected.choixVos" class=" row ">
-      <div class="col-sm-12">
-        Choix numero {{c.numChoix}} : {{c.refConcours}}
+    <div *ngFor="let c of CandidatSelected.choixVos" class="row">
+      <div class="col-md">
+        <span style="word-wrap: break-word;">Choix numero {{c.numChoix}}: {{c.refConcours}}</span>
       </div>
     </div>
 </div>
 
-
+</div>
 
 

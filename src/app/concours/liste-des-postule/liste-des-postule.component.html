@@ -40,10 +40,14 @@
         <span  class="text-secondary"> Exporter sous format PDF </span>
       </button>
     </div>
+    <div class="col-sm-0">
+      <button (click)="openDialog()" style="" class="btn btn-outline text-secondary"><span class="fa text-primary fa-font-awesome"></span> Faire la Preselection</button>
+    </div>
     <div class="col-lg" style="padding-top: 0.6%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
       <input (keyup)="findInListByCne()" [(ngModel)]="cne" type="number"  id="transparentInput" placeholder="cne">
     </div>
+
   </div>
   <table class="table table-sm table-borderless ">
     <thead class="thead-light">
@@ -79,4 +83,6 @@
     </tbody>
   </table>
 </div>
+
 <router-outlet></router-outlet>
+
