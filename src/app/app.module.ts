@@ -31,13 +31,16 @@ import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.com
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
-import { CandidatUpdateComponent } from './candidat-update/candidat-update.component';
 import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {DemandeComponent} from './demande/demande.component';
 import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
 import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {MatTableModule} from '@angular/material/table';
+import { AdmissionComponent } from './admission/admission.component';
+import { PreselectionComponent } from './admission/preselection/preselection.component';
+
 
 
 @NgModule({
@@ -63,9 +66,10 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
     FiliereCreateComponent,
     ModuleCreateComponent,
     EtudiantCreateComponent,
-    CandidatUpdateComponent,
     CandidatInfoComponent,
     DemandeComponent,
+    AdmissionComponent,
+    PreselectionComponent,
     DemandeInfoComponent,
     DemandeScolariteInfoComponent,
     DemandeReleveNotesInfoComponent,
@@ -90,6 +94,6 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[CandidatInfoComponent]
+  entryComponents:[PreselectionComponent]
 })
 export class AppModule { }

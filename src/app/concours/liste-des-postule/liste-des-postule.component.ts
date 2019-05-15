@@ -3,8 +3,8 @@ import {CandidatService} from "../../controller/service/candidat.service";
 import {ConcoursService} from "../../controller/service/concours.service";
 import {MatDialog} from "@angular/material";
 import {CandidatInfoComponent} from "../candidat-info/candidat-info.component";
-import {Candidat} from "../../controller/model/candidat.model";
 import {ActivatedRoute} from "@angular/router";
+import {PreselectionComponent} from "../../admission/preselection/preselection.component";
 
 
 @Component({
@@ -14,7 +14,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ListeDesPostuleComponent implements OnInit {
 
-  constructor(public  candidatService: CandidatService, public concoursService: ConcoursService, public dialog: MatDialog,public route: ActivatedRoute) {
+  constructor(public  candidatService: CandidatService, public concoursService: ConcoursService,public dialog: MatDialog,public route: ActivatedRoute) {
   }
 
 public cne:string
@@ -22,12 +22,12 @@ public cne:string
     this.concoursService.findAll();
     }
 
-    openDialog(Cne:string) {
-      const dialogRef = this.dialog.open(CandidatInfoComponent, {panelClass: 'custom-dialog-container', data: {cne:Cne}});
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
-      });
-    }
+  openDialog() {
+    const dialogRef = this.dialog.open(PreselectionComponent, {panelClass: 'custom-dialog-container', data: {concours:this.refConcours}});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
     public refConcours: string;
 
