@@ -15,19 +15,20 @@ export class DemandeInscriptionService {
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeInscriptions/chercher";
 
 
-  private _demandeInscriptionSelected : DemandeInscription=new DemandeInscription("","","","","");
 
-  private _demandeInscriptionSearch: DemandeInscription = new DemandeInscription("","","","","");
+  private _demandeInscriptionSelected : DemandeInscription=new DemandeInscription("","","","","", "");
+
+  private _demandeInscriptionSearch: DemandeInscription = new DemandeInscription("","","","","", "");
 
   private _demandeInscriptions: Array<DemandeInscription>;
 
-  private _demandeInscriptionCreate: DemandeInscription = new DemandeInscription ("", "","","","");
+  private _demandeInscriptionCreate: DemandeInscription = new DemandeInscription ("", "","","","","");
   private _demandeInscriptionList = Array <DemandeInscription>();
 
   constructor(private _http:HttpClient) { }
 
   public addDemandeInscription(){
-    let demandeInscriptionClone = new DemandeInscription(this._demandeInscriptionCreate.refEtudiant, this._demandeInscriptionCreate.refFiliere, this._demandeInscriptionCreate.nom, this._demandeInscriptionCreate.prenom, this._demandeInscriptionCreate.email);
+    let demandeInscriptionClone = new DemandeInscription(this._demandeInscriptionCreate.refEtudiant, this._demandeInscriptionCreate.refFiliere, this._demandeInscriptionCreate.nom, this._demandeInscriptionCreate.prenom, this._demandeInscriptionCreate.email, this._demandeInscriptionCreate.cin);
     this._demandeInscriptionList.push(demandeInscriptionClone);
   }
 
@@ -52,6 +53,10 @@ export class DemandeInscriptionService {
           Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
         }
 
+        else if (data == -7) {
+          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
+        }
+
         else if (data == -2) {
           Swal.fire('ERREUR !', 'La champ "CNE" ne peut pas être vide !', 'error');
         }
@@ -59,7 +64,7 @@ export class DemandeInscriptionService {
           Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
         }
         console.log("ok");
-        this._demandeInscriptionCreate = new DemandeInscription("", "","","","");
+        this._demandeInscriptionCreate = new DemandeInscription("", "","","","", "");
       } ,error=>{
         console.log("error");
       }
@@ -68,17 +73,6 @@ export class DemandeInscriptionService {
 
 
 
-
-  // public deleteDemandeInscription(){
-  //   this._http.delete(this._url2 + this._demandeInscriptionSelected.refEtudiant).subscribe(
-  //     (data) =>{
-  //       console.log("deleted ...");
-  //       this.findAll();
-  //     },error => {
-  //       console.log("w tgoul wesh batms7 ...");
-  //     }
-  //   );
-  // }
 
 
 
@@ -107,7 +101,6 @@ export class DemandeInscriptionService {
 
 
 
-
   public findAll() {
     this._http.get<Array<DemandeInscription>>(this._url).subscribe(
        data => {
@@ -124,6 +117,17 @@ export class DemandeInscriptionService {
       data => {
         console.log("success:" + data);
         this._demandeInscriptions = data;
+      }, error => {
+        console.log("error");
+      }
+    );
+  }
+
+  public findByRefEtudiant(refEtudiant : string){
+    this.http.get<DemandeInscription>(this._url2+refEtudiant).subscribe(
+      data => {
+        console.log("success:" + data);
+        this._demandeInscriptionSelected = data;
       }, error => {
         console.log("error");
       }

@@ -35,6 +35,9 @@ import { CandidatUpdateComponent } from './candidat-update/candidat-update.compo
 import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {DemandeComponent} from './demande/demande.component';
+import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
+import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 
 
 @NgModule({
@@ -63,6 +66,9 @@ import {DemandeComponent} from './demande/demande.component';
     CandidatUpdateComponent,
     CandidatInfoComponent,
     DemandeComponent,
+    DemandeInfoComponent,
+    DemandeScolariteInfoComponent,
+    DemandeReleveNotesInfoComponent,
 
 
   ],

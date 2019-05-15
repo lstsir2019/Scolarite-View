@@ -16,6 +16,14 @@ import {ListeDesRetenusEcritComponent} from "./concours/liste-des-retenus-ecrit/
 import {ListeDesRetenusOralComponent} from "./concours/liste-des-retenus-oral/liste-des-retenus-oral.component";
 import {ListeDesAdmisComponent} from "./concours/liste-des-admis/liste-des-admis.component";
 import {DemandeComponent} from './demande/demande.component';
+import {DemandeInscriptionListComponent} from './demande/demande-inscription-list/demande-inscription-list.component';
+import {DemandeInfoComponent} from './demande/demande-inscription-info/demande-info.component';
+import {DemandeInscription} from './controller/model/demande-inscription.model';
+import {DemandeReleveNotes} from './controller/model/demande-releve-notes.model';
+import {DemandeScolariteListComponent} from './demande/demande-scolarite-list/demande-scolarite-list.component';
+import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-list/demande-releve-notes-list.component';
+import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -29,14 +37,35 @@ const routes: Routes = [
 
 
 
-  { path: 'Demande', component:DemandeComponent,
-    children: [
-      {path:'DemandeScolarite', component:DemandeScolariteCreateComponent},
-      {path:'DemandeInscription', component:DemandeInscriptionCreateComponent},
-      {path:'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
-      {path: 'ListeDemandes', component:DemandeListComponent}
+  // { path: 'Demande', component:DemandeComponent,
+  //   children: [
+  //     {path:'DemandeScolarite', component:DemandeScolariteCreateComponent},
+  //     {path:'DemandeInscription', component:DemandeInscriptionCreateComponent},
+  //     {path:'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
+  //     {path: 'ListeDemandes', component:DemandeListComponent, children:[
+  //         { path: 'Info', component:DemandeInfoComponent}
+  //       ]}
+  //
+  //     ]},
 
-      ]},
+  { path: 'scolarite', component:DemandeScolariteCreateComponent},
+  { path: 'inscription', component:DemandeInscriptionCreateComponent},
+  { path: 'releve', component:DemandeReleveNotesCreateComponent},
+  { path: 'liste', redirectTo :  '/liste/DemandeInscriptionList', pathMatch:'full'},
+
+
+  { path: 'liste', component:DemandeListComponent,
+    children: [
+      {path: 'DemandeScolariteList', component:DemandeScolariteListComponent, children:[
+          {path:'Infos', component:DemandeScolariteInfoComponent}
+        ]},
+      {path: 'DemandeInscriptionList', component:DemandeInscriptionListComponent, children: [
+          {path: 'Info', component:DemandeInfoComponent}
+        ]},
+      {path: 'DemandeReleveNotesList', component:DemandeReleveNotesListComponent, children: [
+          {path:'Informations', component:DemandeReleveNotesInfoComponent}
+        ]}
+    ]},
 
 
 
