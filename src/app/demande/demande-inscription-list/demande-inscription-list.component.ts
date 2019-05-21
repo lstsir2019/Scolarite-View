@@ -3,6 +3,7 @@ import {DemandeInscriptionService} from '../../controller/service/demande-inscri
 import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
 import {DemandeInscription} from '../../controller/model/demande-inscription.model';
 import {FiliereService} from '../../controller/service/filiere.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-demande-inscription-list',
@@ -11,12 +12,17 @@ import {FiliereService} from '../../controller/service/filiere.service';
 })
 export class DemandeInscriptionListComponent implements OnInit {
 
-  constructor(public demandeInscriptionService : DemandeInscriptionService, public filiereService : FiliereService) { }
+
+
+  constructor(public demandeInscriptionService : DemandeInscriptionService, public filiereService : FiliereService, public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.demandeInscriptionService.findAll();
     this.filiereService.findAll();
+
   }
+
+
 
 
   public get demandeInscription(){
@@ -24,6 +30,10 @@ export class DemandeInscriptionListComponent implements OnInit {
   }
   public get demandeInscriptions(){
     return this.demandeInscriptionService.demandeInscriptions;
+  }
+
+  public get demandeInscriptionSelected(){
+    return this.demandeInscriptionService.demandeInscriptionSelected;
   }
 
   public deleteDemandeInscription(demandeInscription : DemandeInscription){
@@ -47,6 +57,9 @@ export class DemandeInscriptionListComponent implements OnInit {
     this.demandeInscriptionService.print();
   }
 
+  public findByRefEtudiant(refEtudiant : string) {
+    return this.demandeInscriptionService.findByRefEtudiant(refEtudiant);
+  }
 
 
   // get demandeInscriptionListService(): DemandeInscriptionListService {

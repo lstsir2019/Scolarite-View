@@ -17,11 +17,11 @@ export class DemandeReleveNotesService {
 
   private _demandeReleveNotess: Array<DemandeReleveNotes>;
 
-  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","");
+  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","","");
 
-  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","");
+  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","","");
 
-  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","");
+  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","","");
   private _releveNotesCreate: ReleveNotes = new ReleveNotes("");
   private _demandeReleveNotesList = Array <DemandeReleveNotes>();
 
@@ -32,7 +32,7 @@ export class DemandeReleveNotesService {
 
 
   public addDemandeReleveNotes(){
-    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email);
+    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email, this._demandeReleveNotesCreate.cin);
     this._demandeReleveNotesList.push(demandeReleveNotesClone);
   }
 
@@ -69,11 +69,15 @@ export class DemandeReleveNotesService {
         else if (data == -2) {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
         }
+
+        else if (data == -8) {
+          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
+        }
         else { (data == 1)
           Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
         }
         console.log("ok");
-        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","");
+        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","", "");
          this._releveNotesCreate = new ReleveNotes("");
       } ,error=>{
         console.log(error);
@@ -96,6 +100,17 @@ export class DemandeReleveNotesService {
       data => {
         console.log("success:" + data);
         this._demandeReleveNotess = data;
+      }, error => {
+        console.log("error");
+      }
+    );
+  }
+
+  public findByRefEtudiant(refEtudiant : string){
+    this.http.get<DemandeReleveNotes>(this._url2+refEtudiant).subscribe(
+      data => {
+        console.log("success:" + data);
+        this._demandeReleveNotesSelected = data;
       }, error => {
         console.log("error");
       }

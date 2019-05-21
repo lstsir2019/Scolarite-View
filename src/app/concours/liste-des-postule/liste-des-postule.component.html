@@ -1,4 +1,4 @@
-<div class="container-fluid"  *ngIf="route.children.length === 0">
+<div class="container-fluid" *ngIf="route.children.length===0 ">
   <br>
   <h5 style="margin-bottom:2% "> Selectionner un concours</h5>
 
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="col-sm-0">
-      <button type="button" (click)="finByRefConcours()" class="btn btn-outline-success"><span
+      <button type="button" (click)="finByRefConcours();findListeReteues()" class="btn btn-outline-success"><span
         class="fa fa-search"> Selectionner</span>
       </button>
     </div>
@@ -41,7 +41,7 @@
       </button>
     </div>
     <div class="col-sm-0">
-      <button (click)="openDialog()" style="" class="btn btn-outline text-secondary"><span class="fa text-primary fa-font-awesome"></span> Faire la Preselection</button>
+      <button (click)="openDialog();" style="" class="btn btn-outline text-secondary"><span class="fa text-primary fa-font-awesome"></span> Faire la Preselection</button>
     </div>
     <div class="col-lg" style="padding-top: 0.6%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
@@ -49,17 +49,17 @@
     </div>
 
   </div>
-  <table class="table table-sm table-borderless ">
+  <table  matSort (matSortChange)="sortData($event)" class="table table-sm table-borderless ">
     <thead class="thead-light">
     <tr>
-      <th style="border-top-left-radius:10px; " scope="col">Cne</th>
-      <th scope="col">Cin</th>
-      <th scope="col">Statue</th>
-      <th scope="col">Nom</th>
-      <th scope="col">Prenom</th>
-      <th scope="col">Email</th>
-      <th scope="col">Telephone</th>
-      <th style="border-top-right-radius:10px; " scope="col">Info</th>
+      <th mat-sort-header="cne" style="border-top-left-radius:10px; " scope="col">Cne</th>
+      <th mat-sort-header="cin"scope="col">Cin</th>
+      <th mat-sort-header="statue" scope="col">Statue</th>
+      <th mat-sort-header="nom" scope="col">Nom</th>
+      <th mat-sort-header="prenom" scope="col">Prenom</th>
+      <th mat-sort-header="6" scope="col">Email</th>
+      <th mat-sort-header="tel" scope="col">Telephone</th>
+      <th  mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
 
     </tr>
     </thead>
@@ -85,4 +85,5 @@
 </div>
 
 <router-outlet></router-outlet>
+
 

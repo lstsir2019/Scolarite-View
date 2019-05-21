@@ -4,6 +4,7 @@ import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
 import {DemandeReleveNotes} from '../../controller/model/demande-releve-notes.model';
 import {FiliereService} from '../../controller/service/filiere.service';
 import {SemestreService} from '../../controller/service/semestre.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-demande-releve-notes-list',
@@ -12,7 +13,7 @@ import {SemestreService} from '../../controller/service/semestre.service';
 })
 export class DemandeReleveNotesListComponent implements OnInit {
 
-  constructor(public demandeReleveNotesService : DemandeReleveNotesService, public filiereService : FiliereService, public semestreService : SemestreService) { }
+  constructor(public demandeReleveNotesService : DemandeReleveNotesService, public filiereService : FiliereService, public semestreService : SemestreService,public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.demandeReleveNotesService.findAll();
@@ -38,6 +39,10 @@ export class DemandeReleveNotesListComponent implements OnInit {
     public findDemandeReleveNotesByQuery() {
     this.demandeReleveNotesService.findByCriteria();
 
+  }
+
+  public findByRefEtudiant(refEtudiant : string) {
+    return this.demandeReleveNotesService.findByRefEtudiant(refEtudiant);
   }
 
   public get filieres(){
