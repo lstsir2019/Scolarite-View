@@ -118,11 +118,11 @@ export class DemandeReleveNotesService {
   }
 
 
-  public print():any{
+  public print(refEtudiant : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
     };
-    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf",httpOptions).subscribe((resultBlob: Blob) => {
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
       var downloadURL = URL.createObjectURL(resultBlob);
       window.open(downloadURL);});
   }

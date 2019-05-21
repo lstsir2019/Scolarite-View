@@ -38,8 +38,8 @@ export class DemandeScolariteListComponent implements OnInit {
     return this.demandeScolariteService.demandeScolariteSelected;
   }
 
-  public print(){
-    this.demandeScolariteService.print();
+  public print(refEtudiant : string){
+    this.demandeScolariteService.print(refEtudiant);
   }
 
 
