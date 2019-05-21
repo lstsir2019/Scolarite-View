@@ -34,6 +34,9 @@ import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etu
 import { CandidatInfoComponent } from './concours/candidat-info/candidat-info.component';
 import {NgxSpinnerModule} from "ngx-spinner";
 import {DemandeComponent} from './demande/demande.component';
+import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
+import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 import {MatTableModule} from '@angular/material/table';
 import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
@@ -69,6 +72,9 @@ import {SelectionModel} from "@angular/cdk/collections";
     DemandeComponent,
     AdmissionComponent,
     PreselectionComponent,
+    DemandeInfoComponent,
+    DemandeScolariteInfoComponent,
+    DemandeReleveNotesInfoComponent,
 
 
   ],

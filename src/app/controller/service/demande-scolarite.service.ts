@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
 import {HttpClient} from '@angular/common/http';
 import Swal from 'sweetalert2';
+import {DemandeInscription} from '../model/demande-inscription.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,19 +14,19 @@ export class DemandeScolariteService {
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/chercher";
 
 
-  private _demandeScolariteSearch: DemandeScolarite = new DemandeScolarite("","","","","");
+  private _demandeScolariteSearch: DemandeScolarite = new DemandeScolarite("","","","","","");
 
-  private _demandeScolariteSelected : DemandeScolarite=new DemandeScolarite("","","","","");
+  private _demandeScolariteSelected : DemandeScolarite=new DemandeScolarite("","","","","","");
 
   private _demandeScolarites: Array<DemandeScolarite>;
 
-  private _demandeScolariteCreate: DemandeScolarite = new DemandeScolarite ("", "",  "", "", "");
+  private _demandeScolariteCreate: DemandeScolarite = new DemandeScolarite ("", "",  "", "", "","");
   private _demandeScolariteList = Array <DemandeScolarite>();
 
   constructor(private _http:HttpClient) { }
 
   public addDemandeScolarite(){
-    let demandeScolariteClone = new DemandeScolarite(this._demandeScolariteCreate.refEtudiant, this._demandeScolariteCreate.refFiliere, this._demandeScolariteCreate.nom, this._demandeScolariteCreate.prenom, this._demandeScolariteCreate.email);
+    let demandeScolariteClone = new DemandeScolarite(this._demandeScolariteCreate.refEtudiant, this._demandeScolariteCreate.refFiliere, this._demandeScolariteCreate.nom, this._demandeScolariteCreate.prenom, this._demandeScolariteCreate.email, this._demandeScolariteCreate.cin);
     this._demandeScolariteList.push(demandeScolariteClone);
   }
 
@@ -49,6 +50,9 @@ export class DemandeScolariteService {
         else if (data == -6) {
           Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
         }
+        else if (data == -7) {
+          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
+        }
         else if (data == -2) {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
         }
@@ -56,7 +60,7 @@ export class DemandeScolariteService {
           Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
         }
         console.log("ok");
-        this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "");
+        this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "","");
       } ,error=>{
         console.log("error");
       }
@@ -128,7 +132,16 @@ public deleteD (d: DemandeScolarite){
   }
 
 
-
+  public findByRefEtudiant(refEtudiant : string){
+    this.http.get<DemandeScolarite>(this._url2+refEtudiant).subscribe(
+      data => {
+        console.log("success:" + data);
+        this._demandeScolariteSelected = data;
+      }, error => {
+        console.log("error");
+      }
+    );
+  }
 
 
 

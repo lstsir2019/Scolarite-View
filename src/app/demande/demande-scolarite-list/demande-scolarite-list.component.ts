@@ -3,6 +3,7 @@ import {DemandeScolariteService} from '../../controller/service/demande-scolarit
 import {DemandeScolarite} from '../../controller/model/demande-scolarite.model';
 import {Filiere} from '../../controller/model/filiere.model';
 import {FiliereService} from '../../controller/service/filiere.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-demande-scolarite-list',
@@ -11,7 +12,7 @@ import {FiliereService} from '../../controller/service/filiere.service';
 })
 export class DemandeScolariteListComponent implements OnInit {
 
-  constructor(public demandeScolariteService : DemandeScolariteService, public filiereService : FiliereService) { }
+  constructor(public demandeScolariteService : DemandeScolariteService, public filiereService : FiliereService,  public route: ActivatedRoute) { }
 
 
 
@@ -58,6 +59,11 @@ export class DemandeScolariteListComponent implements OnInit {
     this.demandeScolariteService.findByCriteria();
 
   }
+
+  public findByRefEtudiant(refEtudiant : string) {
+    return this.demandeScolariteService.findByRefEtudiant(refEtudiant);
+  }
+
 
   public get filieres(){
     return this.filiereService.filieres;
