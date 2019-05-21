@@ -16,6 +16,8 @@ import {ListeDesRetenusEcritComponent} from "./concours/liste-des-retenus-ecrit/
 import {ListeDesRetenusOralComponent} from "./concours/liste-des-retenus-oral/liste-des-retenus-oral.component";
 import {ListeDesAdmisComponent} from "./concours/liste-des-admis/liste-des-admis.component";
 import {DemandeComponent} from './demande/demande.component';
+import {ConcoursCreateComponent} from './concours/concours-create/concours-create.component';
+import {ConcoursListComponent} from './concours/concours-list/concours-list.component';
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -38,12 +40,11 @@ const routes: Routes = [
 
       ]},
 
-
-
-
-
   { path: 'Concours', component:ConcoursComponent,
   children:[
+    { path: 'créationConcours', component:ConcoursCreateComponent},
+    { path: 'listeConcours', component:ConcoursListComponent},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
     { path: 'listePostule', component:ListeDesPostuleComponent,children:[
         { path: 'Info', component:CandidatInfoComponent}
       ]},
@@ -51,17 +52,6 @@ const routes: Routes = [
     { path: 'listeOral', component:ListeDesRetenusOralComponent},
     { path: 'listeAdmis', component:ListeDesAdmisComponent},
   ]},
-
-
-
-
-
-
-
-
-
-
-
 
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},

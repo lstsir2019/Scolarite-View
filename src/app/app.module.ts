@@ -37,6 +37,9 @@ import {DemandeComponent} from './demande/demande.component';
 import {MatTableModule} from '@angular/material/table';
 import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
+import { ConcoursCreateComponent } from './concours/concours-create/concours-create.component';
+import { ConcoursListComponent } from './concours/concours-list/concours-list.component';
+import { ConcoursInfoComponent } from './concours-info/concours-info.component';
 
 
 
@@ -67,6 +70,9 @@ import { PreselectionComponent } from './admission/preselection/preselection.com
     DemandeComponent,
     AdmissionComponent,
     PreselectionComponent,
+    ConcoursCreateComponent,
+    ConcoursListComponent,
+    ConcoursInfoComponent,
 
 
   ],
