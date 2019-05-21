@@ -17,5 +17,8 @@ mat-drawer{
   background-color: dodgerblue;
   color: white;
 }
-
+.custom-dialog-container .mat-dialog-container {
+  width: 200vw;
+  padding: 0px;
+}
 

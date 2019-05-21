@@ -2,10 +2,6 @@ td {
   width: 10%;
 }
 
-.btn:focus, .btn:active {
-
-}
-
 .list-group-item-action:hover {
   background-color: beige;
 }
@@ -31,3 +27,4 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
