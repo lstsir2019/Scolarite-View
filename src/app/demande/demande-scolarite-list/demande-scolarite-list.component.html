@@ -30,13 +30,6 @@
 
 
 
-
-
-
-
-
-
-
 <br><br>
 <!--<div class="card-header text-black">{{demandeScolariteSelected.refEtudiant}}</div>-->
 <table class="table table-hover table-sm table-bordered">
@@ -54,7 +47,7 @@
     <td style="text-align:center" class="something" name = "refEtudiant" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refEtudiant">{{d.refEtudiant}}</td>
     <td style="text-align:center" class="something" name = "refFiliere" ngDefaultControl [(ngModel)]="demandeScolariteSelected.refFiliere">{{d.refFiliere}}</td>
     <td style="text-align: center" >
-      <button class="btn btn-outline-success" (click)="print()" ><i class="fa fa-download"></i>  </button>
+      <button class="btn btn-outline-success" (click)="print(d.refEtudiant)" ><i class="fa fa-download"></i>  </button>
       <button class="btn btn-danger"  (click)="deleteDemandeScolarite(d)"><i class="fa fa-trash"></i> </button>
     </td>
   <td style="text-align: center">
