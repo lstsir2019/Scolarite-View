@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 import { CandidatCreateComponent } from './candidature/candidat-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatDialogModule,
+  MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
-  MatInputModule, MatSidenavModule,
+  MatInputModule, MatPaginator, MatPaginatorModule, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -37,6 +37,8 @@ import {DemandeComponent} from './demande/demande.component';
 import {MatTableModule} from '@angular/material/table';
 import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
+import {MatSortModule} from '@angular/material/sort';
+import {SelectionModel} from "@angular/cdk/collections";
 
 import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
 import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
@@ -92,7 +94,10 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
     NgxSpinnerModule,
     MatSidenavModule,
     MatDialogModule,
-
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
