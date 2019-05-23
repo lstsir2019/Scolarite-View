@@ -95,7 +95,6 @@ import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.comp
     MatSortModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MatPaginator
   ],
   providers: [],
   bootstrap: [AppComponent]
