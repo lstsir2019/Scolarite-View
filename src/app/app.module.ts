@@ -33,11 +33,19 @@ import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-cr
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
+import {DemandeScolariteInfoComponent} from "./demande/demande-scolarite-info/demande-scolarite-info.component";
+import {DemandeInfoComponent} from "./demande/demande-inscription-info/demande-info.component";
+import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-info/demande-releve-notes-info.component";
+import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
+import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
+import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
 
 
 
 @NgModule({
   declarations: [
+
+
     AppComponent,
     CandidatCreateComponent,
     HeaderComponent,
@@ -59,7 +67,13 @@ import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.componen
     FiliereCreateComponent,
     ModuleCreateComponent,
     EtudiantCreateComponent,
-    PvsCreateComponent
+    PvsCreateComponent,
+    DemandeScolariteInfoComponent,
+    DemandeInfoComponent,
+    DemandeReleveNotesInfoComponent,
+    ConcoursCreateComponent,
+    ConcoursListComponent,
+    CandidatInfoComponent
   ],
   imports: [
     BrowserModule,
