@@ -1,9 +1,32 @@
 .my-custom-scrollbar {
   position: relative;
-  height: 350px;
+  height: 500px;
   overflow: auto;
 }
 .table-wrapper-scroll-y {
   display: block;
 }
 
+/*.custom-class{*/
+  /*background-color: red;*/
+/*}*/
+
+.default-color{
+  background-color: red;
+}
+.positive {
+  background-color: green;
+}
+
+.negative {
+  background-color: #C2E1D1;
+}
+.noteorange {
+  background-color: #F9A11C;
+}
+.bdblue {
+  background-color: #14B1F4;
+}
+.cneyellow {
+  background-color: #CBCBCB;
+}
