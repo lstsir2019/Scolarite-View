@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {ApplicationRef, NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { CandidatCreateComponent } from './candidature/candidat-create.component';
+import {AppComponent} from './app.component';
+import {CandidatCreateComponent} from './candidature/candidat-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
-  MatInputModule, MatSidenavModule,
+  MatInputModule, MatPaginator, MatPaginatorModule, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -21,17 +21,19 @@ import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-creat
 import {DemandeScolariteListComponent} from "./demande/demande-scolarite-list/demande-scolarite-list.component";
 import {DemandeInscriptionListComponent} from "./demande/demande-inscription-list/demande-inscription-list.component";
 import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-list/demande-releve-notes-list.component";
-import { ConcoursComponent } from './concours/concours.component';
-import { ListeDesPostuleComponent } from './concours/liste-des-postule/liste-des-postule.component';
-import { ListeDesRetenusEcritComponent } from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
-import { ListeDesRetenusOralComponent } from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
-import { ListeDesAdmisComponent } from './concours/liste-des-admis/liste-des-admis.component';
-import { ScolariteComponent } from './scolarite/scolarite.component';
+import {ConcoursComponent} from './concours/concours.component';
+import {ListeDesPostuleComponent} from './concours/liste-des-postule/liste-des-postule.component';
+import {ListeDesRetenusEcritComponent} from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
+import {ListeDesRetenusOralComponent} from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
+import {ListeDesAdmisComponent} from './concours/liste-des-admis/liste-des-admis.component';
+import {ScolariteComponent} from './scolarite/scolarite.component';
 import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 import {DemandeScolariteInfoComponent} from "./demande/demande-scolarite-info/demande-scolarite-info.component";
 import {DemandeInfoComponent} from "./demande/demande-inscription-info/demande-info.component";
@@ -39,7 +41,6 @@ import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-in
 import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
-
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.comp
     DemandeReleveNotesInfoComponent,
     ConcoursCreateComponent,
     ConcoursListComponent,
-    CandidatInfoComponent
+    CandidatInfoComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -86,16 +88,18 @@ import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.comp
     HttpClientModule,
     AppRoutingModule,
     MatSidenavModule,
-    NgxSpinnerModule
-
-
-
-
-
+    NgxSpinnerModule,
+    MatSidenavModule,
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatCheckboxModule
 
 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
