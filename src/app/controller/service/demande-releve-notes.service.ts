@@ -17,11 +17,11 @@ export class DemandeReleveNotesService {
 
   private _demandeReleveNotess: Array<DemandeReleveNotes>;
 
-  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","");
+  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","","");
 
-  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","");
+  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","","");
 
-  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","");
+  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","","");
   private _releveNotesCreate: ReleveNotes = new ReleveNotes("");
   private _demandeReleveNotesList = Array <DemandeReleveNotes>();
 
@@ -32,7 +32,7 @@ export class DemandeReleveNotesService {
 
 
   public addDemandeReleveNotes(){
-    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email);
+    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email, this._demandeReleveNotesCreate.cin);
     this._demandeReleveNotesList.push(demandeReleveNotesClone);
   }
 
@@ -51,14 +51,33 @@ export class DemandeReleveNotesService {
         if (data == -1) {
           Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
         }
+        else if (data == -3) {
+          Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -4) {
+          Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
+        }
+        else if (data == -5) {
+          Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
+        }
+        else if (data == -6) {
+          Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
+        }
+        else if (data == -7){
+          Swal.fire('ERREUR !', 'Le champ "SEMESTRE" ne peut pas être vide !', 'error');
+        }
         else if (data == -2) {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+        }
+
+        else if (data == -8) {
+          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
         }
         else { (data == 1)
           Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
         }
         console.log("ok");
-        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","");
+        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","", "");
          this._releveNotesCreate = new ReleveNotes("");
       } ,error=>{
         console.log(error);
@@ -86,6 +105,28 @@ export class DemandeReleveNotesService {
       }
     );
   }
+
+  public findByRefEtudiant(refEtudiant : string){
+    this.http.get<DemandeReleveNotes>(this._url2+refEtudiant).subscribe(
+      data => {
+        console.log("success:" + data);
+        this._demandeReleveNotesSelected = data;
+      }, error => {
+        console.log("error");
+      }
+    );
+  }
+
+
+  public print(refEtudiant : string){
+    const httpOptions = {
+      responseType : 'blob' as 'json' //This also worked
+    };
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
+      var downloadURL = URL.createObjectURL(resultBlob);
+      window.open(downloadURL);});
+  }
+
 
 
   public deleteDemandeReleveNotes(demandeReleveNotes: DemandeReleveNotes) {

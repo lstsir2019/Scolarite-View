@@ -1,0 +1,19 @@
+.nav-item{
+  border-radius: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+}
+mat-drawer-container{
+  height: 100%;
+
+}
+mat-drawer{
+  padding: 0px;
+  width: 14%;
+}
+
+.router-link-active {
+  background-color: dodgerblue;
+  color: white;
+}

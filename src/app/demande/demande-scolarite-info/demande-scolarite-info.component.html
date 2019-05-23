@@ -1,0 +1,39 @@
+<button (click)="backClicked();" class="btn btn-outline">
+  <span class="text-primary fa fa-arrow-left"></span>
+  <span class="text-primary"> RETOUR</span>
+</button>
+
+<!--info Demande-->
+<div class="container">
+  <br>
+  <h1 style="text-align: center">Informations supplémentaires</h1><br><br>
+
+
+  <br>
+
+</div>
+
+
+
+<table class="table">
+  <tbody>
+  <tr class="table-info">
+    <th style="text-align: center">NOM</th>
+    <td><h6 style="text-align: center">{{DemandeScolariteSelected.nom}}</h6></td>
+  </tr>
+  <tr class="table-info">
+    <th style="text-align: center">PRENOM</th>
+    <td><h6 style="text-align: center">{{DemandeScolariteSelected.prenom}}</h6></td>
+
+  </tr >
+  <tr class="table-info">
+    <th style="text-align: center">CIN</th>
+    <td><h6 style="text-align: center">{{DemandeScolariteSelected.cin}}</h6></td>
+
+  </tr>
+  <tr class="table-info">
+    <th style="text-align: center">Email</th>
+    <td><h6 style="text-align: center">{{DemandeScolariteSelected.email}}</h6></td>
+  </tr>
+  </tbody>
+</table>

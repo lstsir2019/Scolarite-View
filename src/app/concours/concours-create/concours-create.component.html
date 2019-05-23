@@ -1,0 +1,130 @@
+<div class="col-sm-12">
+  <br>
+  <div class="row" style=" justify-content: center;">
+    <h4 style="text-align: center; width: 50%">CREATION DU CONCOURS D'ACCÈS EN PREMIÈRE ANNÉE DU CYCLE D'INGENIEUR </h4>
+  </div>
+</div><br>
+<div class="container-fluid">
+  <mat-vertical-stepper style="background-color: #fafafa" [linear]="isLinear" #stepper>
+    <!--Première étape-->
+    <mat-step [stepControl]="firstFormGroup">
+      <div>
+        <ng-template matStepLabel><b>CREATION DU CONCOURS</b></ng-template>
+<br>
+        <div class="row" style="justify-content: center">
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Référence</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="concours.reference">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Année</span>
+              </div>
+              <input type="number" class="form-control" [(ngModel)]="concours.anneeConcours">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Filière</span>
+              </div>
+              <select [(ngModel)]="concours.refFiliere" class="form-control form-control">
+                <option value="{{f.reference}}" *ngFor="let f of filieres">{{f.reference}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="justify-content: center;margin-top: 15px">
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Date-Ecrit</span>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="concours.dateConcoursEcrit">
+            </div>
+          </div>
+          <div class=" col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Date-Orale</span>
+              </div>
+              <input type="date" class="form-control" [(ngModel)]="concours.dateConcoursOral">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Nombre de place</span>
+              </div>
+              <input type="number" class="form-control" [(ngModel)]="concours.nbreplace">
+            </div>
+          </div>
+        </div>
+        <div align="center">
+          <button class="btn btn-primary" matStepperNext>Suivant</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!--Deuxième étape-->
+
+    <mat-step [stepControl]="secondFormGroup">
+      <div>
+        <ng-template matStepLabel><b>CREATION DU MODULE</b></ng-template>
+        <br>
+        <div class="row" style="justify-content: center">
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Référence</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="moduleConcours.reference">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="input-group input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Coefficient</span>
+              </div>
+              <input type="text" class="form-control" [(ngModel)]="moduleConcours.coefModuleConcoursVo.coef">
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <input type="button" (click)="addModuleConcours()" value="Ajouter Module" class="btn btn btn-primary">
+          </div>
+        </div>
+        <br>
+        <div align="center">
+          <h5 align="center">LISTE DES MODULES DU CONCOURS :</h5>
+          <table class="table table-sm table-borderless">
+            <thead class="thead-light">
+            <th>Référence Module</th>
+            <th>Coefficient</th>
+            <th>Suppression</th>
+            </thead>
+            <tbody *ngFor="let m of modules">
+            <tr *ngIf="m">
+              <td>{{m.reference}}</td>
+              <td>{{m.coefModuleConcoursVo.coef}}</td>
+              <td>
+                <button class="btn btn-outline-danger fa fa-trash" (click)="deleteD(m)"></button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div align="center">
+            <button class="btn btn-outline-secondary" matStepperPrevious>Précédent</button>
+            <button style="margin-left: 10px" class="btn btn-primary" matStepperNext (click)="saveConcours()">Créer
+              Concours
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

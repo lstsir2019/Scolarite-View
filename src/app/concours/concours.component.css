@@ -1,5 +1,7 @@
 .nav-item{
   border-radius: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
 }
 mat-drawer-container{
@@ -11,6 +13,12 @@ mat-drawer{
   width: 14%;
 }
 
-
-
+.router-link-active {
+  background-color: dodgerblue;
+  color: white;
+}
+.custom-dialog-container .mat-dialog-container {
+  width: 200vw;
+  padding: 0px;
+}
 

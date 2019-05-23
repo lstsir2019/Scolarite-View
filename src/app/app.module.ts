@@ -31,11 +31,7 @@ import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.com
 import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { PvsComponent } from './scolarite/pvs/pvs.component';
-import { PvsCreateComponent } from './scolarite/pvs/pvs-create/pvs-create.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -60,9 +56,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     NoteCreateComponent,
     FiliereCreateComponent,
     ModuleCreateComponent,
-    EtudiantCreateComponent,
-    PvsComponent,
-    PvsCreateComponent
+    EtudiantCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -75,8 +69,14 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HttpClientModule,
     AppRoutingModule,
     MatSidenavModule,
-    MatProgressBarModule,
     NgxSpinnerModule
+
+
+
+
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

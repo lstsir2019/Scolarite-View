@@ -10,7 +10,7 @@
       <div>
 
 
-        <div id="filiere" class="container">
+        <div id="cne" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
@@ -18,6 +18,19 @@
                   <span class="input-group-text" style="width: 90px"><b>CNE</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.refEtudiant"   class="form-control form-control-sm" >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cin" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 90px"><b>CIN</b></span>
+                </div>
+                <input  [(ngModel)]="demandeInscription.cin"   class="form-control form-control-sm" >
               </div>
             </div>
           </div>
@@ -97,32 +110,32 @@
 
 
         <div class="sub" style="text-align:center">
-          <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#exampleModal1" >ENVOYER</button>
+          <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#exampleModal1" (click)="saveDemandeInscription()" >ENVOYER</button>
         </div>
 
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">CONFIRMATION</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Êtes-vous sûr de vouloir continuer ?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDemandeInscription()">CONTINUER</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" >ANNULER</button>
+        <!--<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+          <!--<div class="modal-dialog" role="document">-->
+            <!--<div class="modal-content">-->
+              <!--<div class="modal-header">-->
+                <!--<h5 class="modal-title" id="exampleModalLabel">CONFIRMATION</h5>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                  <!--<span aria-hidden="true">&times;</span>-->
+                <!--</button>-->
+              <!--</div>-->
+              <!--<div class="modal-body">-->
+                <!--Êtes-vous sûr de vouloir continuer ?-->
+              <!--</div>-->
+              <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDemandeInscription()">CONTINUER</button>-->
+                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" >ANNULER</button>-->
 
-              </div>
-            </div>
-          </div>
-        </div>
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
 
 
 

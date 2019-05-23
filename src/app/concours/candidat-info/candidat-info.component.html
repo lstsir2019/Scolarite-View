@@ -1,0 +1,73 @@
+ <div class="col-sm-6">
+    <button class="btn btn-outline" (click)="backClicked()" > <span class=" text-primary fa fa-arrow-left"></span><span class="text-secondary"> Retourner a la liste Des Etudiants</span></button>
+  </div>
+<div class="container">
+
+
+<!--info Candidat-->
+<div class="container" style="padding-top: 1%">
+
+  <h5 style="">Infomations de l'etudiant</h5>
+  <div class="row">
+    <div class="col-sm-6">CNE: {{CandidatSelected.cne}}</div>
+    <div class="col-sm-6">CIN: {{CandidatSelected.cin}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">Statue: {{CandidatSelected.statue}}</div>
+    <div class="col-sm-6">Nom: {{CandidatSelected.nom}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">prenom: {{CandidatSelected.prenom}}</div>
+    <div class="col-sm-6">Date de naissance: {{CandidatSelected.dateNaissance}}</div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">Email: {{CandidatSelected.email}}</div>
+    <div class="col-sm-6">telephone: {{CandidatSelected.tel}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">Adresse: {{CandidatSelected.adressePersonnelle}}</div>
+  </div>
+</div>
+<br>
+<!--info Diplome-->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h5 style="">Diplome Obtenue</h5>
+    </div>
+    <div class="col-sm-6">
+      <h5 style="">Notes</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="">Niveau: {{CandidatSelected.niveau}}</div>
+      <div class="">Diplome: {{CandidatSelected.diplomeEtudiantVo.refDiplome}}</div>
+      <div class="">Anne d'obtention: {{CandidatSelected.diplomeEtudiantVo.anneeObtention}}</div>
+      <div class="">Mention: {{CandidatSelected.diplomeEtudiantVo.mention}}</div>
+<!--
+-->
+    </div>
+    <div class="col-sm-6" >
+      <div class="row" style="display: flex">
+        <div class="col-sm-6" *ngFor="let n of CandidatSelected.notesSemestreVos" >{{n.refSemestre}}: {{n.note}}/20 </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<!--Liste des Choixs-->
+<div class="container">
+  <h5 style="">Liste des choixs</h5>
+    <div *ngFor="let c of CandidatSelected.choixVos" class="row">
+      <div class="col-md">
+        <span style="word-wrap: break-word;">Choix numero {{c.numChoix}}: {{c.refConcours}}</span>
+      </div>
+    </div>
+</div>
+
+</div>
+
+
