@@ -32,6 +32,8 @@ import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filier
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
+
 
 
 @NgModule({
@@ -56,7 +58,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
     NoteCreateComponent,
     FiliereCreateComponent,
     ModuleCreateComponent,
-    EtudiantCreateComponent
+    EtudiantCreateComponent,
+    PvsCreateComponent
   ],
   imports: [
     BrowserModule,

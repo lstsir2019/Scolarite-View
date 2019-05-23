@@ -10,6 +10,7 @@ import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filier
 import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
 import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
+import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'Concours', component:ConcoursComponent},
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
+  { path: 'pvs', component:PvsCreateComponent},
   { path: 'modules', component:ModuleCreateComponent},
   { path: 'etudiants', component:EtudiantCreateComponent},
 
