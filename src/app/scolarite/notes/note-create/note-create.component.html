@@ -1,77 +1,94 @@
-<div class="container">
-  <div class="card">
-    <div class="card">
-      <div class="col-lg-12 card-header card-text fa fa-pencil" align="center"><B>Upload des notes</B></div>
-      <div class="card-body">
-        <div class="form-group">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILE NAME</b></span>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card">
+        <div class=" card-header card-text fa fa-pencil" align="center"><B>Upload des notes</B></div>
+        <div class="card-body">
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILE NAME</b></span>
+              </div>
+              <input type="file" class="form-control" placeholder="Path" [(ngModel)]="note.xpath"/>
             </div>
-            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.xpath"/>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                   style="width: 90px"><b>MODULE</b></span></div>
-            <input type="text" class="form-control" placeholder="Module" [(ngModel)]="note1.refModule"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                   style="width: 90px"><b>SEMESTRE</b> </span></div>
-            <input type="text" class="form-control" placeholder="Semestre" [(ngModel)]="note1.refSemestre"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> START LINE </b></span>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> START LINE </b></span>
+              </div>
+              <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
+                     [(ngModel)]="note.startLine"/>
             </div>
-            <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
-                   [(ngModel)]="note.startLine"/>
           </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-md fa fa-upload" (click)="check()"><b>Upload</b></button>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> START COL </b></span>
+              </div>
+              <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
+                     [(ngModel)]="note.startCol"/>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> END COL </b></span>
+              </div>
+              <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
+                     [(ngModel)]="note.endCol"/>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-md fa fa-upload" (click)="check()"><b>Upload</b></button>
+          </div>
         </div>
       </div>
     </div>
-    <div class="card">
-      <div class="col-lg-12 card-header card-text fa fa-list" align="center"><b> Liste des notes </b></div>
-      <div class="card-body">
-        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-          <table class="table table-sm table-bordered table-hover table-striped mb-0">
-            <thead class="thead-light">
-            <tr>
-              <th scope="col">CNE</th>
-              <th scope="col">MODULE</th>
-              <th scope="col">NOTE Av.Ratt</th>
-              <th scope="col">NOTE Ap.Ratt</th>
-              <th scope="col">NOTE FINALE</th>
-              <th scope="col">STATUT FINAL</th>
-              <th scope="col">ACTIONS</th>
-            </tr>
-            </thead>
-            <tbody *ngFor="let n of notesCheck" >
-            <tr>
-              <td>{{ n.refEtudiant }}</td>
-              <td>{{ n.refModule }}</td>
-              <td>{{ n.noteAavantRatt }}</td>
-              <td>{{ n.noteapresRatt }}</td>
-              <td>{{ n.finale }}</td>
-              <td>{{ n.statutFinal }}</td>
-              <td>
-                <button type="button" class="btn btn-primary btn-sm fa fa-edit" data-toggle="modal" data-target="#exampleModalCenter"></button>
-                <button type="button" class="btn btn-danger btn-sm fa fa-trash" (click)="deleteItem(n)"></button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div align="center">
-          <button type="button" class="btn btn-outline-success btn-md" (click)="save()"><B>Valider</B></button>
-          <button type="button" class="btn btn-outline-secondary btn-md" (click)="deleteAll()"><b> Clear</b></button>
+    <div class="col-md">
+      <div class="card">
+        <div class="card-header card-text fa fa-list" align="center"><b> Liste des notes </b></div>
+        <div class="card-body">
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-sm table-bordered table-hover table-striped mb-0">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col">CNE</th>
+                <th scope="col">NOM</th>
+                <th scope="col">PRENOM</th>
+                <th scope="col">NOTE Av.Ratt</th>
+                <th scope="col">NOTE Ap.Ratt</th>
+                <th scope="col">NOTE FINALE</th>
+                <th scope="col">STATUT FINAL</th>
+                <th scope="col">ETAT</th>
+                <th scope="col">ACTIONS</th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let n of notesCheck"
+                     [ngClass]="{'negative': n.state == 'Good', 'noteorange': n.state == 'Pas de note finale', 'bdblue': n.state == 'Existant', 'cneyellow': n.state == 'Pas de CNE'}">
+              <tr>
+                <td>{{ n.refEtudiant }}</td>
+                <td>{{ n.nom }}</td>
+                <td>{{ n.prenom }}</td>
+                <td>{{ n.noteAvantJury }}</td>
+                <td>{{ n.mentionApresJury }}</td>
+                <td>{{ n.mention }}</td>
+                <td>{{ n.etat }}</td>
+                <td>{{ n.state }}</td>
+                <td>
+                  <button type="button" class="btn btn-primary btn-sm fa fa-edit" data-toggle="modal"
+                          data-target="#exampleModalCenter"></button>
+                  <button type="button" class="btn btn-danger btn-sm fa fa-trash" (click)="deleteItem(n)"></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div align="center">
+            <button type="button" class="btn btn-outline-success btn-md" (click)="save()"><B>Valider</B></button>
+            <button type="button" class="btn btn-outline-secondary btn-md" (click)="deleteAll()"><b> Clear</b>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -16,6 +16,8 @@ import {ListeDesRetenusEcritComponent} from "./concours/liste-des-retenus-ecrit/
 import {ListeDesRetenusOralComponent} from "./concours/liste-des-retenus-oral/liste-des-retenus-oral.component";
 import {ListeDesAdmisComponent} from "./concours/liste-des-admis/liste-des-admis.component";
 import {DemandeComponent} from './demande/demande.component';
+import {ConcoursCreateComponent} from './concours/concours-create/concours-create.component';
+import {ConcoursListComponent} from './concours/concours-list/concours-list.component';
 import {DemandeInscriptionListComponent} from './demande/demande-inscription-list/demande-inscription-list.component';
 import {DemandeInfoComponent} from './demande/demande-inscription-info/demande-info.component';
 import {DemandeInscription} from './controller/model/demande-inscription.model';
@@ -24,6 +26,7 @@ import {DemandeScolariteListComponent} from './demande/demande-scolarite-list/de
 import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-list/demande-releve-notes-list.component';
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -32,7 +35,6 @@ const routes: Routes = [
   // { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   // { path: 'ListeDemandes', component:DemandeListComponent},
   { path: 'Concours',   redirectTo: '/Concours/listePostule', pathMatch: 'full' },
-
 
 
 
@@ -67,33 +69,22 @@ const routes: Routes = [
         ]}
     ]},
 
-
-
-
-
   { path: 'Concours', component:ConcoursComponent,
-  children:[
-    { path: 'listePostule', component:ListeDesPostuleComponent,children:[
-        { path: 'Info', component:CandidatInfoComponent}
-      ]},
-    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-    { path: 'listeOral', component:ListeDesRetenusOralComponent},
-    { path: 'listeAdmis', component:ListeDesAdmisComponent},
-  ]},
-
-
-
-
-
-
-
-
-
-
-
+    children:[
+      { path: 'créationConcours', component:ConcoursCreateComponent},
+      { path: 'listeConcours', component:ConcoursListComponent},
+      { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
+      { path: 'listePostule', component:ListeDesPostuleComponent,children:[
+          { path: 'Info', component:CandidatInfoComponent}
+        ]},
+      { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
+      { path: 'listeOral', component:ListeDesRetenusOralComponent},
+      { path: 'listeAdmis', component:ListeDesAdmisComponent},
+    ]},
 
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
+  { path: 'pvs', component:PvsCreateComponent},
   { path: 'modules', component:ModuleCreateComponent},
   { path: 'etudiants', component:EtudiantCreateComponent},
 
@@ -103,6 +94,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

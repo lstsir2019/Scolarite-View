@@ -1,4 +1,6 @@
 export class NoteEtudiantModule {
 
-  constructor(public refSemestre: string, public refModule: string, public refEtudiant: string, public noteAavantRatt: string, public noteapresRatt: string, public finale: string, public statutFinal: string) {}
+  constructor(public refFiliere: string, public refModule: string,public nom: string,public prenom: string, public refEtudiant: string, public noteAvantJury: string, public noteRatt: string, public mentionApresJury: string, public mention: string,public ptJury: string, public etat: string, public state: string) {}
 }
+
+

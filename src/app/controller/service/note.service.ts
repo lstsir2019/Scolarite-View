@@ -31,13 +31,14 @@ export class NoteService {
   private _notesCheck: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesExisted: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesCheckClone: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
-  private _noteCreate = new NotesCreate('', '', 0);
-  private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '');
-  private _url = 'http://localhost:8097/efaculte-api-notes/notes/xlpath/';
+  private _noteCreate = new NotesCreate('', '', 0, 0, 0);
+  private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '');
+  private _url = 'http://localhost:8097/efaculte-api-notes/notes/filename/';
   private _url1 = 'http://localhost:8097/efaculte-api-notes/notes/';
   private _noteSelected: NoteEtudiantModule;
-  private _noteClone: NoteEtudiantModule = new NoteEtudiantModule('', '', '', '', '', '', '');
+  private _noteClone: NoteEtudiantModule = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '');
   public firstline: number;
+  public path: string;
 
 
   constructor(private _http: HttpClient, private _spinner: NgxSpinnerService) {
@@ -53,7 +54,8 @@ export class NoteService {
       Swal.fire('Error!!!', 'La liste nest pas vide', 'error');
     } else {
       if (this.noteCreate.xpath !== '') {
-        this._http.get<Array<NoteEtudiantModule>>(this._url + this.noteCreate.xpath + '/module/' + this._note1.refModule + '/semestre/' + this._note1.refSemestre + '/firstline/' + this.noteCreate.startLine).subscribe(
+        this.path = this.noteCreate.xpath.replace("C:\\fakepath\\","");
+        this._http.get<Array<NoteEtudiantModule>>(this._url + this.path + '/startCol/' + this.noteCreate.startCol + '/endCol/' + this.noteCreate.endCol + '/line/' + this.noteCreate.startLine).subscribe(
           data => {
             if (data.length === 0) {
               Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
@@ -62,14 +64,38 @@ export class NoteService {
             }
           }, error => {
             Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+            console.log(this.path);
           }
         );
-        // this.notesCheck.push(new NoteEtudiantModule('hjk', 'gfd' , 'gfd' , 'fds', 'hgd' , 'gfds' , 'gaezfds' ));
       } else {
         Swal.fire('Error!!!', 'please enter file name!', 'error');
+        console.log(this.noteCreate.xpath);
       }
     }
   }
+
+  // public check() {
+  //   if (this.notesCheck.length !== 0) {
+  //     Swal.fire('Error!!!', 'La liste nest pas vide', 'error');
+  //   } else {
+  //     if (this.noteCreate.xpath !== '') {
+  //       this._http.get<Array<NoteEtudiantModule>>(this._url + this.noteCreate.xpath + '/module/' + this._note1.refFiliere + '/semestre/' + this._note1.refSemestre + '/firstline/' + this.noteCreate.startLine).subscribe(
+  //         data => {
+  //           if (data.length === 0) {
+  //             Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+  //           } else {
+  //             this.notesCheck = data;
+  //           }
+  //         }, error => {
+  //           Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+  //         }
+  //       );
+  //       // this.notesCheck.push(new NoteEtudiantModule('hjk', 'gfd' , 'gfd' , 'fds', 'hgd' , 'gfds' , 'gaezfds' ));
+  //     } else {
+  //       Swal.fire('Error!!!', 'please enter file name!', 'error');
+  //     }
+  //   }
+  // }
 
   public save() {
     if (this.notesCheck.length == 0) {
@@ -77,7 +103,6 @@ export class NoteService {
     } else {
       this._http.post<Array<NoteEtudiantModule>>(this.url1, this.notesCheck).subscribe(
         data => {
-
           this.notesExisted = data;
           if (this.notesExisted.length == 0) {
             Swal.fire('Done', 'Success', 'success');

@@ -1,18 +1,23 @@
-
 <mat-drawer-container>
   <mat-drawer mode="side" opened>
-        <nav style="display: block" class="nav nav-pills nav-fill">
-          <a class="nav-item nav-link list-group-item-action  ">Création Concours</a>
-          <a class="nav-item nav-link list-group-item-action " >Liste Des Concours</a>
-          <a class="nav-item nav-link list-group-item-action  "routerLink="listePostule"  routerLinkActive="router-link-active">Liste Des Postulés</a>
-          <a class="nav-item nav-link list-group-item-action "routerLink="listeEcrit"  routerLinkActive="router-link-active">Liste Retenus écrit</a>
-          <a class="nav-item nav-link list-group-item-action  " routerLink="listeOral"  routerLinkActive="router-link-active">Liste Retenus oral</a>
-          <a class="nav-item nav-link list-group-item-action " routerLink="listeAdmis"  routerLinkActive="router-link-active">Liste Admis</a>
-        </nav>
+    <nav style="display: block" class="nav nav-pills nav-fill">
+      <a class="nav-item nav-link list-group-item-action  " routerLink="créationConcours"
+         routerLinkActive="router-link-active">Création Concours</a>
+      <a class="nav-item nav-link list-group-item-action " routerLink="listeConcours"
+         routerLinkActive="router-link-active">Liste Des Concours</a>
+      <a class="nav-item nav-link list-group-item-action  " routerLink="listePostule"
+         routerLinkActive="router-link-active">Liste Des Postulés</a>
+      <a class="nav-item nav-link list-group-item-action " routerLink="listeEcrit"
+         routerLinkActive="router-link-active">Liste Retenus écrit</a>
+      <a class="nav-item nav-link list-group-item-action  " routerLink="listeOral"
+         routerLinkActive="router-link-active">Liste Retenus oral</a>
+      <a class="nav-item nav-link list-group-item-action " routerLink="listeAdmis"
+         routerLinkActive="router-link-active">Liste Admis</a>
+    </nav>
   </mat-drawer>
-  <mat-drawer-content >
+  <mat-drawer-content>
     <div class="tab-content" id="nav-tabContent">
-        <router-outlet></router-outlet>
+      <router-outlet></router-outlet>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
