@@ -5,6 +5,8 @@ import {ReleveNotes} from '../model/releve-notes.model';
 import Swal from 'sweetalert2';
 import {DemandeInscription} from '../model/demande-inscription.model';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
+import {RetenueEcrit} from '../model/retenue-ecrit.model';
+import {Semestre} from '../model/semestre.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,9 @@ export class DemandeReleveNotesService {
 
   private _demandeReleveNotess: Array<DemandeReleveNotes>;
 
+  public semestres: Array<Semestre> = [];
+  public semestresSelected : Array<Semestre> = [];
+
   private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","","");
 
   private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","","");
@@ -25,22 +30,16 @@ export class DemandeReleveNotesService {
   private _releveNotesCreate: ReleveNotes = new ReleveNotes("");
   private _demandeReleveNotesList = Array <DemandeReleveNotes>();
 
-  // public releveNotess : Array <ReleveNotes>;
-  // public ReleveNotes = new Array <ReleveNotes>();
 
   constructor(private _http:HttpClient) { }
+
+
 
 
   public addDemandeReleveNotes(){
     let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email, this._demandeReleveNotesCreate.cin);
     this._demandeReleveNotesList.push(demandeReleveNotesClone);
   }
-
- // public addReleveNotes(){
-   // let releveNotesClone= new ReleveNotes (this.releveNotesCreate.refSemestre);
-   // this.demandeReleveNotesCreate.releveNotesVo.push(releveNotesClone);
-   // this.releveNotesCreate= new ReleveNotes( "");
- // }
 
 
 
@@ -118,11 +117,11 @@ export class DemandeReleveNotesService {
   }
 
 
-  public print(refEtudiant : string){
+  public print(refEtudiant : string, refFiliere : string, refSemestre : string, annee : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
     };
-    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant +"/refFiliere/" + refFiliere +"/refSemestre/" + refSemestre + "/annee/" + annee      ,httpOptions).subscribe((resultBlob: Blob) => {
       var downloadURL = URL.createObjectURL(resultBlob);
       window.open(downloadURL);});
   }

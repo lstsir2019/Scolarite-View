@@ -52,8 +52,8 @@ export class DemandeReleveNotesListComponent implements OnInit {
     return this.semestreService.semestres;
  }
 
-  public print(refEtudiant : string){
-    this.demandeReleveNotesService.print(refEtudiant);
+  public print(refEtudiant : string, refFiliere : string, refSemestre : string, annee : string){
+    this.demandeReleveNotesService.print(refEtudiant, refFiliere, refSemestre, annee);
   }
 
 }
