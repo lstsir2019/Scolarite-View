@@ -27,6 +27,7 @@ import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-li
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 import {GestionDeNotesComponent} from "./concours/gestion-de-notes/gestion-de-notes.component";
+import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -35,7 +36,6 @@ const routes: Routes = [
   // { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   // { path: 'ListeDemandes', component:DemandeListComponent},
   { path: 'Concours',   redirectTo: '/Concours/listePostule', pathMatch: 'full' },
-
 
 
 
@@ -87,6 +87,7 @@ const routes: Routes = [
 
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
+  { path: 'pvs', component:PvsCreateComponent},
   { path: 'modules', component:ModuleCreateComponent},
   { path: 'etudiants', component:EtudiantCreateComponent},
 
@@ -96,6 +97,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-
-}
+export class AppRoutingModule { }

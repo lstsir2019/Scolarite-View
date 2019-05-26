@@ -1,4 +1,5 @@
 import {ReleveNotes} from './releve-notes.model';
+import {NoteSemestre} from './note-semestre.model';
 
 export class DemandeReleveNotes {
   //public releveNotesVo = Array<ReleveNotes>();
