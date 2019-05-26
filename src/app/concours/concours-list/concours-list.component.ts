@@ -4,6 +4,8 @@ import {FiliereService} from '../../controller/service/filiere.service';
 import {Concours} from '../../controller/model/concours.model';
 import {MatDialog} from '@angular/material';
 import {ConcoursComponent} from '../concours.component';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-concours-list',
@@ -17,15 +19,15 @@ export class ConcoursListComponent implements OnInit {
   modeGlobal:number=0;
 
 
-  constructor( private concoursService:ConcoursService,private filiereService:FiliereService,public dialog: MatDialog) { }
+  constructor( private concoursService:ConcoursService,private filiereService:FiliereService,public dialog: MatDialog, public route: ActivatedRoute) { }
 
-  openInfoDialog() {
-    const dialogRef = this.dialog.open(null);
+  /*openInfoDialog() {
+    const dialogRef = this.dialog.open(ConcoursInfoComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
+  }*/
 
   ngOnInit() {
     this.concoursService.findAll();
@@ -72,6 +74,8 @@ export class ConcoursListComponent implements OnInit {
   public updateConcours(concoursUpdated: Concours){
     return this.concoursService.updateConcours(concoursUpdated);
   }
-
+  public get moduleSelected (){
+    return this.concoursService.moduleSelected;
+  }
 
 }

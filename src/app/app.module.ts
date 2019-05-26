@@ -39,13 +39,13 @@ import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
 import { ConcoursCreateComponent } from './concours/concours-create/concours-create.component';
 import { ConcoursListComponent } from './concours/concours-list/concours-list.component';
-import { ConcoursInfoComponent } from './concours-info/concours-info.component';
 import {MatSortModule} from '@angular/material/sort';
 import {SelectionModel} from "@angular/cdk/collections";
-
 import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
 import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
+import { ModuleConcoursUpdateComponent } from './concours/module-concours-update/module-concours-update.component';
 
 
 
@@ -83,6 +83,7 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
     DemandeInfoComponent,
     DemandeScolariteInfoComponent,
     DemandeReleveNotesInfoComponent,
+    ModuleConcoursUpdateComponent,
 
 
   ],
@@ -107,6 +108,6 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[PreselectionComponent]
+  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent]
 })
 export class AppModule { }

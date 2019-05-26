@@ -1,0 +1,82 @@
+<div class="col-sm-6">
+  <button class="btn btn-outline" (click)="backClicked()"><span class=" text-primary fa fa-arrow-left"></span><span
+    class="text-secondary"> Retour</span></button>
+</div>
+<div class="container-fluid">
+  <h5 style="">Détails du {{concoursSelected.reference}} </h5>
+  <div class="row">
+    <div class="col-sm-6">Date Du Concours Ecrit:{{concoursSelected.dateConcoursEcrit}}</div>
+    <div class="col-sm-6">Date Du Concours Orale:{{concoursSelected.dateConcoursOral}}</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">Filière:{{concoursSelected.refFiliere}}</div>
+    <div class="col-sm-6">Nombre De Places:{{concoursSelected.nbreplace}}</div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-6">Nombre De Places Pour Concours Ecrit:{{concoursSelected.nbreplaceConcoursEcrit}}</div>
+    <div class="col-sm-6">Nombre De Places Pour Concours Orale:{{concoursSelected.nbreplaceConcoursOral}}</div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row" style="justify-content: space-between"><h5 align="center">LISTE DES MODULES DU
+    {{concoursSelected.reference}}</h5>
+    <button class="btn btn-outline"><i
+      class="text-primary fa fa-plus" (click)="modeGlobal=1"><span class="text-secondary">Ajouter Un Module</span></i>
+    </button>
+    <div *ngIf="modeGlobal==1">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="card-body">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Reference module</span>
+                    </div>
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Coefficient</span>
+                    </div>
+                    <input type="number" class="form-control">
+                  </div>
+                </div>
+                <div class="col">
+                  <button type="button" class="btn btn-secondary fa fa-plus"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="table table-sm table-borderless">
+      <thead class="thead-light">
+      <th>Référence Module</th>
+      <th>Coefficient</th>
+      <th>Suppression</th>
+      </thead>
+      <tbody *ngFor="let m of concoursSelected.moduleConcoursVo">
+      <tr *ngIf="m">
+        <td>{{m.reference}}</td>
+        <td>{{m.coefModuleConcoursVo.coef}}</td>
+        <td>
+          <button class="btn btn-outline-danger fa fa-trash" style="border:0px solid transparent;  "
+                  (click)="deleteModuleConcours(m)"></button>
+          <button class="btn btn-outline-primary fa fa-edit" style="border:0px solid transparent;  "
+                  (click)="openDialog(m)"></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

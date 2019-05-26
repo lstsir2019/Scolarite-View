@@ -26,6 +26,8 @@ import {DemandeScolariteListComponent} from './demande/demande-scolarite-list/de
 import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-list/demande-releve-notes-list.component';
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
+
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -72,7 +74,9 @@ const routes: Routes = [
   { path: 'Concours', component:ConcoursComponent,
   children:[
     { path: 'créationConcours', component:ConcoursCreateComponent},
-    { path: 'listeConcours', component:ConcoursListComponent},
+    { path: 'listeConcours', component:ConcoursListComponent,children:[
+        { path: 'ConcoursInfo', component:ConcoursInfoComponent}
+      ]},
     { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
     { path: 'listePostule', component:ListeDesPostuleComponent,children:[
         { path: 'Info', component:CandidatInfoComponent}

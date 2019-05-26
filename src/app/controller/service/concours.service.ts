@@ -4,6 +4,7 @@ import {Concours} from '../model/concours.model';
 import Swal from 'sweetalert2';
 import {CoefModuleConcours} from '../model/coef-module-concours.model';
 import {ModuleConcours} from '../model/module-concours.model';
+import {Candidat} from '../model/candidat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,13 +19,13 @@ export class ConcoursService {
   private _url1: string = 'http://localhost:8090/concours-api/concours/search';
   private _url2: string = 'http://localhost:8090/concours-api/concours/update';
 
-  private _concoursCreate: Concours = new Concours('', '', '', '', '', '');
+  private _concoursCreate: Concours = new Concours('', '', '', '', '', '','','');
   private _coefmoduleConcours: CoefModuleConcours = new CoefModuleConcours('');
   private _moduleCreate: ModuleConcours = new ModuleConcours('', this._coefmoduleConcours, 0);
   private _listConcours: Array<Concours>;
   private _concoursSelected: Concours;
   private _moduleSelected: ModuleConcours;
-  private _concoursSearched: Concours = new Concours('', '', '', '', '', '');
+  private _concoursSearched: Concours = new Concours('', '', '', '', '', '','','');
 
   public addModuleConcours() {
     let coefModuleConcoursVoClone = new CoefModuleConcours(this._moduleCreate.coefModuleConcoursVo.coef);
@@ -46,7 +47,7 @@ export class ConcoursService {
           Swal.fire('SUCCES', 'Création réussite', 'success');
           console.log('ok');
           this.findAll();
-          this._concoursCreate = new Concours('', '', '', '', '', '');
+          this._concoursCreate = new Concours('', '', '', '', '', '','','');
         } else {
           Swal.fire('ERREUR !', 'Erreur !', 'error');
         }
@@ -223,6 +224,42 @@ export class ConcoursService {
       );
     }
   }
+  /*public updateModuleConcours(moduleupdated: ModuleConcours) {
+    if (moduleupdated != null) {
+      console.log('koko');
+      this.http.put(this._url2, concoursupdated).subscribe(
+        data => {
+          if (data == -1) {
+            Swal.fire({
+              title: 'failed !',
+              text: 'déja accorder',
+              type: 'error',
+            });
+          }
+
+          if (data == -1) {
+            Swal.fire({
+              title: 'failed !',
+              text: 'qte non acceptable',
+              type: 'error',
+            });
+          }
+
+          if (data == 1) {
+            Swal.fire({
+              title: 'done !!',
+              text: 'une qte a été accorder',
+              type: 'success',
+            });
+          }
+          console.log('Done ... !');
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }*/
 
 
   public findByQuery() {
@@ -236,7 +273,16 @@ export class ConcoursService {
     );
   }
 
+  public findByRefModule(id:number){
+    this.http.get<ModuleConcours>(this.url+"module-concours/"+id).subscribe(
+      data=>{
+        this.moduleSelected=data;
+        console.log("ok"+ this.moduleSelected.id);
+      }, error1 => {
+        console.log("eror");
+      });
 
+  }
   /*constructor(private http: HttpClient) { }
   public url:string="http://localhost:8092/concours-api/concours/reference";
 
