@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
-  MatInputModule, MatPaginator, MatPaginatorModule, MatSidenavModule,
+  MatInputModule, MatPaginator, MatPaginatorModule, MatProgressBar, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -39,13 +39,14 @@ import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
 import { ConcoursCreateComponent } from './concours/concours-create/concours-create.component';
 import { ConcoursListComponent } from './concours/concours-list/concours-list.component';
-import { ConcoursInfoComponent } from './concours-info/concours-info.component';
 import {MatSortModule} from '@angular/material/sort';
 import {SelectionModel} from "@angular/cdk/collections";
 
 import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
 import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import { GestionDeNotesComponent } from './concours/gestion-de-notes/gestion-de-notes.component';
+import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/liste-notes.component';
 
 
 
@@ -79,11 +80,12 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
     PreselectionComponent,
     ConcoursCreateComponent,
     ConcoursListComponent,
-    ConcoursInfoComponent,
     DemandeInfoComponent,
     DemandeScolariteInfoComponent,
     DemandeReleveNotesInfoComponent,
-
+    GestionDeNotesComponent,
+    ListeNotesComponent,
+    MatProgressBar
 
   ],
   imports: [
@@ -107,6 +109,6 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[PreselectionComponent]
+  entryComponents:[PreselectionComponent,ListeNotesComponent]
 })
 export class AppModule { }

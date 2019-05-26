@@ -17,7 +17,9 @@ export class ConcoursService {
   private _url: string = 'http://localhost:8090/concours-api/concours/';
   private _url1: string = 'http://localhost:8090/concours-api/concours/search';
   private _url2: string = 'http://localhost:8090/concours-api/concours/update';
-
+  public listeDesAnnee= [];
+  public listeConcoursByAnnee=[];
+  public listeModuleConcours=[];
   private _concoursCreate: Concours = new Concours('', '', '', '', '', '');
   private _coefmoduleConcours: CoefModuleConcours = new CoefModuleConcours('');
   private _moduleCreate: ModuleConcours = new ModuleConcours('', this._coefmoduleConcours, 0);
@@ -139,6 +141,10 @@ export class ConcoursService {
     this.http.get<Array<Concours>>(this._url).subscribe(
       data => {
         this._listConcours = data;
+        for (let i=0;i<this.listConcours.length;i++) {
+          this.listeDesAnnee.push(this.listConcours[i].anneeConcours);
+          this.listeDesAnnee=this.listeDesAnnee.filter((e1,i,a)=>i===a.indexOf(e1))
+        }
       }, error => {
         console.log('error while loading concours ...');
       }
@@ -151,12 +157,26 @@ export class ConcoursService {
       this.http.get<Array<ModuleConcours>>(this._url + 'reference/' + this.concoursSelected.reference + '/module-concours').subscribe(
         data => {
           this._concoursSelected.moduleConcoursVo = data;
+          console.log(this.listeModuleConcours);
         }, error => {
           console.log('error while loading Modules ...');
         }
       );
     }
   }
+
+  public findModuleConcoursByRefConcours(reference: string) {
+      this.http.get<Array<ModuleConcours>>(this._url + 'reference/' + reference + '/module-concours').subscribe(
+        data => {
+          this.listeModuleConcours=data;
+          console.log(this.listeModuleConcours);
+        }, error => {
+          console.log('error while loading Modules ...');
+        }
+      );
+
+  }
+
 
   public deleteConcoursComplet(concours: Concours) {
     this.concoursSelected = concours;
@@ -224,6 +244,17 @@ export class ConcoursService {
     }
   }
 
+  public findByAnneeConcours(anneeConcours: number) {
+    this.http.get<Array<Concours>>(this._url + /annee/ + anneeConcours).subscribe(
+      data => {
+        this.listeConcoursByAnnee=data;
+        console.log(data);
+      }, error1 => {
+        console.log("error Annee");
+      }
+    )
+
+  }
 
   public findByQuery() {
     console.log(this._concoursSearched);
