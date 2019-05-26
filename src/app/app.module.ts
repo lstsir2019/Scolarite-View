@@ -42,6 +42,7 @@ import {ConcoursCreateComponent} from "./concours/concours-create/concours-creat
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
 
+import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.comp
     MatSortModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MultiSelectAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
