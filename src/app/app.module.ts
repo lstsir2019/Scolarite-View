@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
-  MatInputModule, MatPaginator, MatPaginatorModule, MatSidenavModule,
+  MatInputModule, MatPaginator, MatPaginatorModule, MatProgressBar, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -37,12 +37,18 @@ import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
 import {MatSortModule} from '@angular/material/sort';
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
-import {DemandeScolariteInfoComponent} from "./demande/demande-scolarite-info/demande-scolarite-info.component";
-import {DemandeInfoComponent} from "./demande/demande-inscription-info/demande-info.component";
 import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-info/demande-releve-notes-info.component";
 import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
+
+import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
+import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import { GestionDeNotesComponent } from './concours/gestion-de-notes/gestion-de-notes.component';
+import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/liste-notes.component';
+import {DemandeComponent} from "./demande/demande.component";
+
+
 import {SelectionModel} from "@angular/cdk/collections";
 import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
 import { ModuleConcoursUpdateComponent } from './concours/module-concours-update/module-concours-update.component';
@@ -76,6 +82,13 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
     ModuleCreateComponent,
     EtudiantCreateComponent,
     PvsCreateComponent,
+    CandidatInfoComponent,
+    DemandeComponent,
+    AdmissionComponent,
+    PreselectionComponent,
+    ConcoursCreateComponent,
+    ConcoursListComponent,
+    DemandeInfoComponent,
     DemandeScolariteInfoComponent,
     DemandeInfoComponent,
     DemandeReleveNotesInfoComponent,
@@ -85,6 +98,9 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
     ModuleConcoursUpdateComponent,
     ConcoursInfoComponent,
     PreselectionComponent,
+    GestionDeNotesComponent,
+    ListeNotesComponent,
+    MatProgressBar
 
   ],
   imports: [
@@ -108,7 +124,7 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent]
+  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent,ListeNotesComponent]
 })
 export class AppModule {
 }
