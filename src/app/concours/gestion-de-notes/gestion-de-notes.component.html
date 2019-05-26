@@ -31,7 +31,7 @@
           <span class="input-group-text">Module</span>
         </div>
         <select [(ngModel)]="refModule" class="form-control ">
-          <option value="Module" selected disabled>Module</option>
+          <option value="Module"   >Module</option>
           <option value="{{m.id}}" *ngFor="let m of moduleConcours ">{{m.reference}}</option>
 
         </select>
@@ -58,7 +58,7 @@
     </div>
     <div class="col-lg" style="padding-top: 0.6%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
-      <input type="number" id="transparentInput" placeholder="cne">
+      <input type="number" (keyup)="findInListByCne()"  [(ngModel)]="refCandidat" id="transparentInput" placeholder="cne">
     </div>
 
   </div>

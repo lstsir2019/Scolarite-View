@@ -14,8 +14,8 @@ import {NoteModuleConcours} from "../../../controller/model/note-module-concours
 })
 export class ListeNotesComponent implements OnInit {
   displayedColumns: string[] = ['select', 'RefEtudiant', 'Nom', 'Prenom', 'Note'];
-  dataSource : MatTableDataSource<any>;
-  selection :  SelectionModel<any>;
+  dataSource: MatTableDataSource<any>;
+  selection: SelectionModel<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -25,8 +25,9 @@ export class ListeNotesComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.refModuleConcours + 1}`;
   }
 
-  constructor(private gestionDeNotes: GestionNotesService,private http:HttpClient) {
+  constructor(private gestionDeNotes: GestionNotesService, private http: HttpClient) {
   }
+
   ngOnInit() {
 
   }
@@ -34,17 +35,22 @@ export class ListeNotesComponent implements OnInit {
   xlss() {
     this.onFileUpload(event);
   }
-  public listeNote: Array<NoteModuleConcours>=[] ;
 
-public get refModule(){
-  return this.gestionDeNotes.refModule;
-}
+  public listeNote: Array<NoteModuleConcours> = [];
+  public filtered:  Array<NoteModuleConcours> = [];
+
+  public get refModule() {
+    return this.gestionDeNotes.refModule;
+  }
+
+  public refCandidat: string;
+
   private formData = new FormData();
   selecetdFile: File;
 
   onFileUpload(event) {
     this.selecetdFile = event.target.files[0];
-    this.formData.append("file",this.selecetdFile)
+    this.formData.append("file", this.selecetdFile)
     console.log(this.selecetdFile);
     this.OnUploadFile();
   }
@@ -52,25 +58,39 @@ public get refModule(){
   url: string = 'http://localhost:8091/admission/retenus/xls/';
 
   public show: boolean;
+
   OnUploadFile() {
     this.show = true;
     this.http.post<Array<NoteModuleConcours>>(this.url, this.formData).subscribe(
-      data =>{
+      data => {
         console.log(data);
-        this.listeNote= data;
-        this.dataSource= new MatTableDataSource<NoteModuleConcours>(this.listeNote);
-        this.selection=  new SelectionModel<NoteModuleConcours>(true, this.listeNote);
-        this.dataSource.paginator=this.paginator;
+        this.listeNote = data;
+        this.dataSource = new MatTableDataSource<NoteModuleConcours>(this.listeNote);
+        this.filtered=data;
+        this.selection = new SelectionModel<NoteModuleConcours>(true, this.listeNote);
+        this.dataSource.paginator = this.paginator;
         console.log(this.listeNote);
         this.show = false;
-      },error1 => {
+      }, error1 => {
         console.log("error upload0");
         this.show = false;
       })
   }
-  public saveNotes(){
-    for (let i=0;i<this.selection.selected.length;i++){
-      this.selection.selected[i].refModuleConcours=this.refModule;
+  public findInListByRefCandidat(reference:string){
+    if(reference == null){
+      this.filtered=this.listeNote;
+    }else{
+      const filter =(note: NoteModuleConcours[])=>this.listeNote.filter(note=> note.retenueEcritVo.refCandidat.match("^"+reference+".*$"));
+
+      this.filtered=filter(this.listeNote);
+      this.dataSource = new MatTableDataSource<NoteModuleConcours>(this.filtered);
+
+
+    }
+  }
+  public saveNotes() {
+    for (let i = 0; i < this.selection.selected.length; i++) {
+      this.selection.selected[i].refModuleConcours = this.refModule;
     }
     return this.gestionDeNotes.saveNoteModuleConcours(this.selection.selected);
   }

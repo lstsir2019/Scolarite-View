@@ -124,7 +124,7 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent]
+  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent,ListeNotesComponent]
 })
 export class AppModule {
 }

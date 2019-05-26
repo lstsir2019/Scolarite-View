@@ -24,7 +24,7 @@ export class GestionDeNotesComponent implements OnInit {
 
   public annee: number = 1;
   public refconcours: string = "Concours";
-  public refModule:string="Module"
+  public refModule: string = "Module"
 
 
   public get moduleConcours() {
@@ -49,13 +49,13 @@ export class GestionDeNotesComponent implements OnInit {
   }
 
   openDialog() {
-    if (this.noteModuleconcoursService.refModule.match("Module")){
+    if (this.noteModuleconcoursService.refModule.match("Module")) {
       Swal.fire({
         title: 'Module Invalide',
         text: 'veuillez selectionner un Module',
         type: 'warning',
       });
-    }else {
+    } else {
       const dialogRef = this.dialog.open(ListeNotesComponent, {
         panelClass: 'custom-dialog-container',
         data: {concours: "cc"}
@@ -67,12 +67,20 @@ export class GestionDeNotesComponent implements OnInit {
 
   }
 
+  public refCandidat: string;
+
+  public findInListByCne() {
+    return this.noteModuleconcoursService.findInListByRefCandidat(this.refCandidat);
+
+  }
+
   public findByRefModule() {
+    console.log(this.refModule);
 
     return this.noteModuleconcoursService.findNoteModules(this.refModule);
   }
 
   public get listeNotesModuleConcoursInBd() {
-    return this.noteModuleconcoursService.listNoteModulesInBd;
+    return this.noteModuleconcoursService.filtered;
   }
 }

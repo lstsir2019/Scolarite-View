@@ -4,6 +4,7 @@ import {NoteModuleConcours} from "../model/note-module-concours";
 import {MatPaginator, MatTableDataSource} from "@angular/material";
 import {SelectionModel} from "@angular/cdk/collections";
 import {RetenueEcrit} from "../model/retenue-ecrit.model";
+import {Candidat} from "../model/candidat.model";
 
 @Injectable({
   providedIn: 'root'
@@ -11,9 +12,10 @@ import {RetenueEcrit} from "../model/retenue-ecrit.model";
 export class GestionNotesService {
   constructor(public http: HttpClient) {
   }
-
   url: string = 'http://localhost:8091/admission/retenus/xls/';
 public  listNoteModulesInBd: Array<NoteModuleConcours> =[];
+  public filtered: Array<NoteModuleConcours> = [];
+
   public saveNoteModuleConcours(notes: Array<NoteModuleConcours>) {
 
     this.http.post(this.url + "save", notes).subscribe(
@@ -24,14 +26,24 @@ public  listNoteModulesInBd: Array<NoteModuleConcours> =[];
       }
     )
   }
+  public findInListByRefCandidat(reference:string){
+    if(reference == null){
+      this.findNoteModules(this.refModule);
+    }else{
+      const filter =(note: NoteModuleConcours[])=>this.listNoteModulesInBd.filter(note=> note.retenueEcritVo.refCandidat.match("^"+reference+".*$"));
+      this.filtered=filter(this.listNoteModulesInBd);
 
+    }
+  }
 public refModule:string="Module";
 
   public findNoteModules(refModule:string) {
 this.refModule=refModule;
-console.log(this.refModule);
+    this.filtered=[];
+    this.listNoteModulesInBd=[];
     this.http.get<Array<NoteModuleConcours>>(this.url + "notes/"+this.refModule).subscribe(
       data => {
+        this.filtered=data;
         this.listNoteModulesInBd=data;
         console.log(data);
       }, error1 => {
