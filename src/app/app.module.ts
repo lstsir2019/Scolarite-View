@@ -35,6 +35,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTableModule} from '@angular/material/table';
 import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
+import { AdmissionComponent } from './admission/admission.component';
+import { PreselectionComponent } from './admission/preselection/preselection.component';
 import { ConcoursCreateComponent } from './concours/concours-create/concours-create.component';
 import { ConcoursListComponent } from './concours/concours-list/concours-list.component';
 import {MatSortModule} from '@angular/material/sort';
@@ -53,6 +55,11 @@ import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-
 import { GestionDeNotesComponent } from './concours/gestion-de-notes/gestion-de-notes.component';
 import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/liste-notes.component';
 import {DemandeComponent} from "./demande/demande.component";
+
+
+import {SelectionModel} from "@angular/cdk/collections";
+import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
+import { ModuleConcoursUpdateComponent } from './concours/module-concours-update/module-concours-update.component';
 
 
 
@@ -96,6 +103,9 @@ import {DemandeComponent} from "./demande/demande.component";
     ConcoursCreateComponent,
     ConcoursListComponent,
     CandidatInfoComponent,
+    ModuleConcoursUpdateComponent,
+    ConcoursInfoComponent,
+    PreselectionComponent,
     GestionDeNotesComponent,
     ListeNotesComponent,
     MatProgressBar
@@ -121,6 +131,8 @@ import {DemandeComponent} from "./demande/demande.component";
     MatCheckboxModule,
   ],
   providers: [],
+  bootstrap: [AppComponent],
+  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent]
   bootstrap: [AppComponent],
   entryComponents:[PreselectionComponent,ListeNotesComponent]
 })

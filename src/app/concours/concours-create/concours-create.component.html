@@ -10,10 +10,10 @@
     <mat-step [stepControl]="firstFormGroup">
       <div>
         <ng-template matStepLabel><b>CREATION DU CONCOURS</b></ng-template>
-<br>
+        <br>
         <div class="row" style="justify-content: center">
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Référence</span>
               </div>
@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Année</span>
               </div>
@@ -29,7 +29,7 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Filière</span>
               </div>
@@ -39,9 +39,9 @@
             </div>
           </div>
         </div>
-        <div class="row" style="justify-content: center;margin-top: 15px">
+        <div class="row" style="justify-content: center;margin-top: 1%">
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Date-Ecrit</span>
               </div>
@@ -49,7 +49,7 @@
             </div>
           </div>
           <div class=" col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Date-Orale</span>
               </div>
@@ -57,11 +57,31 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Nombre de place</span>
               </div>
               <input type="number" class="form-control" [(ngModel)]="concours.nbreplace">
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <div class="row" style="justify-content: center;  margin: 1% 4% 0% 4%">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Place Ecrit</span>
+                </div>
+                <input type="number" class="form-control" [(ngModel)]="concours.nbreplaceConcoursEcrit">
+              </div>
+            </div>
+            <div class=" col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Place Orale</span>
+                </div>
+                <input type="number" class="form-control" [(ngModel)]="concours.nbreplaceConcoursOral">
+              </div>
             </div>
           </div>
         </div>
@@ -79,7 +99,7 @@
         <br>
         <div class="row" style="justify-content: center">
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Référence</span>
               </div>
@@ -87,7 +107,7 @@
             </div>
           </div>
           <div class="col-sm-4">
-            <div class="input-group input-group mb-3">
+            <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text">Coefficient</span>
               </div>
