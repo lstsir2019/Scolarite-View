@@ -1,0 +1,40 @@
+td {
+  width: 10%;
+}
+table {
+  width: 100%;
+}
+.list-group-item-action:hover {
+  background-color: beige;
+}
+
+#transparentInput {
+  margin-left: 1%;
+  border-bottom-color: peachpuff;
+  border-bottom-width: 2px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  outline-width: 0;
+  background-color: transparent;
+}
+
+#transparentInput:hover,#transparentInput:focus{
+  border-bottom-color: dodgerblue;
+  transition: 1s;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/deep/.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: dodgerblue;
+}
+
+
+/deep/.custom-ripple .mat-ripple-element {
+  background-color: dodgerblue!important;
+}

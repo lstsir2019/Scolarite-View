@@ -26,6 +26,9 @@ import {DemandeScolariteListComponent} from './demande/demande-scolarite-list/de
 import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-list/demande-releve-notes-list.component';
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
+
+import {GestionDeNotesComponent} from "./concours/gestion-de-notes/gestion-de-notes.component";
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 
 const routes: Routes = [
@@ -70,17 +73,20 @@ const routes: Routes = [
     ]},
 
   { path: 'Concours', component:ConcoursComponent,
-    children:[
-      { path: 'créationConcours', component:ConcoursCreateComponent},
-      { path: 'listeConcours', component:ConcoursListComponent},
-      { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-      { path: 'listePostule', component:ListeDesPostuleComponent,children:[
-          { path: 'Info', component:CandidatInfoComponent}
-        ]},
-      { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-      { path: 'listeOral', component:ListeDesRetenusOralComponent},
-      { path: 'listeAdmis', component:ListeDesAdmisComponent},
-    ]},
+  children:[
+    { path: 'créationConcours', component:ConcoursCreateComponent},
+    { path: 'listeConcours', component:ConcoursListComponent},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
+    { path: 'listePostule', component:ListeDesPostuleComponent,children:[
+        { path: 'Info', component:CandidatInfoComponent}
+      ]},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
+    { path: 'listeOral', component:ListeDesRetenusOralComponent},
+    { path: 'listeAdmis', component:ListeDesAdmisComponent},
+    { path: 'GestionDesNotes', component:GestionDeNotesComponent},
+
+  ]},
+
 
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},

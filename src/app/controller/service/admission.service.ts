@@ -11,7 +11,7 @@ export class AdmissionService {
   constructor(public http: HttpClient) {
   }
 
-  public url: string = 'http://localhost:8090/admission/retenus/';
+  public url: string = 'http://localhost:8091/admission/retenus/';
   public listCandidats: Array<RetenueEcrit> = [];
   public listCandidatsSelected: Array<RetenueEcrit> = [];
 
@@ -37,7 +37,7 @@ export class AdmissionService {
     );
   }
   public saveListeReteues(listeRetenue:Array<RetenueEcrit>){
-    this.http.post(this.url,listeRetenue).subscribe(
+    this.http.post(this.url +"preselection",listeRetenue).subscribe(
       data=>{
         console.log('haha');
       },error1 => {
