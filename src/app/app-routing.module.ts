@@ -86,19 +86,6 @@ const routes: Routes = [
     { path: 'GestionDesNotes', component:GestionDeNotesComponent},
 
   ]},
-  children:[
-    { path: 'créationConcours', component:ConcoursCreateComponent},
-    { path: 'listeConcours', component:ConcoursListComponent,children:[
-        { path: 'ConcoursInfo', component:ConcoursInfoComponent}
-      ]},
-    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-    { path: 'listePostule', component:ListeDesPostuleComponent,children:[
-        { path: 'Info', component:CandidatInfoComponent}
-      ]},
-    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-    { path: 'listeOral', component:ListeDesRetenusOralComponent},
-    { path: 'listeAdmis', component:ListeDesAdmisComponent},
-  ]},
 
 
   { path: 'filiere', component:FiliereCreateComponent},

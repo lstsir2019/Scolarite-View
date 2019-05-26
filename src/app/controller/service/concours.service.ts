@@ -20,9 +20,8 @@ export class ConcoursService {
   public listeDesAnnee= [];
   public listeConcoursByAnnee=[];
   public listeModuleConcours=[];
-  private _concoursCreate: Concours = new Concours('', '', '', '', '', '');
-
   private _concoursCreate: Concours = new Concours('', '', '', '', '', '','','');
+
   private _coefmoduleConcours: CoefModuleConcours = new CoefModuleConcours('');
   private _moduleCreate: ModuleConcours = new ModuleConcours('', this._coefmoduleConcours, 0);
   private _listConcours: Array<Concours>;
