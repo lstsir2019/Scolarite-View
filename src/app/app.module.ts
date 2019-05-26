@@ -35,8 +35,6 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTableModule} from '@angular/material/table';
 import { AdmissionComponent } from './admission/admission.component';
 import { PreselectionComponent } from './admission/preselection/preselection.component';
-import { ConcoursCreateComponent } from './concours/concours-create/concours-create.component';
-import { ConcoursListComponent } from './concours/concours-list/concours-list.component';
 import {MatSortModule} from '@angular/material/sort';
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 import {DemandeScolariteInfoComponent} from "./demande/demande-scolarite-info/demande-scolarite-info.component";
@@ -46,9 +44,6 @@ import {ConcoursCreateComponent} from "./concours/concours-create/concours-creat
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
 import {SelectionModel} from "@angular/cdk/collections";
-import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
-import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
-import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
 import { ModuleConcoursUpdateComponent } from './concours/module-concours-update/module-concours-update.component';
 
@@ -88,7 +83,8 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
     ConcoursListComponent,
     CandidatInfoComponent,
     ModuleConcoursUpdateComponent,
-
+    ConcoursInfoComponent,
+    PreselectionComponent,
 
   ],
   imports: [
