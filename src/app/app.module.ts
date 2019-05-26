@@ -52,6 +52,7 @@ import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/
 import { DemandeReleveNotesInfoComponent } from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 import { GestionDeNotesComponent } from './concours/gestion-de-notes/gestion-de-notes.component';
 import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/liste-notes.component';
+import {DemandeComponent} from "./demande/demande.component";
 
 
 
@@ -120,7 +121,6 @@ import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/lis
     MatCheckboxModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
   bootstrap: [AppComponent],
   entryComponents:[PreselectionComponent,ListeNotesComponent]
 })
