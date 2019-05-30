@@ -42,6 +42,11 @@ import {ConcoursCreateComponent} from "./concours/concours-create/concours-creat
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
 
+import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { DemandeInfoComponent } from './demande/demande-inscription-info/demande-info.component';
+import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import { GestionDeNotesComponent } from './concours/gestion-de-notes/gestion-de-notes.component';
+import { ListeNotesComponent } from './concours/gestion-de-notes/liste-notes/liste-notes.component';
 import {DemandeInfoComponent} from './demande/demande-inscription-info/demande-info.component';
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {GestionDeNotesComponent} from './concours/gestion-de-notes/gestion-de-notes.component';
@@ -127,6 +132,7 @@ import {AdmissionFinalComponent} from './admission/admission-final/admission-fin
     MatSortModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MultiSelectAllModule
   ],
   providers: [],
   bootstrap: [AppComponent],

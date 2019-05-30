@@ -167,6 +167,22 @@
 
 
 
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 90px"><b>Année d'obtention</b></span>
+                </div>
+                <input  [(ngModel)]="demandeReleveNotes.annee"   class="form-control form-control-sm" >
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
 
 
 
@@ -188,25 +204,17 @@
 
         </div>
 
-
-
-
-
-
-        <div class="container">
-            <div class="row" style="justify-content: center">
-              <div class="col-sm-12">
-                <ul class="input-group input-group-sm mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text" style="width: 90px"><b>Semestres</b></span>
-                  </div>
-                  <li class="list-group-item" *ngFor="let item of semestres">
-                    <input type="checkbox" [(ngModel)]="item.isSelected"  name="list_name" value="{{item.libelle}}" (change)="isAllSelected()"/>
-                    {{item.libelle}}
-                  </li>
-                </ul>
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 90px"><b>Semestres</b></span>
+                </div>
+        <ejs-multiselect [dataSource]='semestress' class="form-control form-control-sm"></ejs-multiselect>
               </div>
             </div>
+          </div>
         </div>
 
 
@@ -214,9 +222,45 @@
 
 
 
+        <!--<div id="filiere" class="container">-->
+          <!--<div class="row" style="justify-content: center">-->
+            <!--<div class="col-sm-12">-->
+              <!--<div class="input-group input-group-sm mb-3">-->
+                <!--<div class="input-group-prepend">-->
+                  <!--<span class="input-group-text" style="width: 90px"><b>Semestre</b></span>-->
+                <!--</div>-->
+                <!--<select  [(ngModel)]="demandeReleveNotes.refSemestre"   class="form-control form-control-sm" >-->
+                  <!--<option  value="{{s.libelle}}" *ngFor="let s of semestres " > {{s.libelle }}</option>-->
+                <!--</select>-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+
+        <!--</div>-->
 
 
 
+
+
+
+
+
+        <!--<div class="container">-->
+            <!--<div class="row" style="justify-content: center">-->
+              <!--<div class="col-sm-12">-->
+                <!--<ul class="input-group input-group-sm mb-3">-->
+                  <!--<div class="input-group-prepend">-->
+                    <!--<span class="input-group-text" style="width: 90px"><b>Semestres</b></span>-->
+                  <!--</div>-->
+                  <!--<li class="list-group-item" *ngFor="let item of semestres">-->
+                    <!--<input type="checkbox" [(ngModel)]="item.isSelected"  name="list_name" value="{{item.libelle}}" (change)="isAllSelected()"/>-->
+                    <!--{{item.libelle}}-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
         <br>
