@@ -1,4 +1,4 @@
-<div class="container-fluid" >
+<div class="container-fluid">
   <br>
   <h5 style="margin-bottom:2% "> Selectionner un concours</h5>
 
@@ -34,32 +34,30 @@
 
   <h5>Liste: </h5>
   <div class="row" style="margin-left: 1%;margin-bottom: 1%">
-    <div  class="col-sm-0">
+    <div class="col-sm-0">
       <button id="download" (click)="print()" class="btn btn-outline">
         <span style="color: dodgerblue" class="fa fa-download"> </span>
-        <span  class="text-secondary"> Exporter sous format PDF </span>
+        <span class="text-secondary"> Exporter sous format PDF </span>
       </button>
     </div>
-    <div class="col-sm-0">
-      <button (click)="openDialog();" style="" class="btn btn-outline text-secondary"><span class="fa text-primary fa-font-awesome"></span> Faire la Preselection</button>
-    </div>
-    <div class="col-lg" style="padding-top: 0.6%">
+
+    <div class="col-lg" style="padding-top: 0.4%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
-      <input (keyup)="findInListByCne()" [(ngModel)]="cne" type="number"  id="transparentInput" placeholder="cne">
+      <input (keyup)="findInListByCne()" [(ngModel)]="cne" type="number" id="transparentInput" placeholder="cne">
     </div>
 
   </div>
-  <table  matSort (matSortChange)="sortData($event)" class="table table-sm table-borderless ">
+  <table matSort (matSortChange)="sortData($event)" class="table table-sm table-borderless ">
     <thead class="thead-light">
     <tr>
       <th mat-sort-header="cne" style="border-top-left-radius:10px; " scope="col">Cne</th>
-      <th mat-sort-header="cin"scope="col">Cin</th>
+      <th mat-sort-header="cin" scope="col">Cin</th>
       <th mat-sort-header="statue" scope="col">Statue</th>
       <th mat-sort-header="nom" scope="col">Nom</th>
       <th mat-sort-header="prenom" scope="col">Prenom</th>
       <th mat-sort-header="6" scope="col">Email</th>
       <th mat-sort-header="tel" scope="col">Telephone</th>
-      <th  mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
+      <th mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
 
     </tr>
     </thead>
@@ -74,7 +72,7 @@
       <td>{{c.tel}}</td>
       <td>
 
-        <a (click)="findByCne(c.cne)"   routerLink="Info" style="border:0px solid transparent; "
+        <a (click)="findByCne(c.cne)" routerLink="Info" style="border:0px solid transparent; "
            class="btn btn-outline-secondary btn-sm"
         ><span class="fa fa-plus"></span></a>
 

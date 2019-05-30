@@ -31,10 +31,10 @@
       <div class="col-sm-9">
         <div class="col-lg" style="padding-top: 0.6%; margin-bottom: 1%">
           <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
-          <input type="number" id="transparentInput" placeholder="cne">
+          <input type="text" [(ngModel)]="refCandidat" (keyup)="applyFilter()"  id="transparentInput" placeholder="Cne">
         </div>
         <div class="mat-elevation-z2">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+          <table mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z0">
 
             <!-- Checkbox Column -->
             <ng-container matColumnDef="select">
@@ -52,19 +52,19 @@
 
             <!-- Position Column -->
             <ng-container matColumnDef="RefEtudiant">
-              <th mat-header-cell *matHeaderCellDef> Ref.etudiant</th>
+              <th mat-header-cell  *matHeaderCellDef> Ref.etudiant</th>
               <td mat-cell *matCellDef="let element"> {{element.retenueEcritVo.refCandidat}}</td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="Nom">
-              <th mat-header-cell *matHeaderCellDef> nom</th>
+              <th mat-header-cell  *matHeaderCellDef> nom</th>
               <td mat-cell *matCellDef="let element"> {{element.etudiantConcoursVo.nom}}</td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="Prenom">
-              <th mat-header-cell *matHeaderCellDef> prenom</th>
+              <th mat-header-cell  *matHeaderCellDef> prenom</th>
               <td mat-cell *matCellDef="let element">{{element.etudiantConcoursVo.prenom}}</td>
             </ng-container>
 

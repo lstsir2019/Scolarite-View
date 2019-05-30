@@ -1,14 +1,33 @@
-.nav-item{
+.nav-item {
   border-radius: 0;
   text-overflow: ellipsis;
   overflow: hidden;
-
 }
-mat-drawer-container{
+
+mat-drawer-container {
   height: 100%;
+}
+
+
+.hoverWrapper:hover #hoverShow1 {
+
+  display: block;
 
 }
-mat-drawer{
+
+.router-link-active2 {
+  background-color: #BD0F3D;
+  color: white;
+}
+
+.hoverWrapper #hoverShow1 {
+  display: none;
+  background-color: white;
+color: dodgerblue;
+
+}
+
+mat-drawer {
   padding: 0px;
   width: 14%;
 }
@@ -17,6 +36,7 @@ mat-drawer{
   background-color: dodgerblue;
   color: white;
 }
+
 .custom-dialog-container .mat-dialog-container {
   width: 200vw;
   padding: 0px;

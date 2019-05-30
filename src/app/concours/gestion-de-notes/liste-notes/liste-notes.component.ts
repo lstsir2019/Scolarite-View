@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {GestionNotesService} from "../../../controller/service/gestion-notes.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {RetenueEcrit} from "../../../controller/model/retenue-ecrit.model";
 import {SelectionModel} from "@angular/cdk/collections";
 import {NoteModuleConcours} from "../../../controller/model/note-module-concours";
@@ -29,7 +29,6 @@ export class ListeNotesComponent implements OnInit {
   }
 
   ngOnInit() {
-
   }
 
   xlss() {
@@ -37,13 +36,13 @@ export class ListeNotesComponent implements OnInit {
   }
 
   public listeNote: Array<NoteModuleConcours> = [];
-  public filtered:  Array<NoteModuleConcours> = [];
+  public filtered: Array<NoteModuleConcours> = [];
 
   public get refModule() {
     return this.gestionDeNotes.refModule;
   }
 
-  public refCandidat: string;
+  public refCandidat: string='';
 
   private formData = new FormData();
   selecetdFile: File;
@@ -64,11 +63,12 @@ export class ListeNotesComponent implements OnInit {
     this.http.post<Array<NoteModuleConcours>>(this.url, this.formData).subscribe(
       data => {
         console.log(data);
+        this.filtered=data;
         this.listeNote = data;
         this.dataSource = new MatTableDataSource<NoteModuleConcours>(this.listeNote);
-        this.filtered=data;
         this.selection = new SelectionModel<NoteModuleConcours>(true, this.listeNote);
         this.dataSource.paginator = this.paginator;
+
         console.log(this.listeNote);
         this.show = false;
       }, error1 => {
@@ -76,18 +76,14 @@ export class ListeNotesComponent implements OnInit {
         this.show = false;
       })
   }
-  public findInListByRefCandidat(reference:string){
-    if(reference == null){
-      this.filtered=this.listeNote;
-    }else{
-      const filter =(note: NoteModuleConcours[])=>this.listeNote.filter(note=> note.retenueEcritVo.refCandidat.match("^"+reference+".*$"));
 
-      this.filtered=filter(this.listeNote);
-      this.dataSource = new MatTableDataSource<NoteModuleConcours>(this.filtered);
+  applyFilter() {
+    const filter = (note: NoteModuleConcours[]) => this.listeNote.filter(note => note.retenueEcritVo.refCandidat.match("^" + this.refCandidat + ".*$"));
+    this.filtered=filter(this.listeNote);
+    this.dataSource.data = this.filtered;
 
-
-    }
   }
+
   public saveNotes() {
     for (let i = 0; i < this.selection.selected.length; i++) {
       this.selection.selected[i].refModuleConcours = this.refModule;
