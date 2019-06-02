@@ -41,6 +41,9 @@ import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-in
 import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
+import { PvsListComponent } from './scolarite/pvs/pvs-list/pvs-list.component';
+import { NotesListComponent } from './scolarite/notes/notes-list/notes-list.component';
+
 
 
 @NgModule({
@@ -75,6 +78,9 @@ import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.comp
     ConcoursCreateComponent,
     ConcoursListComponent,
     CandidatInfoComponent,
+    PvsListComponent,
+    NotesListComponent,
+
 
   ],
   imports: [

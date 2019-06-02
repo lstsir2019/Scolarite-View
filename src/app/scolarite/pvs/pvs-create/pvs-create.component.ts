@@ -58,5 +58,15 @@ export class PvsCreateComponent implements OnInit {
   public saveAll(){
    this.pvService.saveAll();
   }
+  public changeValue(id: number, property: string, event: any) {
+    this.pvService.updateList(id,property,event);
+  }
+
+  public updateList(id: number, property: string, event: any) {
+    this.pvService.updateList(id,property,event);
+  }
+  public updateInternList(id: number, j: number, property: string, event: any) {
+    this.pvService.updateInternList(id,j,property,event);
+  }
 
 }

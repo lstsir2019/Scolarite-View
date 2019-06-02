@@ -11,7 +11,7 @@ export class Pv {
   private _noteModulaireVos: Array<NoteEtudiantModule>;
 
 
-  constructor(public refEtudiant: string, public nom: string, public prenom: string, public refSemestre: string, public refFiliere: string, public note: number, public etat: string, public mention: string, public _annee: number, public nbrModuleValide: number, public total: number,public state: string ) {
+  constructor(public refEtudiant: string, public nom: string, public prenom: string, public refSemestre: string, public refFiliere: string, public note: number, public etat: string, public mention: string, public annee: number, public nbrModuleValide: number, public total: number,public state: string ) {
   }
 
 
@@ -55,13 +55,6 @@ export class Pv {
     this._modsCol = value;
   }
 
-  get annee(): number {
-    return this._annee;
-  }
-
-  set annee(value: number) {
-    this._annee = value;
-  }
 
   get startCol(): string {
     return this._startCol;

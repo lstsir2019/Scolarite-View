@@ -27,6 +27,8 @@ import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-li
 import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
+import {PvsListComponent} from "./scolarite/pvs/pvs-list/pvs-list.component";
+import {NotesListComponent} from "./scolarite/notes/notes-list/notes-list.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -85,6 +87,8 @@ const routes: Routes = [
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
   { path: 'pvs', component:PvsCreateComponent},
+  { path: 'pvsList', component:PvsListComponent},
+  { path: 'notesList', component:NotesListComponent},
   { path: 'modules', component:ModuleCreateComponent},
   { path: 'etudiants', component:EtudiantCreateComponent},
 
