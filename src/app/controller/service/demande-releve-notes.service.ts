@@ -5,6 +5,9 @@ import {ReleveNotes} from '../model/releve-notes.model';
 import Swal from 'sweetalert2';
 import {DemandeInscription} from '../model/demande-inscription.model';
 import {DemandeScolarite} from '../model/demande-scolarite.model';
+import {RetenueEcrit} from '../model/retenue-ecrit.model';
+import {Semestre} from '../model/semestre.model';
+import {SemestreService} from './semestre.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,33 +17,32 @@ export class DemandeReleveNotesService {
   private _url:string="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/";
   private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/refEtudiant/";
   private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/chercher";
+  private _url4: string = 'http://localhost:8091/efaculte-v1-api/semestres/';
 
   private _demandeReleveNotess: Array<DemandeReleveNotes>;
 
-  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","","","","","","");
+  public semestres: Array<Semestre> = [];
+  public semestresSelected : Array<Semestre> = [];
 
-  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","","","","","","");
+  private _demandeReleveNotesSearch: DemandeReleveNotes = new DemandeReleveNotes("","",null,"","","","","");
 
-  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", "","","","","");
+  private _demandeReleveNotesSelected : DemandeReleveNotes=new DemandeReleveNotes("","",null,"","","","","");
+
+  private _demandeReleveNotesCreate: DemandeReleveNotes = new DemandeReleveNotes ( "", "", null,"","","","","");
   private _releveNotesCreate: ReleveNotes = new ReleveNotes("");
   private _demandeReleveNotesList = Array <DemandeReleveNotes>();
 
-  // public releveNotess : Array <ReleveNotes>;
-  // public ReleveNotes = new Array <ReleveNotes>();
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http:HttpClient, private _semestreService: SemestreService) { }
+
+  public semestres10: Array<Semestre> = new Array<Semestre>();
+  public semestress: string[] = [];
 
 
   public addDemandeReleveNotes(){
-    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.refSemestre, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email, this._demandeReleveNotesCreate.cin);
+    let demandeReleveNotesClone = new DemandeReleveNotes(this._demandeReleveNotesCreate.refEtudiant, this._demandeReleveNotesCreate.refFiliere, this._demandeReleveNotesCreate.semestress, this._demandeReleveNotesCreate.nom, this._demandeReleveNotesCreate.prenom, this._demandeReleveNotesCreate.email, this._demandeReleveNotesCreate.cin, this._demandeReleveNotesCreate.annee);
     this._demandeReleveNotesList.push(demandeReleveNotesClone);
   }
-
- // public addReleveNotes(){
-   // let releveNotesClone= new ReleveNotes (this.releveNotesCreate.refSemestre);
-   // this.demandeReleveNotesCreate.releveNotesVo.push(releveNotesClone);
-   // this.releveNotesCreate= new ReleveNotes( "");
- // }
 
 
 
@@ -70,6 +72,10 @@ export class DemandeReleveNotesService {
           Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
         }
 
+        else if (data == -9) {
+          Swal.fire('ERREUR !', 'Le champ "Année" ne peut pas être vide !', 'error');
+        }
+
         else if (data == -8) {
           Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
         }
@@ -77,7 +83,7 @@ export class DemandeReleveNotesService {
           Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
         }
         console.log("ok");
-        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", "","","","", "");
+        this._demandeReleveNotesCreate = new DemandeReleveNotes("", "", null,"","","", "","");
          this._releveNotesCreate = new ReleveNotes("");
       } ,error=>{
         console.log(error);
@@ -117,12 +123,35 @@ export class DemandeReleveNotesService {
     );
   }
 
+  public createList() {
+    // console.log("ok");
+    // for(let i = 0; i < this.semestres10.length; i++){
+    //   this.semestress.push(this.semestres10[i].libelle);
+    //
+    // }
+    // console.log(this.semestress);
+  }
 
-  public print(refEtudiant : string){
+  public findAllSemestres() {
+    this._http.get<Array<Semestre>>(this._url4).subscribe(
+      data => {
+        this.semestres10 = data;
+        console.log(data);
+        console.log(this.semestres10.length);
+        this.semestress = [this.semestres10[0].libelle,this.semestres10[1].libelle,this.semestres10[2].libelle,this.semestres10[3].libelle,this.semestres10[4].libelle,this.semestres10[5].libelle];
+      }, error => {
+        console.log('error while loading semestres ...');
+      }
+    );
+
+  }
+
+
+  public print(refEtudiant : string, refFiliere : string, refSemestre : string, annee : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
     };
-    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
+    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeReleveNotess/pdf/refEtudiant/"+refEtudiant +"/refFiliere/" + refFiliere +"/refSemestre/" + refSemestre + "/annee/" + annee      ,httpOptions).subscribe((resultBlob: Blob) => {
       var downloadURL = URL.createObjectURL(resultBlob);
       window.open(downloadURL);});
   }
@@ -222,5 +251,22 @@ export class DemandeReleveNotesService {
 
   set http(value: HttpClient) {
     this._http = value;
+  }
+
+  get semestreService(): SemestreService {
+    return this._semestreService;
+  }
+
+  set semestreService(value: SemestreService) {
+    this._semestreService = value;
+  }
+
+
+  get url4(): string {
+    return this._url4;
+  }
+
+  set url4(value: string) {
+    this._url4 = value;
   }
 }

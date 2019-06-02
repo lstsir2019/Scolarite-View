@@ -95,6 +95,98 @@
 
         </div>
 
+
+
+
+
+       <!--<div id="semestre" class="container">-->
+          <!--<div class="row" style="justify-content: center">-->
+            <!--<div class="col-sm-12">-->
+              <!--<div class="input-group input-group-sm mb-3">-->
+                <!--<div class="input-group-prepend">-->
+                  <!--<span class="input-group-text" style="width: 90px"><b>Semestres</b></span>-->
+                <!--</div>-->
+                <!--<select  [(ngModel)]="demandeReleveNotes.refSemestre"   class="form-control form-control-sm" >-->
+                  <!--<option  value="{{s.libelle}}" *ngFor="let s of semestres " > {{s.libelle }}</option>-->
+                <!--</select>-->
+              <!--</div>-->
+            <!--</div>-->
+
+          <!--</div>-->
+
+        <!--</div>-->
+
+
+
+
+
+
+        <!--<div class="mat-elevation-z2">-->
+          <!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z0">-->
+
+            <!--&lt;!&ndash; Checkbox Column &ndash;&gt;-->
+            <!--<ng-container matColumnDef="select">-->
+              <!--<th mat-header-cell *matHeaderCellDef>-->
+                <!--<span class="fa fa-check"></span>-->
+              <!--</th>-->
+              <!--<td mat-cell *matCellDef="let row">-->
+                <!--<mat-checkbox class="custom-ripple" (click)="$event.stopPropagation()"-->
+                              <!--(change)="$event ? selection.toggle(row) : null"-->
+                              <!--[checked]="selection.isSelected(row)"-->
+                              <!--[aria-label]="checkboxLabel(row)">-->
+                <!--</mat-checkbox>-->
+              <!--</td>-->
+            <!--</ng-container>-->
+
+            <!--&lt;!&ndash; Position Column &ndash;&gt;-->
+            <!--<ng-container matColumnDef="position">-->
+              <!--<th mat-header-cell *matHeaderCellDef> Semestre</th>-->
+              <!--<td mat-cell *matCellDef="let element"> {{element.libelle}}</td>-->
+            <!--</ng-container>-->
+
+
+
+            <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+            <!--<tr mat-row *matRowDef="let row; columns: displayedColumns;"-->
+                <!--(click)="selection.toggle(row)">-->
+            <!--</tr>-->
+          <!--</table>-->
+
+        <!--</div>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div id="filiere" class="container">
+          <div class="row" style="justify-content: center">
+            <div class="col-sm-12">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" style="width: 90px"><b>Année d'obtention</b></span>
+                </div>
+                <input  [(ngModel)]="demandeReleveNotes.annee"   class="form-control form-control-sm" >
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
         <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -112,45 +204,62 @@
 
         </div>
 
-
-
-       <div id="semestre" class="container">
+        <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text" style="width: 90px"><b>Semestres</b></span>
                 </div>
-                <select  [(ngModel)]="demandeReleveNotes.refSemestre"   class="form-control form-control-sm" >
-                  <option  value="{{s.libelle}}" *ngFor="let s of semestres " > {{s.libelle }}</option>
-                </select>
+        <ejs-multiselect [dataSource]='semestress' class="form-control form-control-sm"></ejs-multiselect>
               </div>
             </div>
-
           </div>
-
         </div>
 
 
-       <!--<div id="semestre" class="container">-->
+
+
+
+
+        <!--<div id="filiere" class="container">-->
           <!--<div class="row" style="justify-content: center">-->
             <!--<div class="col-sm-12">-->
               <!--<div class="input-group input-group-sm mb-3">-->
                 <!--<div class="input-group-prepend">-->
-                  <!--<span class="input-group-text" >Semestre</span>-->
+                  <!--<span class="input-group-text" style="width: 90px"><b>Semestre</b></span>-->
                 <!--</div>-->
-                <!--<select [(ngModel)]="demandeReleveNotes.refSemestre"   class="form-control form-control-sm" >-->
-                  <!--<option value="S1" >Semestre 1</option>-->
-                  <!--<option value="S2">Semestre 2</option>-->
-                  <!--<option value="S3">Semestre 3</option>-->
-                  <!--<option value="S4">Semestre 4</option>-->
-
+                <!--<select  [(ngModel)]="demandeReleveNotes.refSemestre"   class="form-control form-control-sm" >-->
+                  <!--<option  value="{{s.libelle}}" *ngFor="let s of semestres " > {{s.libelle }}</option>-->
                 <!--</select>-->
               <!--</div>-->
             <!--</div>-->
 
           <!--</div>-->
 
+        <!--</div>-->
+
+
+
+
+
+
+
+
+        <!--<div class="container">-->
+            <!--<div class="row" style="justify-content: center">-->
+              <!--<div class="col-sm-12">-->
+                <!--<ul class="input-group input-group-sm mb-3">-->
+                  <!--<div class="input-group-prepend">-->
+                    <!--<span class="input-group-text" style="width: 90px"><b>Semestres</b></span>-->
+                  <!--</div>-->
+                  <!--<li class="list-group-item" *ngFor="let item of semestres">-->
+                    <!--<input type="checkbox" [(ngModel)]="item.isSelected"  name="list_name" value="{{item.libelle}}" (change)="isAllSelected()"/>-->
+                    <!--{{item.libelle}}-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
         <!--</div>-->
 
 

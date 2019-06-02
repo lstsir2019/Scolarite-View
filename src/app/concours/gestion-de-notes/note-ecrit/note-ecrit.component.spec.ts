@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConcoursInfoComponent } from './concours-info.component';
+import { NoteEcritComponent } from './note-ecrit.component';
 
-describe('ConcoursInfoComponent', () => {
-  let component: ConcoursInfoComponent;
-  let fixture: ComponentFixture<ConcoursInfoComponent>;
+describe('NoteEcritComponent', () => {
+  let component: NoteEcritComponent;
+  let fixture: ComponentFixture<NoteEcritComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConcoursInfoComponent ]
+      declarations: [ NoteEcritComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConcoursInfoComponent);
+    fixture = TestBed.createComponent(NoteEcritComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

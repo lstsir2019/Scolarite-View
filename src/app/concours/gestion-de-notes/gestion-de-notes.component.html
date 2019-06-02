@@ -1,0 +1,85 @@
+<div class="container-fluid ">
+  <br>
+  <h5 style="margin-bottom:2% ">Selectionner un module</h5>
+
+  <div class="row" style="justify-content: center">
+    <div class="col-sm-3">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Année</span>
+        </div>
+        <select (click)="findconcoursByAnnee()" [(ngModel)]="annee" class="form-control ">
+          <option value="1" selected disabled> Annee</option>
+          <option value="{{a}}" *ngFor="let a of anneeConcours">{{a}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Concours</span>
+        </div>
+        <select (click)="findModuleConcours()" [(ngModel)]="refconcours" class="form-control ">
+          <option value="Concours" selected disabled>Concours</option>
+          <option *ngFor="let c of concoursByAnnee ">{{c.reference}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Module</span>
+        </div>
+        <select [(ngModel)]="refModule" class="form-control ">
+          <option value="Module">Module</option>
+          <option value="{{m.id}}" *ngFor="let m of moduleConcours ">{{m.reference}}</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-0">
+      <button (click)="findByRefModule()" class="btn btn-outline-success"><span class="fa fa-search"></span></button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <h5>Liste: </h5>
+  <div class="row" style="margin-left: 1%;margin-bottom: 1%">
+    <div class="col-sm-0">
+      <button (click)="openDialog();" id="upload" class="btn btn-outline">
+        <span style="color: dodgerblue" class="fa fa-upload"> </span>
+        <span class="text-secondary"> importer un fichier excel </span>
+      </button>
+    </div>
+    <div class="col-sm-0">
+      <button style="" class="btn btn-outline text-secondary"><span class="fa text-primary fa-plus"></span>
+        Ajouter une note
+      </button>
+    </div>
+    <div class="col-lg" style="padding-top: 0.5%">
+      <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
+      <input type="text" (keyup)="findInListByCne()" [(ngModel)]="refCandidat" id="transparentInput"
+             placeholder="cne">
+    </div>
+
+  </div>
+  <table class="table table-sm table-borderless ">
+    <thead class="thead-light">
+    <tr>
+      <th style="border-top-left-radius:10px; " scope="col">Cne</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th style="border-top-right-radius:10px; " scope="col">Note</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let n of listeNotesModuleConcoursInBd">
+      <td>{{n.retenueEcritVo.refCandidat}}</td>
+      <td>{{n.etudiantConcoursVo.nom}}</td>
+      <td>{{n.etudiantConcoursVo.prenom}}</td>
+      <td>{{n.note}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

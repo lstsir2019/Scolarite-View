@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="route.children.length===0 ">
   <div class="card spacer">
     <div align="center" class="card-header"><b>RECHERCHE</b></div>
     <div class="card-body">
@@ -60,7 +60,7 @@
             <button class=" btn btn-sm btn-outline-danger fa fa-trash"
                     (click)="deleteConcoursComplet(con)"></button>
             <button class=" btn btn-sm btn-outline-info fa fa-plus "
-                    (click)="openInfoDialog()"></button>
+                    (click)="findModuleConcoursByReferenceConcours(con)" routerLink="ConcoursInfo"></button>
 
 
           </td>
@@ -70,5 +70,6 @@
     </div>
   </div>
 </div>
+<router-outlet></router-outlet>
 
 

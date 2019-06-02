@@ -7,7 +7,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
-  MatInputModule, MatPaginator, MatPaginatorModule, MatSidenavModule,
+  MatInputModule, MatPaginator, MatPaginatorModule, MatProgressBar, MatSidenavModule,
   MatStepperModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -33,17 +33,31 @@ import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-cr
 import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {MatTableModule} from '@angular/material/table';
+import {AdmissionComponent} from './admission/admission.component';
+import {PreselectionComponent} from './admission/preselection/preselection.component';
 import {MatSortModule} from '@angular/material/sort';
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
-import {DemandeScolariteInfoComponent} from "./demande/demande-scolarite-info/demande-scolarite-info.component";
-import {DemandeInfoComponent} from "./demande/demande-inscription-info/demande-info.component";
 import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-info/demande-releve-notes-info.component";
 import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
 import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
 import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
 import { PvsListComponent } from './scolarite/pvs/pvs-list/pvs-list.component';
 import { NotesListComponent } from './scolarite/notes/notes-list/notes-list.component';
+import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
+import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import {DemandeInfoComponent} from './demande/demande-inscription-info/demande-info.component';
+import {GestionDeNotesComponent} from './concours/gestion-de-notes/gestion-de-notes.component';
+import {ListeNotesComponent} from './concours/gestion-de-notes/liste-notes/liste-notes.component';
+import {DemandeComponent} from "./demande/demande.component";
 
+
+import {SelectionModel} from "@angular/cdk/collections";
+import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
+import {ModuleConcoursUpdateComponent} from './concours/module-concours-update/module-concours-update.component';
+import {NoteOralComponent} from './concours/gestion-de-notes/note-oral/note-oral.component';
+import {NoteEcritComponent} from './concours/gestion-de-notes/note-ecrit/note-ecrit.component';
+import {AdmisOralComponent} from './admission/admis-oral/admis-oral.component';
+import {AdmissionFinalComponent} from './admission/admission-final/admission-final.component';
 
 
 @NgModule({
@@ -72,14 +86,31 @@ import { NotesListComponent } from './scolarite/notes/notes-list/notes-list.comp
     ModuleCreateComponent,
     EtudiantCreateComponent,
     PvsCreateComponent,
+    CandidatInfoComponent,
+    DemandeComponent,
+    AdmissionComponent,
+    PreselectionComponent,
+    ConcoursCreateComponent,
+    ConcoursListComponent,
+    DemandeInfoComponent,
     DemandeScolariteInfoComponent,
     DemandeInfoComponent,
     DemandeReleveNotesInfoComponent,
     ConcoursCreateComponent,
     ConcoursListComponent,
     CandidatInfoComponent,
+    ModuleConcoursUpdateComponent,
+    ConcoursInfoComponent,
+    PreselectionComponent,
+    GestionDeNotesComponent,
+    ListeNotesComponent,
+    MatProgressBar,
+    NoteOralComponent,
+    NoteEcritComponent,
+    AdmisOralComponent,
+    AdmissionFinalComponent,
     PvsListComponent,
-    NotesListComponent,
+    NotesListComponent
 
 
   ],
@@ -101,9 +132,16 @@ import { NotesListComponent } from './scolarite/notes/notes-list/notes-list.comp
     MatSortModule,
     MatPaginatorModule,
     MatCheckboxModule,
+    MultiSelectAllModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [PreselectionComponent,
+    ConcoursInfoComponent,
+    ModuleConcoursUpdateComponent,
+    ListeNotesComponent,
+    AdmisOralComponent,
+    AdmissionFinalComponent]
 })
 export class AppModule {
 }

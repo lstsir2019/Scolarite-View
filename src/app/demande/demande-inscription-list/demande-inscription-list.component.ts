@@ -53,8 +53,8 @@ export class DemandeInscriptionListComponent implements OnInit {
     return this.filiereService.filieres;
   }
 
-  public print(){
-    this.demandeInscriptionService.print();
+  public print(refEtudiant : string){
+    this.demandeInscriptionService.print(refEtudiant);
   }
 
   public findByRefEtudiant(refEtudiant : string) {

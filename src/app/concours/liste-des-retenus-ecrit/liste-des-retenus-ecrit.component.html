@@ -1,3 +1,88 @@
-<p>
-  liste-des-retenus-ecrit works!
-</p>
+<div class="container-fluid">
+  <br>
+  <h5 style="margin-bottom:2% "> Selectionner un concours</h5>
+
+  <div class="row" style="justify-content: center">
+    <div class="col-sm-4">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Année</span>
+        </div>
+        <select [(ngModel)]="annee" (click)="findconcoursByAnnee()" class="form-control form-control">
+          <option value="0">Annee</option>
+          <option *ngFor="let a of anneeConcours">{{a}}</option>
+
+        </select>
+      </div>
+
+    </div>
+    <div class="col-sm-4">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Concours</span>
+        </div>
+        <select [(ngModel)]="refConcours" class="form-control form-control">
+          <option value="{{cc.reference}}" *ngFor="let cc of concoursByAnnee">Concours: {{cc.refFiliere}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-0">
+      <button type="button" (click)="findRetenueByRefConcours()" class="btn btn-outline-success"><span
+        class="fa fa-search"> Selectionner</span>
+      </button>
+    </div>
+  </div>
+
+  <h5>Liste: </h5>
+  <div class="row" style="margin-left: 1%;margin-bottom: 1%">
+    <div class="col-sm-0">
+      <button id="download" (click)="printRetenueEcrit()" class="btn btn-outline">
+        <span style="color: dodgerblue" class="fa fa-download"> </span>
+        <span class="text-secondary"> Exporter sous format PDF </span>
+      </button>
+    </div>
+    <div class="col-sm-0">
+      <button (click)="openDialog();findListeReteuesOral()" style="" class="btn btn-outline text-secondary"><span
+        class="fa text-primary fa-font-awesome"></span> Selection pour l'oral
+      </button>
+    </div>
+    <div class="col-lg" style="padding-top: 0.6%">
+      <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
+      <input (keyup)="applyFilter()" [(ngModel)]="refCandidat" type="number" id="transparentInput" placeholder="cne">
+    </div>
+
+  </div>
+  <table matSort (matSortChange)="sortData($event)" class="table table-sm table-borderless ">
+    <thead class="thead-light">
+    <tr>
+      <th mat-sort-header="cne" style="border-top-left-radius:10px; " scope="col">Cne</th>
+      <th mat-sort-header="cin" scope="col">Nom</th>
+      <th mat-sort-header="statue" scope="col">Prenom</th>
+      <th mat-sort-header="nom" scope="col">Diplome</th>
+      <th mat-sort-header="prenom" scope="col">Note Preselection</th>
+
+      <th mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="list-group-item-action" *ngFor="let c of retenueEcritBd">
+      <td>{{c.refCandidat}}</td>
+      <td>{{c.etudiantConcoursVo.nom}}</td>
+      <td>{{c.etudiantConcoursVo.prenom}}</td>
+      <td>{{c.etudiantConcoursVo.diplomeEtudiantVo.refDiplome}}</td>
+      <td>{{c.notePreselection}}</td>
+
+      <td>
+
+        <a (click)="findByCne(c.cne)" routerLink="Info" style="border:0px solid transparent; "
+           class="btn btn-outline-secondary btn-sm"
+        ><span class="fa fa-plus"></span></a>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<router-outlet></router-outlet>
