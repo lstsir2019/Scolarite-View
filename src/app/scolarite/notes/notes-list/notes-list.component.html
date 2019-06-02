@@ -1,0 +1,139 @@
+<div class="container-fluid" style="background-color: darkslategrey">
+  <div class="card shadow p-3 mb-5" style="background-color: lightgray">
+    <div class="card-body" style="background-color: lightgray">
+      <h1 align="center" style="font-family: 'Adobe Caslon Pro'">NOTES MODULAIRES</h1> <br><br><br>
+      <div class="d-flex justify-content-sm-between">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>FILIERE</b></label>
+          </div>
+          <select [(ngModel)]="notesListCreate.refFiliere" class="form-control form-control">
+            <option>MIPC</option>
+          </select>
+        </div>
+        <div class="input-group mx-sm-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>MODULE</b></label>
+          </div>
+          <select size="1" [(ngModel)]="notesListCreate.refModule" class="form-control form-control-sm">
+            <option>ALGEBRE1</option>
+            <option> S2</option>
+          </select>
+        </div>
+        <div class="input-group mx-sm-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>ANNEE</b></label>
+          </div>
+          <select size="1" [(ngModel)]="notesListCreate.annee" class="form-control form-control-sm">
+            <option>2019</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <button class="btn btn-info btn-block" (click)="findNotesList()"><i class="fa fa-search"></i> <b>
+            RECHERCHE</b>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="height: 700px">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-0">
+          <button id="download" (click)="print()" class="btn btn-outline">
+            <span style="color: dodgerblue" class="fa fa-download"> </span>
+            <span class="text-secondary"> Exporter sous format PDF </span>
+          </button>
+        </div>
+        <div class="col-sm-0">
+          <button (click)="deleteListAll()" style="" class="btn btn-outline text-secondary"><span
+            class="fa text-primary fa-trash-o"></span> Faire la Preselection
+          </button>
+        </div>
+        <div class="col-sm-4 input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>CNE</b></label>
+          </div>
+          <input (keyup)="findInListByCne(notesListCreate.cne)" [(ngModel)]="notesListCreate.cne"
+                 class="form-control form-control"/>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-hover table-sm table-bordered table-striped">
+        <thead class="thead" style="background-color: teal">
+        <tr style="align-content: center">
+          <th scope="col" style="text-align:center; color:white">CNE</th>
+          <th scope="col" style="text-align:center; color:white">NOTE Av.Ratt</th>
+          <th scope="col" style="text-align:center; color:white">NOTE Ratt</th>
+          <th scope="col" style="text-align:center; color:white">NOTE Ap.Ratt</th>
+          <th scope="col" style="text-align:center; color:white">pt Jury</th>
+          <th scope="col" style="text-align:center; color:white">NOTE FINALE</th>
+          <th scope="col" style="text-align:center; color:white">STATUT FINAL</th>
+          <th scope="col" style="text-align:center; color:white">ACTIONS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of filtered">
+          <td style="text-align:center" class="something">{{c.refEtudiant}}</td>
+          <td style="text-align:center" class="something">{{c.noteAvantJury}}</td>
+          <td style="text-align:center" class="something">{{c.noteRatt}}</td>
+          <td style="text-align:center" class="something">{{c.mentionApresJury}}</td>
+          <td style="text-align:center" class="something">{{c.ptJury}}</td>
+          <td style="text-align:center" class="something">{{c.mention}}</td>
+          <td style="text-align:center" class="something">{{c.etat}}</td>
+          <td style="text-align:center">
+            <button class="btn btn-outline-success btn-sm"
+                    (click)="findNote(c.refEtudiant,c.refFiliere,c.refModule,c.annee)" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-download"></i>
+            </button>
+            <button class="btn btn-danger btn-sm" (click)="delete(c)"><i class="fa fa-trash"></i></button>
+            <a style="border:0px solid transparent " class="btn btn-info"><i class="fa fa-address-book"></i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.mention"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE RATT</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.noteRatt"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE APRES JURY</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.mentionApresJury"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="edit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

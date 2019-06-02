@@ -1,0 +1,200 @@
+<div class="container-fluid" style="background-color: darkslategrey">
+  <div class="card shadow p-3 mb-5" style="background-color: lightgray">
+    <div class="card-body" style="background-color: lightgray">
+      <h1 align="center" style="font-family: 'Adobe Caslon Pro'">LISTE DES PV'S</h1> <br><br><br>
+      <div class="d-flex justify-content-sm-between">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>FILIERE</b></label>
+          </div>
+          <select [(ngModel)]="pvListCreate.refFiliere" class="form-control form-control">
+            <option>MIPC</option>
+          </select>
+        </div>
+        <div class="input-group mx-sm-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>SEMESTRE</b></label>
+          </div>
+          <select size="1" [(ngModel)]="pvListCreate.refSemestre" class="form-control form-control-sm">
+            <option> S1</option>
+            <option> S2</option>
+          </select>
+        </div>
+        <div class="input-group mx-sm-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>ANNEE</b></label>
+          </div>
+          <select size="1" [(ngModel)]="pvListCreate.annee" class="form-control form-control-sm">
+            <option> 2019</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <button class="btn btn-info btn-block" (click)="findByCriteria()"><i class="fa fa-search"></i> <b>
+            RECHERCHE</b>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="height: 700px">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-sm-0">
+          <button id="download" (click)="print()" class="btn btn-outline">
+            <span style="color: dodgerblue" class="fa fa-download"> </span>
+            <span class="text-secondary"> Exporter sous format PDF </span>
+          </button>
+        </div>
+        <div class="col-sm-0">
+          <button (click)="deleteListAll()" class="btn btn-outline text-secondary"><span
+            class="fa text-primary fa-trash-o"></span> Faire la Preselection
+          </button>
+        </div>
+        <div class="col-sm-4 input-group">
+          <div class="input-group-prepend">
+            <label class="input-group-text"><b>CNE</b></label>
+          </div>
+          <input (keyup)="findInListByCne(pvListCreate.cne)" [(ngModel)]="pvListCreate.cne"
+                 class="form-control form-control"/>
+        </div>
+      </div>
+    </div>
+    <div class="card-body table-wrapper-scroll-y my-custom-scrollbar" style="width: 100%">
+      <table class="table table-hover table-sm table-bordered table-striped">
+        <thead class="thead" style="background-color: teal">
+        <tr>
+          <th rowspan="2" colspan="1" style="width: 10px; text-align:center; color:white">CNE</th>
+          <th align="center" *ngFor="let n of modulesList" rowspan="1" colspan="3"
+              style="width: auto; text-align:center; color:white"
+              class="text-center">
+            {{ n }}
+          </th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">TOTAL</th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">MOY.</th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">NMV.</th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">RES.</th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">ETAT</th>
+          <th rowspan="2" colspan="1" style="width: auto; text-align:center; color:white">ACTIONS</th>
+        </tr>
+        <tr>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+          <th style="width: auto; text-align:center; color:white">ptJury</th>
+          <th style="width: auto; text-align:center; color:white">NOTE</th>
+          <th style="width: auto; text-align:center; color:white">RES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of filtred">
+          <td style="text-align:center" class="something">{{c.refEtudiant}}</td>
+          <ng-container *ngFor="let m of c.noteModulaireVos">
+            <td>{{ m.ptJury }}</td>
+            <td>{{ m.mention }}</td>
+            <td>{{ m.etat }}</td>
+          </ng-container>
+          <td style="text-align:center" class="something">{{c.total}}</td>
+          <td style="text-align:center" class="something">{{c.note}}</td>
+          <td style="text-align:center" class="something">{{c.nbrModuleValide}}</td>
+          <td style="text-align:center" class="something">{{c.etat}}</td>
+          <td style="text-align: center">
+            <button class="btn btn-outline-success btn-sm"
+                    (click)="findNoteSemstre(c.refEtudiant,c.refFiliere,c.refSemestre,c.annee)" data-toggle="modal"
+                    data-target="#exampleModalCenter"><i class="fa fa-download"></i></button>
+            <button class="btn btn-danger btn-sm" (click)="delete(c)"><i class="fa fa-trash"></i></button>
+          </td>
+          <td style="text-align: center">
+            <a style="border:0px solid transparent; " class="btn btn-info"><i class="fa fa-address-book"></i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>CNE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSemSelected.refEtudiant"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4"><label  style="margin-left: 55%">PT.JURY</label></div>
+          <div class="col-sm-4"><label  style="margin-left: 50%">NOTE</label></div>
+          <div class="col-sm-4"><label  style="margin-left: 50%">RES</label></div>
+        </div>
+        <ng-container *ngFor="let m of noteSemSelected.noteModulaireVos">
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                     style="width: 90px"><b>{{m.refModule}}</b></span>
+              </div>
+              <input type="text" class="form-control" placeholder="Path" [(ngModel)]="m.ptJury"/>
+              <input type="text" class="form-control" placeholder="Path" [(ngModel)]="m.mention"/>
+              <input type="text" class="form-control" placeholder="Path" [(ngModel)]="m.etat"/>
+            </div>
+          </div>
+        </ng-container>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>TOTAL</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSemSelected.total"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>NMV</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSemSelected.nbrModuleValide"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>ETAT</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSemSelected.etat"/>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="edit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
