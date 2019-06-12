@@ -77,6 +77,16 @@ export class DemandeInscriptionService {
 
 
   public deleteDemandeInscription(demandeInscription: DemandeInscription) {
+    Swal.fire({
+      title: '',
+      text: 'Souhaitez-vous vraiment supprimer la demande ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d6000a',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
     this.demandeInscriptionSelected = demandeInscription;
     if (this.demandeInscriptionSelected != null) {
       this._http.delete<DemandeInscription>(this._url2 + this._demandeInscriptionSelected.refEtudiant).subscribe(
@@ -87,6 +97,14 @@ export class DemandeInscriptionService {
       let index:number = this._demandeInscriptions.indexOf(demandeInscription);
       this._demandeInscriptions.splice(index,1);
     }
+        Swal.fire(
+          '',
+          'Supprimé !',
+          'success'
+        )
+  }
+      },
+    )
   }
 
 

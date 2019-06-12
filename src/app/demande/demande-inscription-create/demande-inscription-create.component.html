@@ -1,15 +1,9 @@
-
-<div class="container">
-  <div class="row" style="padding-top:6%" >
-
-
+<div class="container-fluid" style="background-image: url(assets/Jx.jpg); height: 100%">
+  <div class="row" style="padding-top:2%; justify-content: center " >
+    <img src="assets/fstg.png" height="180" width="130"/>
     <div class="col-lg-12 card-header card-text">
-
-      <h1 align="center">DEMANDE D'INSCRIPTION</h1> <br>
-
+      <h1 align="center" style="font-family: 'Berlin Sans FB'; color : white">DEMANDE D'INSCRIPTION</h1> <br>
       <div>
-
-
         <div id="cne" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -22,7 +16,6 @@
             </div>
           </div>
         </div>
-
         <div id="cin" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -35,7 +28,6 @@
             </div>
           </div>
         </div>
-
         <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -44,15 +36,10 @@
                   <span class="input-group-text" style="width: 90px"><b>NOM</b> </span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.nom"   class="form-control form-control-sm" >
-
-
               </div>
             </div>
-
           </div>
-
         </div>
-
         <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -61,15 +48,10 @@
                   <span class="input-group-text" style="width: 90px" ><b>PRENOM</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.prenom"   class="form-control form-control-sm" >
-
-
               </div>
             </div>
-
           </div>
-
         </div>
-
         <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -78,17 +60,10 @@
                   <span class="input-group-text" style="width: 90px"><b>EMAIL</b></span>
                 </div>
                 <input  [(ngModel)]="demandeInscription.email"   class="form-control form-control-sm" >
-
-
               </div>
             </div>
-
           </div>
-
         </div>
-
-
-
         <div id="filiere" class="container">
           <div class="row" style="justify-content: center">
             <div class="col-sm-12">
@@ -101,48 +76,13 @@
                 </select>
               </div>
             </div>
-
           </div>
-
         </div>
-
         <br>
-
-
         <div class="sub" style="text-align:center">
-          <button type="button" class=" btn btn-primary" data-toggle="modal" data-target="#exampleModal1" (click)="saveDemandeInscription()" >ENVOYER</button>
+          <button type="button" class=" btn btn-success" (click)="saveDemandeInscription()" >VALIDER <i class="fa fa-send-o"></i></button>
         </div>
-
-
-
-        <!-- Modal -->
-        <!--<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
-          <!--<div class="modal-dialog" role="document">-->
-            <!--<div class="modal-content">-->
-              <!--<div class="modal-header">-->
-                <!--<h5 class="modal-title" id="exampleModalLabel">CONFIRMATION</h5>-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                  <!--<span aria-hidden="true">&times;</span>-->
-                <!--</button>-->
-              <!--</div>-->
-              <!--<div class="modal-body">-->
-                <!--Êtes-vous sûr de vouloir continuer ?-->
-              <!--</div>-->
-              <!--<div class="modal-footer">-->
-                <!--<button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveDemandeInscription()">CONTINUER</button>-->
-                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" >ANNULER</button>-->
-
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-
-
-
-
-
       </div>
     </div>
   </div>
 </div>
-<br><br>

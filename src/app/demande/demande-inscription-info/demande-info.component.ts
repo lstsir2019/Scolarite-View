@@ -1,5 +1,4 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material";
 import {DemandeInscriptionService} from "../../controller/service/demande-inscription.service";
 import {Location} from "@angular/common";
 
