@@ -18,17 +18,23 @@
               <div class="input-group input-group w-100">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
                                                        style="width: 90px"><b>Filiere</b></span></div>
-                <input type="text" class="form-control " placeholder="Col debut des donnees"
-                       [(ngModel)]="pvCreate.refFiliere"
-                />
+                <!--<input type="text" class="form-control " placeholder="Col debut des donnees"-->
+                       <!--[(ngModel)]="pvCreate.refFiliere"-->
+                <!--/>-->
+                <select [(ngModel)]="pvCreate.refFiliere" class="form-control form-control">
+                  <option>MIPC</option>
+                </select>
               </div>
               <br>
               <div class="input-group input-group w-100">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
                                                        style="width: 90px"><b>Semestre</b></span></div>
-                <input type="text" class="form-control " placeholder="Col debut des donnees"
-                       [(ngModel)]="pvCreate.refSemestre"
-                />
+                <!--<input type="text" class="form-control " placeholder="Col debut des donnees"-->
+                       <!--[(ngModel)]="pvCreate.refSemestre"-->
+                <!--/>-->
+                <select [(ngModel)]="pvCreate.refSemestre" class="form-control form-control">
+                  <option>S1</option>
+                </select>
               </div>
               <br>
               <div class="input-group input-group w-100">

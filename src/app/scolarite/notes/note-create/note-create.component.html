@@ -24,7 +24,10 @@
             <div class="input-group input-group-sm">
               <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILIERE</b></span>
               </div>
-              <input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refFiliere"/>
+              <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refFiliere"/>-->
+              <select [(ngModel)]="note.refFiliere" class="form-control form-control">
+                <option>SIR</option>
+              </select>
             </div>
           </div>
           <br>
@@ -32,7 +35,10 @@
             <div class="input-group input-group-sm">
               <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>MODULE</b></span>
               </div>
-              <input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refModule"/>
+              <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refModule"/>-->
+              <select [(ngModel)]="note.refModule" class="form-control form-control">
+                <option>SGBD</option>
+              </select>
             </div>
           </div>
           <br>
@@ -72,7 +78,7 @@
           </div>
           <div class="form-group">
             <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> END COL </b></span>
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> ENABLE </b></span>
               </div>
               <input type="checkbox" class="form-control" placeholder="Ligne de début"
                      [(ngModel)]="checkBoxState"/>
@@ -98,12 +104,12 @@
       </div>
     </div>
     <div class="col-md shadow p-3 mb-5 rounded" style="background-color: darkslategrey">
-      <div style="height: 100%" class="card" style="background-color: lightgray">
+      <div style="height: 100%" class="card">
         <div class="card-header card-text fa fa-list" align="center"><b> Liste des notes </b></div>
         <div class="card-body">
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
             <table
-              class="table table-sm table-bordered table-hover mb-0 shadow p-3 mb-5 bg-white rounded">
+              class="table table-sm table-bordered table-hover shadow ">
               <thead class="thead" style="background-color: teal">
               <tr>
                 <th scope="col" style="text-align:center; color:white">CNE</th>

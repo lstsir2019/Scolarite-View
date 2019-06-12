@@ -8,7 +8,7 @@
             <label class="input-group-text"><b>FILIERE</b></label>
           </div>
           <select [(ngModel)]="notesListCreate.refFiliere" class="form-control form-control">
-            <option>MIPC</option>
+            <option>SIR</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
@@ -16,7 +16,7 @@
             <label class="input-group-text"><b>MODULE</b></label>
           </div>
           <select size="1" [(ngModel)]="notesListCreate.refModule" class="form-control form-control-sm">
-            <option>ALGEBRE1</option>
+            <option>SGBD</option>
             <option> S2</option>
           </select>
         </div>
@@ -39,15 +39,15 @@
   <div class="card" style="height: 700px">
     <div class="card-header">
       <div class="row">
-        <div class="col-sm-0">
-          <button id="download" (click)="print()" class="btn btn-outline">
-            <span style="color: dodgerblue" class="fa fa-download"> </span>
-            <span class="text-secondary"> Exporter sous format PDF </span>
-          </button>
-        </div>
+        <!--<div class="col-sm-0">-->
+          <!--<button id="download" (click)="print()" class="btn btn-outline">-->
+            <!--<span style="color: dodgerblue" class="fa fa-download"> </span>-->
+            <!--<span class="text-secondary"> Exporter sous format PDF </span>-->
+          <!--</button>-->
+        <!--</div>-->
         <div class="col-sm-0">
           <button (click)="deleteListAll()" style="" class="btn btn-outline text-secondary"><span
-            class="fa text-primary fa-trash-o"></span> Faire la Preselection
+            class="fa text-primary fa-trash-o"></span> Vider la liste
           </button>
         </div>
         <div class="col-sm-4 input-group">
@@ -83,11 +83,10 @@
           <td style="text-align:center" class="something">{{c.mention}}</td>
           <td style="text-align:center" class="something">{{c.etat}}</td>
           <td style="text-align:center">
-            <button class="btn btn-outline-success btn-sm"
-                    (click)="findNote(c.refEtudiant,c.refFiliere,c.refModule,c.annee)" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-download"></i>
+            <button class="btn btn-primary btn-sm"
+                    (click)="findNote(c.refEtudiant,c.refFiliere,c.refModule,c.annee)" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-edit"></i>
             </button>
             <button class="btn btn-danger btn-sm" (click)="delete(c)"><i class="fa fa-trash"></i></button>
-            <a style="border:0px solid transparent " class="btn btn-info"><i class="fa fa-address-book"></i></a>
           </td>
         </tr>
         </tbody>
