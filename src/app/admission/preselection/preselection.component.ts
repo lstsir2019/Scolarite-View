@@ -6,6 +6,7 @@ import {Candidat} from "../../controller/model/candidat.model";
 import {AdmissionService} from "../../controller/service/admission.service";
 import {reference} from "@angular/core/src/render3";
 import {RetenueEcrit} from "../../controller/model/retenue-ecrit.model";
+import {NoteModuleConcours} from "../../controller/model/note-module-concours";
 
 @Component({
   selector: 'app-preselection',
@@ -15,11 +16,13 @@ import {RetenueEcrit} from "../../controller/model/retenue-ecrit.model";
 
 
 export class PreselectionComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol','mention'];
+  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol', 'mention'];
   dataSource = new MatTableDataSource<RetenueEcrit>(this.admissionService.listCandidats);
   selection = new SelectionModel<RetenueEcrit>(true, this.admissionService.listCandidatsSelected);
+  public filtered: Array<RetenueEcrit>;
 
-  constructor(public candiatService: CandidatService, public  admissionService: AdmissionService) {}
+  constructor(public candiatService: CandidatService, public  admissionService: AdmissionService,@Inject(MAT_DIALOG_DATA) public data:any) {
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -31,10 +34,21 @@ export class PreselectionComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.data);
     this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter() {
+    const filter = (note: RetenueEcrit[]) => this.admissionService.listCandidats.filter(retenue => retenue.refCandidat.match("^" + this.refCandidat + ".*$"));
+    this.filtered = filter(this.admissionService.listCandidats);
+    this.dataSource.data = this.filtered;
 
   }
-public saveListeReteues(){
-this.admissionService.saveListeReteues(this.selection.selected)}
+
+  private refCandidat: string;
+
+  public saveListeReteues() {
+    this.admissionService.saveListeReteues(this.selection.selected,this.data.concours)
+  }
 }
 

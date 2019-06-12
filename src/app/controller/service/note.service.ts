@@ -9,6 +9,7 @@ import {NoteEtudiantModule} from '../model/noteetudiantmodule.model';
 import Swal from 'sweetalert2';
 import {forEach} from '@angular/router/src/utils/collection';
 import {NgxSpinnerService} from "ngx-spinner";
+import {Pv} from "../model/pv.model";
 
 
 // import Swal from 'sweetalert2';
@@ -31,14 +32,20 @@ export class NoteService {
   private _notesCheck: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesExisted: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesCheckClone: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
-  private _noteCreate = new NotesCreate('', '', 0, 0, 0);
-  private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '');
+  private _noteCreate = new NotesCreate('', '', '', 1, 0, 6, '', '');
+  private _noteListCreate = new NotesCreate('', '', '', 0, 0, 0, '', '');
+  private _note1 = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '','');
+  private _noteSelected1 = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '','');
   private _url = 'http://localhost:8097/efaculte-api-notes/notes/filename/';
   private _url1 = 'http://localhost:8097/efaculte-api-notes/notes/';
   private _noteSelected: NoteEtudiantModule;
-  private _noteClone: NoteEtudiantModule = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '');
+  private _noteClone: NoteEtudiantModule = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '','');
   public firstline: number;
   public path: string;
+  public editField: string;
+  private _notesList: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
+  private _filtred: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
+  private _notesss: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
 
 
   constructor(private _http: HttpClient, private _spinner: NgxSpinnerService) {
@@ -50,24 +57,27 @@ export class NoteService {
   // }
 
   public check() {
+    this.spinner.show();
     if (this.notesCheck.length !== 0) {
+      this.spinner.hide();
       Swal.fire('Error!!!', 'La liste nest pas vide', 'error');
     } else {
       if (this.noteCreate.xpath !== '') {
-        this.path = this.noteCreate.xpath.replace("C:\\fakepath\\","");
-        this._http.get<Array<NoteEtudiantModule>>(this._url + this.path + '/startCol/' + this.noteCreate.startCol + '/endCol/' + this.noteCreate.endCol + '/line/' + this.noteCreate.startLine).subscribe(
+        this.path = this.noteCreate.xpath.replace("C:\\fakepath\\", "");
+        this._http.get<Array<NoteEtudiantModule>>(this._url + this.path + '/startCol/' + this.noteCreate.startCol
+          + '/endCol/' + this.noteCreate.endCol + '/line/' + this.noteCreate.startLine + '/refFiliere/'
+          + this.noteCreate.refFiliere + '/refModule/' + this.noteCreate.refModule + '/annee/'
+          + this.noteCreate.annee).subscribe(
           data => {
-            if (data.length === 0) {
-              Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
-            } else {
-              this.notesCheck = data;
-            }
+            this.spinner.hide();
+            this.notesCheck = data;
           }, error => {
+            this.spinner.hide();
             Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
-            console.log(this.path);
           }
         );
       } else {
+        this.spinner.hide();
         Swal.fire('Error!!!', 'please enter file name!', 'error');
         console.log(this.noteCreate.xpath);
       }
@@ -98,20 +108,23 @@ export class NoteService {
   // }
 
   public save() {
+    this.spinner.show();
     if (this.notesCheck.length == 0) {
+      this.spinner.hide();
       Swal.fire('erreur', 'la liste est vide', 'warning');
     } else {
-      this._http.post<Array<NoteEtudiantModule>>(this.url1, this.notesCheck).subscribe(
+      this._http.post<number>(this.url1, this.notesCheck).subscribe(
         data => {
-          this.notesExisted = data;
-          if (this.notesExisted.length == 0) {
+          if (data == 1) {
+            this.spinner.hide();
             Swal.fire('Done', 'Success', 'success');
             this.deleteAll();
-          } else {
-            Swal.fire('erreur', 'vous avez des erreurs!', 'warning');
-            this.notesCheck = this.notesExisted;
+          } else if (data == -2) {
+            this.spinner.hide();
+            Swal.fire('erreur', 'des etudiats nont pas de cne!', 'warning');
           }
         }, error => {
+          this.spinner.hide();
           Swal.fire('Error!!!', 'Error', 'error');
         }
       );
@@ -121,12 +134,50 @@ export class NoteService {
   public deleteItem(n: NoteEtudiantModule) {
     const id: number = this.notesCheck.indexOf(n);
     this.notesCheck.splice(id, 1);
-    console.log('dkhlty');
+  }
+
+  public findItem(n: NoteEtudiantModule): NoteEtudiantModule {
+    let id = this.notesCheck.indexOf(n);
+    n = this.notesCheck[id];
+    return n;
+  }
+
+  public findInList(cne: string): NoteEtudiantModule {
+    let n = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '','');
+    for (let i = 0; i < this.notesCheck.length; i++) {
+      if (this.notesCheck[i].refEtudiant == cne) {
+        n = this.notesCheck[i];
+      }
+    }
+    return n;
+  }
+
+  public deleteListItem(n: NoteEtudiantModule) {
+    const i: number = this.filtred.indexOf(n);
+    this.filtred.splice(i, 1);
+    if (this.noteListCreate.cne != '') {
+      const id: number = this.notesList.indexOf(n);
+      this.notesList.splice(id, 1);
+    }
   }
 
 
   public deleteAll() {
-    this.notesCheck.splice(0, this.notesCheck.length);
+    this.notesss = this.notesCheck.splice(0, this.notesCheck.length);
+  }
+
+  public deleteListAll() {
+    if (this._noteListCreate.cne == '') {
+      this.filtred.splice(0, this.filtred.length);
+    }
+  }
+
+  public findInListByCne(cne: string) {
+    if (cne == null) {
+      this.notesList
+    }
+    const filter = (note: NoteEtudiantModule[]) => this.notesList.filter(note => note.refEtudiant.match("^" + cne + ".*$"));
+    this.filtred = filter(this.notesList);
   }
 
   public findAll() {
@@ -135,6 +186,78 @@ export class NoteService {
         this.notess = data;
       }, error => {
         console.log('error while loading notes ...');
+      }
+    );
+  }
+
+  public findNote(cne: string, filiere: string, mod: string, annee: string) {
+    this.noteSelected1 = new NoteEtudiantModule('', '', '', '', '', '', '', '', '', '', '', '','');
+    this._http.get<NoteEtudiantModule>(this._url1 + 'refEtudiant/' + cne + '/refFiliere/' + filiere + '/refModule/' + mod + '/annee/' + annee).subscribe(
+      data => {
+        this.noteSelected1 = data;
+      }, error => {
+        console.log('error while...');
+      }
+    );
+  }
+
+  public edit() {
+    this._http.put<NoteEtudiantModule>('http://localhost:8097/efaculte-api-notes/notes/editNoteModulaire/', this.noteSelected1).subscribe(
+      data => {
+        this.findNotesList();
+        Swal.fire('Done','updated.','success');
+      }, error => {
+        Swal.fire('error','erreur','warning');
+
+        console.log('error while...');
+      }
+    );
+  }
+
+  public findNotesList() {
+    if (this.noteListCreate.refFiliere != '' && this.noteListCreate.refModule != '' && this.noteListCreate.annee != '') {
+      this._http.get<Array<NoteEtudiantModule>>(this._url1 + '/refFiliere/' + this.noteListCreate.refFiliere + '/refModule/' + this.noteListCreate.refModule + '/annee/' + this.noteListCreate.annee).subscribe(
+        data => {
+          this.notesList = data;
+          this.filtred = data;
+        }, error => {
+          console.log('error while loading notes ...');
+        }
+      );
+    } else if (this.noteListCreate.refFiliere == '' || this.noteListCreate.refModule == '' || this.noteListCreate.annee == '') {
+      Swal.fire('Champs non remplis', 'Veullier remplire tout les champs', 'info');
+    }
+  }
+
+  public changeValue(id: number, property: string, event: any) {
+    this.updateList(id, property, event);
+  }
+
+  public updateList(id: number, property: string, event: any) {
+    const editField = event.target.textContent;
+    this.notesCheck[id][property] = editField;
+    if (property == 'refEtudiant' && this.notesCheck[id].refEtudiant != '') {
+      this.notesCheck[id].state = 'good';
+    } else if (property == 'mention' && this.notesCheck[id].mention != '') {
+      var y = +this.notesCheck[id].mention;
+      this.notesCheck[id].state = 'good';
+      if (y < 10) {
+        this.notesCheck[id].etat = 'NV';
+      } else if (y >= 10) {
+        this.notesCheck[id].etat = 'V';
+      }
+    } else {
+      this.notesCheck[id].state = 'error';
+    }
+  }
+
+  public delete(noteM: NoteEtudiantModule) {
+    this._http.delete<number>(this.url1+'deleteModualire/refEtudiant/'+noteM.refEtudiant+'/refFiliere/'+noteM.refFiliere+'/refModule/'+noteM.refModule+'/annee/'+noteM.annee).subscribe(
+      data => {
+        this.findNotesList();
+        Swal.fire('Done','deleted.','success');
+      }, error => {
+        Swal.fire('error','erreur','warning');
       }
     );
   }
@@ -257,4 +380,48 @@ export class NoteService {
   set noteClone(value: NoteEtudiantModule) {
     this._noteClone = value;
   }
+
+  get notesList(): Array<NoteEtudiantModule> {
+    return this._notesList;
+  }
+
+  set notesList(value: Array<NoteEtudiantModule>) {
+    this._notesList = value;
+  }
+
+  get noteListCreate(): NotesCreate {
+    return this._noteListCreate;
+  }
+
+  set noteListCreate(value: NotesCreate) {
+    this._noteListCreate = value;
+  }
+
+  get filtred(): Array<NoteEtudiantModule> {
+    return this._filtred;
+  }
+
+  set filtred(value: Array<NoteEtudiantModule>) {
+    this._filtred = value;
+  }
+
+
+  get notesss(): Array<NoteEtudiantModule> {
+    return this._notesss;
+  }
+
+  set notesss(value: Array<NoteEtudiantModule>) {
+    this._notesss = value;
+  }
+
+
+  get noteSelected1(): NoteEtudiantModule {
+    return this._noteSelected1;
+  }
+
+  set noteSelected1(value: NoteEtudiantModule) {
+    this._noteSelected1 = value;
+  }
+
+
 }

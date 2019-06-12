@@ -17,7 +17,6 @@ public  listNoteModulesInBd: Array<NoteModuleConcours> =[];
   public filtered: Array<NoteModuleConcours> = [];
 
   public saveNoteModuleConcours(notes: Array<NoteModuleConcours>) {
-
     this.http.post(this.url + "save", notes).subscribe(
       data => {
         console.log('heehooo');

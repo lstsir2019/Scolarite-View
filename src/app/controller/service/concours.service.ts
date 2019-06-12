@@ -282,10 +282,10 @@ export class ConcoursService {
   }*/
 
   public findByAnneeConcours(anneeConcours: number) {
-    this.http.get<Array<Concours>>(this._url + /annee/ + anneeConcours).subscribe(
+    this.http.get<Array<Concours>>(this._url + "annee/" + anneeConcours).subscribe(
       data => {
         this.listeConcoursByAnnee=data;
-        console.log(data);
+        console.log(this.listeConcoursByAnnee);
       }, error1 => {
         console.log("error Annee");
       }
