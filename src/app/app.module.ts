@@ -52,6 +52,7 @@ import {DemandeComponent} from "./demande/demande.component";
 import {SelectionModel} from "@angular/cdk/collections";
 import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
 import { ModuleConcoursUpdateComponent } from './concours/module-concours-update/module-concours-update.component';
+import { ConcoursUpdateComponent } from './concours/concours-update/concours-update.component';
 
 
 
@@ -100,7 +101,8 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
     PreselectionComponent,
     GestionDeNotesComponent,
     ListeNotesComponent,
-    MatProgressBar
+    MatProgressBar,
+    ConcoursUpdateComponent
 
   ],
   imports: [
@@ -124,7 +126,7 @@ import { ModuleConcoursUpdateComponent } from './concours/module-concours-update
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent,ListeNotesComponent]
+  entryComponents:[PreselectionComponent,ConcoursInfoComponent,ModuleConcoursUpdateComponent,ListeNotesComponent,ConcoursUpdateComponent]
 })
 export class AppModule {
 }

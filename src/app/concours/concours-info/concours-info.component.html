@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="col-sm-6">
   <button class="btn btn-outline" (click)="backClicked()"><span class=" text-primary fa fa-arrow-left"></span><span
     class="text-secondary"> Retour</span></button>
@@ -18,44 +19,42 @@
     <div class="col-sm-6">Nombre De Places Pour Concours Ecrit:{{concoursSelected.nbreplaceConcoursEcrit}}</div>
     <div class="col-sm-6">Nombre De Places Pour Concours Orale:{{concoursSelected.nbreplaceConcoursOral}}</div>
   </div>
-</div>
-<br>
-<div class="container">
-  <div class="row" style="justify-content: space-between"><h5 align="center">LISTE DES MODULES DU
-    {{concoursSelected.reference}}</h5>
-    <button class="btn btn-outline"><i
+  <br>
+  <div class="row">
+    <div class="col-sm-4"> <button class="btn btn-sm-outline"><i
       class="text-primary fa fa-plus" (click)="modeGlobal=1"><span class="text-secondary">Ajouter Un Module</span></i>
-    </button>
-    <div *ngIf="modeGlobal==1">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="card-body">
-            <div class="form-group">
-              <div class="form-row">
-                <div class="col">
+    </button></div>
+    <br>
+            <div *ngIf="modeGlobal==1" class="form-group">
+              <div class="row" style="justify-content: center">
+                <div class="col-sm-4">
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text">Reference module</span>
+                      <span class="input-group-text">Référence</span>
                     </div>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="moduleSelected.reference">
                   </div>
                 </div>
-                <div class="col">
+                <div class="col-sm-4">
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">Coefficient</span>
                     </div>
-                    <input type="number" class="form-control">
+                    <input type="text" class="form-control" [(ngModel)]="moduleSelected.coefModuleConcoursVo.coef">
                   </div>
                 </div>
-                <div class="col">
-                  <button type="button" class="btn btn-secondary fa fa-plus"></button>
+                <div class="col-sm-3">
+                  <input type="button" (click)="addModuleConcours()" value="Ajouter Module" class="btn btn-secondary fa fa-plus">
                 </div>
+
               </div>
             </div>
-          </div>
-        </div>
-    </div>
+  </div>
+</div>
+<div class="container-fluid ">
+  <div class="row" style="justify-content: space-between"><h5 align="center">LISTE DES MODULES DU
+    {{concoursSelected.reference}}</h5>
+
     <table class="table table-sm table-borderless">
       <thead class="thead-light">
       <th>Référence Module</th>
@@ -77,5 +76,4 @@
     </table>
   </div>
 </div>
-
-
+</div>

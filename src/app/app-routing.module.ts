@@ -75,7 +75,9 @@ const routes: Routes = [
   { path: 'Concours', component:ConcoursComponent,
   children:[
     { path: 'créationConcours', component:ConcoursCreateComponent},
-    { path: 'listeConcours', component:ConcoursListComponent},
+    { path: 'listeConcours', component:ConcoursListComponent,children:[
+        {path: 'ConcoursInfo', component:ConcoursInfoComponent}
+      ]},
     { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
     { path: 'listePostule', component:ListeDesPostuleComponent,children:[
         { path: 'Info', component:CandidatInfoComponent}

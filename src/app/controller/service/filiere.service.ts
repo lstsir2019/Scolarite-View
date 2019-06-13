@@ -10,12 +10,12 @@ export class FiliereService {
 
   private _url: string = 'http://localhost:8091/efaculte-v1-api/fillieres/';
   private _filieres: Array<Filiere>;
-  private _filiereCreate: Filiere = new Filiere('', '', '');
+  private _filiereCreate: Filiere = new Filiere('', '', '','','');
 
 
   constructor(private _http: HttpClient) { }
   public addFiliere() {
-    let filiereClone = new Filiere(this._filiereCreate.libelle, this._filiereCreate.reference, this._filiereCreate.refDepartement);
+    let filiereClone = new Filiere(this._filiereCreate.libelle, this._filiereCreate.typeFiliere,this._filiereCreate.referenceEntiteAdministratif,this._filiereCreate.abreviation,this._filiereCreate.objectif);
     this.filiereCreate.filieres.push(filiereClone);
   }
 
@@ -23,7 +23,7 @@ export class FiliereService {
     this._http.post<Filiere>(this._url, this._filiereCreate).subscribe(
       data => {
         console.log('Done');
-        this._filiereCreate = new Filiere('', '', '');
+        this._filiereCreate = new Filiere('', '', '','','');
       }, error => {
         console.log('error');
       }

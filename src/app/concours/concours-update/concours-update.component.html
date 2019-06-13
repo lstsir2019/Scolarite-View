@@ -1,0 +1,53 @@
+<h3>Modification du {{data.c.reference}}</h3>
+
+<div class="form-group">
+  <div class="form-row">
+    <div class="col">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Date-Ecrit</span>
+        </div>
+        <input type="date" class="form-control">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Date-Orale</span>
+        </div>
+        <input type="date" class="form-control">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Nombre de place</span>
+        </div>
+        <input type="number" class="form-control">
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Place Ecrit</span>
+        </div>
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group input-group-sm mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Place Orale</span>
+        </div>
+        <input type="number" class="form-control">
+      </div>
+    </div>
+  </div>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Annuler</button>
+    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+    <button mat-button  [mat-dialog-close]="true" (click)="updateConcours(concoursSelected)" >Valider</button>
+  </mat-dialog-actions>
+  </div>
