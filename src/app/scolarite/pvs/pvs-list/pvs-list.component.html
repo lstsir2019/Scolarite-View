@@ -97,7 +97,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let c of filtred">
+        <tr *ngFor="let c of filtred; let i = index;">
           <td style="text-align:center" class="something">{{c.refEtudiant}}</td>
           <ng-container *ngFor="let m of c.noteModulaireVos">
             <td>{{ m.ptJury }}</td>
@@ -185,8 +185,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="edit()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fermer </button>
+        <button type="button" class="btn btn-primary" (click)="edit()"> Sauvegarder </button>
       </div>
     </div>
   </div>

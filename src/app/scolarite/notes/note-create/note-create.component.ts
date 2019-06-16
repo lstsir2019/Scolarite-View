@@ -76,6 +76,9 @@ export class NoteCreateComponent implements OnInit {
   public save() {
     this._noteService.save();
   }
+  public checkType() {
+    this.noteService.checkType();
+  }
 
   public check() {
     this._noteService.check();

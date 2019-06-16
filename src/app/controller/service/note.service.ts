@@ -132,8 +132,25 @@ export class NoteService {
   }
 
   public deleteItem(n: NoteEtudiantModule) {
-    const id: number = this.notesCheck.indexOf(n);
-    this.notesCheck.splice(id, 1);
+    Swal.fire({
+      title: 'etes vous sure??',
+      text: "C'est irreversible",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Supprimer'
+    }).then((result) => {
+      if (result.value) {
+        const id: number = this.notesCheck.indexOf(n);
+        this.notesCheck.splice(id, 1);
+        Swal.fire(
+          'Supprimé!',
+          'La note supprimé avec succes.',
+          'success'
+        )
+      }
+    })
+
   }
 
   public findItem(n: NoteEtudiantModule): NoteEtudiantModule {
@@ -204,6 +221,7 @@ export class NoteService {
   public edit() {
     this._http.put<NoteEtudiantModule>('http://localhost:8097/efaculte-api-notes/notes/editNoteModulaire/', this.noteSelected1).subscribe(
       data => {
+        console.log(data);
         this.findNotesList();
         Swal.fire('Done','updated.','success');
       }, error => {
@@ -236,19 +254,6 @@ export class NoteService {
   public updateList(id: number, property: string, event: any) {
     const editField = event.target.textContent;
     this.notesCheck[id][property] = editField;
-    if (property == 'refEtudiant' && this.notesCheck[id].refEtudiant != '') {
-      this.notesCheck[id].state = 'good';
-    } else if (property == 'mention' && this.notesCheck[id].mention != '') {
-      var y = +this.notesCheck[id].mention;
-      this.notesCheck[id].state = 'good';
-      if (y < 10) {
-        this.notesCheck[id].etat = 'NV';
-      } else if (y >= 10) {
-        this.notesCheck[id].etat = 'V';
-      }
-    } else {
-      this.notesCheck[id].state = 'error';
-    }
   }
 
   public delete(noteM: NoteEtudiantModule) {
@@ -260,6 +265,12 @@ export class NoteService {
         Swal.fire('error','erreur','warning');
       }
     );
+  }
+  public checkType(){
+    if(!this.noteCreate.xpath.endsWith(".xls")){
+      Swal.fire('Type non compatible','Veuiller choisir un fichier .xls','warning');
+      this.noteCreate.xpath = "";
+    }
   }
 
   // saveFile() {

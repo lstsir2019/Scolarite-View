@@ -2,15 +2,15 @@
   <div class="card" style="background-color: lightgray">
     <div class="container ">
       <div class="card shadow p-3 mb-5 bg-white rounded">
-        <div class=" card-header card-text fa fa-pencil" align="center"><B>AJOUTER PV</B></div>
+        <div class=" card-header card-text fa fa-pencil" align="center"><B>AJOUTE DES PV</B></div>
         <div class="card-body">
           <div class="form-group">
             <div class="form-group">
               <div class="input-group">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                       style="width: 90px"><b>FILE</b></span></div>
+                                                       style="width: 90px"><b>FICHIER</b></span></div>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" [(ngModel)]="pvCreate.path" required/>
+                  <input type="file" class="custom-file-input" [(ngModel)]="pvCreate.path" (change)="checkType()" required/>
                   <label class="custom-file-label">{{pvCreate.path}}</label>
                 </div>
               </div>
@@ -48,14 +48,14 @@
             <div class="form-inline">
               <div class="input-group input-group-sm w-50">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                       style="width: 90px"><b>START COL</b></span></div>
+                                                       style="width: 120px"><b>COL DEBUT</b></span></div>
                 <input type="text" class="form-control " placeholder="Col debut des donnees"
                        [(ngModel)]="pvCreate.startCol"
                        [disabled]="pvCreate.checkBoxState == false"/>
               </div>
               <div class="input-group input-group-sm w-50">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                       style="width: 90px"><b>LINE</b></span></div>
+                                                       style="width: 120px"><b>LIGNE DEBUT </b></span></div>
                 <input type="text" class="form-control " placeholder="Ligne debut de lecture"
                        [(ngModel)]="pvCreate.line"
                        [disabled]="pvCreate.checkBoxState == false"/>
@@ -63,7 +63,7 @@
               <br>
               <div class="input-group input-group-sm w-50">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                       style="width: 90px"><b>MODS LINE</b></span></div>
+                                                       style="width: 120px"><b>LIGNE MODULES</b></span></div>
                 <input type="text" class="form-control " placeholder="ligne debut des modules"
                        [(ngModel)]="pvCreate.modsLine"
                        [disabled]="pvCreate.checkBoxState == false"/>
@@ -71,7 +71,7 @@
 
               <div class="input-group input-group-sm w-50">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
-                                                       style="width: 90px"><b>MODS COL</b></span></div>
+                                                       style="width: 120px"><b>COL MODULES</b></span></div>
                 <input type="text" class="form-control " placeholder="Col debut des modules"
                        [(ngModel)]="pvCreate.modsCol"
                        [disabled]="pvCreate.checkBoxState == false"/>
@@ -82,12 +82,12 @@
               <span align="center" class="input-group-text"
                     style="width: 150px; background-color: snow; font-style: revert">
             <input type="checkbox"
-                   [(ngModel)]="pvCreate.checkBoxState"/><b>ENABLE INPUTS</b></span>
+                   [(ngModel)]="pvCreate.checkBoxState"/><b>ACTIVER</b></span>
             </div>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-info btn-block btn-lg fa fa-upload" style="background-color: teal;"
-                    (click)="create()"><b>Upload</b>
+                    (click)="create()"><b>Import</b>
             </button>
           </div>
         </div>
@@ -175,7 +175,7 @@
               <td>
                 <button type="button" class="btn btn-primary btn-sm fa fa-edit" data-toggle="modal"
                         data-target="#exampleModalCenter"></button>
-                <button type="button" class="btn btn-danger btn-sm fa fa-trash" (click)="deleteItem(n)"></button>
+                <button type="button" class="btn btn-danger btn-sm fa fa-trash" (click)="deleteItem(id)"></button>
               </td>
             </tr>
             </tbody>

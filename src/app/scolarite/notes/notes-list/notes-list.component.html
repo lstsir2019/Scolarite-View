@@ -109,29 +109,57 @@
       <div class="modal-body">
         <div class="form-group">
           <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE</b></span>
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>CNE</b></span>
             </div>
-            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.mention"/>
+            <label class="form-control">{{noteSelected1.refEtudiant}}</label>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE RATT</b></span>
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE Av.Ratt</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.noteAvantJury"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE Ratt</b></span>
             </div>
             <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.noteRatt"/>
           </div>
         </div>
         <div class="form-group">
           <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE APRES JURY</b></span>
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE Ap.Ratt</b></span>
             </div>
             <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.mentionApresJury"/>
           </div>
         </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>pt Jury</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.ptJury"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>NOTE FINALE</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.mention"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>STATUT FINAL</b></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.etat"/>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="edit()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="button" class="btn btn-primary" (click)="edit()">Sauvegarder</button>
       </div>
     </div>
   </div>
