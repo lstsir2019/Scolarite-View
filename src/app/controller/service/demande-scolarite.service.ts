@@ -70,18 +70,37 @@ export class DemandeScolariteService {
 
 
 public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
-  this.demandeScolariteSelected = demandeScolarite;
-  if (this.demandeScolariteSelected != null) {
-    this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
-      error => {
-        console.log("deleted ...");
-        this.demandeScolariteSelected;
-      });
-    let index:number = this._demandeScolarites.indexOf(demandeScolarite);
-    this._demandeScolarites.splice(index,1);
-  }
-}
+  Swal.fire({
+    title: '',
+    text: 'Souhaitez-vous vraiment supprimer la demande ?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d6000a',
+    confirmButtonText: 'Supprimer',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.value) {
+      this.demandeScolariteSelected = demandeScolarite;
+      if (this.demandeScolariteSelected != null) {
+        this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
+          error => {
+            console.log("deleted ...");
+            this.demandeScolariteSelected;
+          });
+        let index:number = this._demandeScolarites.indexOf(demandeScolarite);
+        this._demandeScolarites.splice(index,1);
+      }
+      Swal.fire(
+        '',
+        'Supprimé !',
+        'success'
+      )
+    }
 
+
+},
+    )
+}
   public print(refEtudiant : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
