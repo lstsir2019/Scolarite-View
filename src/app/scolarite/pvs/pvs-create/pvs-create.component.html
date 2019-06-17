@@ -2,7 +2,7 @@
   <div class="card" style="background-color: lightgray">
     <div class="container ">
       <div class="card shadow p-3 mb-5 bg-white rounded">
-        <div class=" card-header card-text fa fa-pencil" align="center"><B>AJOUTE DES PV</B></div>
+        <div class=" card-header card-text fa fa-pencil" align="center"><B>AJOUT DES PV</B></div>
         <div class="card-body">
           <div class="form-group">
             <div class="form-group">
@@ -10,7 +10,7 @@
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
                                                        style="width: 90px"><b>FICHIER</b></span></div>
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" [(ngModel)]="pvCreate.path" (change)="checkType()" required/>
+                  <input type="file" class="custom-file-input" [(ngModel)]="pvCreate.path" (change)="checkType()" ngRequired/>
                   <label class="custom-file-label">{{pvCreate.path}}</label>
                 </div>
               </div>
@@ -22,7 +22,10 @@
                        <!--[(ngModel)]="pvCreate.refFiliere"-->
                 <!--/>-->
                 <select [(ngModel)]="pvCreate.refFiliere" class="form-control form-control">
+                  <option>SIR</option>
                   <option>MIPC</option>
+                  <option>BCG</option>
+                  <option>MIP</option>
                 </select>
               </div>
               <br>
@@ -34,15 +37,20 @@
                 <!--/>-->
                 <select [(ngModel)]="pvCreate.refSemestre" class="form-control form-control">
                   <option>S1</option>
+                  <option>S2</option>
+                  <option>S3</option>
+                  <option>S4</option>
+                  <option>S5</option>
+                  <option>S6</option>
                 </select>
               </div>
               <br>
               <div class="input-group input-group w-100">
                 <div class="input-group-prepend"><span align="center" class="input-group-text"
                                                        style="width: 90px"><b>Annee</b></span></div>
-                <input type="text" class="form-control " placeholder="Col debut des donnees"
+                <input type="number" min="2010" max="2030" step="1" class="form-control " placeholder="Col debut des donnees"
                        [(ngModel)]="pvCreate.annee"
-                />
+                       pattern="[0-9]*" />
               </div>
             </div>
             <div class="form-inline">
@@ -96,7 +104,7 @@
             <div>
               <button id="download" (click)="saveAll()" class="btn btn-outline">
                 <span style="color: dodgerblue" class="fa fa-save"> </span>
-                <span class="text-secondary"> SAVE DANS LA BASE DE DONNEES </span>
+                <span class="text-secondary"> Sauvegarder </span>
               </button>
             </div>
             <div>

@@ -25,8 +25,11 @@
               <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILIERE</b></span>
               </div>
               <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refFiliere"/>-->
-              <select [(ngModel)]="note.refFiliere" class="form-control form-control">
+              <select [(ngModel)]="note.refFiliere" class="form-control form-control" (change)="initModules()">
                 <option>SIR</option>
+                <option>MIPC</option>
+                <option>BCG</option>
+                <option>MIP</option>
               </select>
             </div>
           </div>
@@ -36,8 +39,8 @@
               <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>MODULE</b></span>
               </div>
               <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refModule"/>-->
-              <select [(ngModel)]="note.refModule" class="form-control form-control">
-                <option>SGBD</option>
+              <select [(ngModel)]="note.refModule" class="form-control">
+                <option *ngFor="let m of Modules1">{{ m }}</option>
               </select>
             </div>
           </div>
@@ -46,7 +49,7 @@
             <div class="input-group input-group-sm">
               <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>ANNEE</b></span>
               </div>
-              <input type="number" min="2010" max="2030" step="1" value="2019" class="form-control" placeholder="Année" [(ngModel)]="note.annee"/>
+              <input type="number" min="2010" max="2030" step="1" class="form-control" placeholder="Année" [(ngModel)]="note.annee"/>
             </div>
           </div>
           <br>

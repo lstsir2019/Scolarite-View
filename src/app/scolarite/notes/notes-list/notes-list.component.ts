@@ -19,6 +19,9 @@ export class NotesListComponent implements OnInit {
   public get notesList() {
     return this.noteService.notesList;
   }
+  public get Modules2() {
+    return this.noteService.Modules2;
+  }
   public get noteSelected1() {
     return this.noteService.noteSelected1;
   }
@@ -49,6 +52,9 @@ export class NotesListComponent implements OnInit {
   }
   public edit() {
     this.noteService.edit();
+  }
+  public initModules2() {
+    this.noteService.initModules2();
   }
 
 }

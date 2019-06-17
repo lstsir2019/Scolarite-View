@@ -33,6 +33,9 @@ export class NoteCreateComponent implements OnInit {
   public get note() {
     return this._noteService.noteCreate;
   }
+  public get Modules1(){
+    return this._noteService.Modules1;
+  }
 
   public get note1() {
     return this._noteService.note1;
@@ -78,6 +81,9 @@ export class NoteCreateComponent implements OnInit {
   }
   public checkType() {
     this.noteService.checkType();
+  }
+  public initModules() {
+    this.noteService.initModules();
   }
 
   public check() {

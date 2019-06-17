@@ -98,14 +98,13 @@ export class PvService {
         data => {
           this.pvList = data;
           this.filtered = data;
-          this.filtered.reverse();
-          this.pvList.reverse();
           if (this.modulesList.length == 6) {
             this.modulesList = new Array<string>();
           }
           for (let i = 0; i <= 5; i++) {
             this.modulesList.push(this.pvList[0].noteModulaireVos[i].refModule);
           }
+          this.modulesList.reverse();
 
         }, error => {
           Swal.fire('Error!!!', 'erreur!', 'error');

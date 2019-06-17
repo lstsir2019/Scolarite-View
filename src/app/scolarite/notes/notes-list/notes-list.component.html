@@ -7,8 +7,11 @@
           <div class="input-group-prepend">
             <label class="input-group-text"><b>FILIERE</b></label>
           </div>
-          <select [(ngModel)]="notesListCreate.refFiliere" class="form-control form-control">
+          <select [(ngModel)]="notesListCreate.refFiliere" class="form-control form-control" (change)="initModules2()">
             <option>SIR</option>
+            <option>MIPC</option>
+            <option>BCG</option>
+            <option>MIP</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
@@ -16,17 +19,13 @@
             <label class="input-group-text"><b>MODULE</b></label>
           </div>
           <select size="1" [(ngModel)]="notesListCreate.refModule" class="form-control form-control-sm">
-            <option>SGBD</option>
-            <option> S2</option>
+            <option *ngFor="let m of Modules2">{{m}}</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text"><b>ANNEE</b></label>
+          <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>ANNEE</b></span>
           </div>
-          <select size="1" [(ngModel)]="notesListCreate.annee" class="form-control form-control-sm">
-            <option>2019</option>
-          </select>
+          <input type="number" min="2010" max="2030" step="1" [(ngModel)]="notesListCreate.annee" class="form-control"/>
         </div>
         <div class="input-group">
           <button class="btn btn-info btn-block" (click)="findNotesList()"><i class="fa fa-search"></i> <b>
@@ -153,7 +152,12 @@
           <div class="input-group input-group-sm">
             <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>STATUT FINAL</b></span>
             </div>
-            <input type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.etat"/>
+            <select type="text" class="form-control" placeholder="Path" [(ngModel)]="noteSelected1.etat">
+              <option>Validé</option>
+              <option>Absent</option>
+              <option>Non Validé</option>
+              <option>V.A.R</option>
+            </select>
           </div>
         </div>
       </div>
