@@ -31,15 +31,18 @@ import {ConcoursInfoComponent} from './concours/concours-info/concours-info.comp
 import {GestionDeNotesComponent} from "./concours/gestion-de-notes/gestion-de-notes.component";
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
 import {NoteOralComponent} from "./concours/gestion-de-notes/note-oral/note-oral.component";
-import {NoteEcritComponent} from "./concours/gestion-de-notes/note-ecrit/note-ecrit.component";
+import {LoginComponent} from './login/login.component';
+import {AuthGuardService} from './controller/Auth/auth-guard.service';
 
 const routes: Routes = [
-  { path: 'Inscription', component:CandidatCreateComponent},
+  { path: 'Inscription', component:CandidatCreateComponent,
+    canActivate: [AuthGuardService]},
   // { path: 'DemandeReleveNotes', component:DemandeReleveNotesCreateComponent},
   // { path: 'DemandeScolarite', component:DemandeScolariteCreateComponent},
   // { path: 'DemandeInscription', component:DemandeInscriptionCreateComponent},
   // { path: 'ListeDemandes', component:DemandeListComponent},
   { path: 'Concours',   redirectTo: '/Concours/listePostule', pathMatch: 'full' },
+  { path: '', component:LoginComponent},
 
 
 
@@ -54,49 +57,76 @@ const routes: Routes = [
   //       ]}
   //
   //     ]},
-
-  { path: 'scolarite', component:DemandeScolariteCreateComponent},
-  { path: 'inscription', component:DemandeInscriptionCreateComponent},
-  { path: 'releve', component:DemandeReleveNotesCreateComponent},
-  { path: 'liste', redirectTo :  '/liste/DemandeInscriptionList', pathMatch:'full'},
+  { path: 'scolarite', component:DemandeScolariteCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'scolarite', component:DemandeScolariteCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'inscription', component:DemandeInscriptionCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'releve', component:DemandeReleveNotesCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'liste', redirectTo :  '/liste/DemandeInscriptionList', pathMatch:'full',
+    canActivate: [AuthGuardService]},
 
 
   { path: 'liste', component:DemandeListComponent,
+    canActivate: [AuthGuardService],
     children: [
-      {path: 'DemandeScolariteList', component:DemandeScolariteListComponent, children:[
-          {path:'Infos', component:DemandeScolariteInfoComponent}
+      {path: 'DemandeScolariteList', component:DemandeScolariteListComponent,
+        canActivate: [AuthGuardService], children:[
+          {path:'Infos', component:DemandeScolariteInfoComponent,
+            canActivate: [AuthGuardService]}
         ]},
-      {path: 'DemandeInscriptionList', component:DemandeInscriptionListComponent, children: [
-          {path: 'Info', component:DemandeInfoComponent}
+      {path: 'DemandeInscriptionList', component:DemandeInscriptionListComponent,
+        canActivate: [AuthGuardService], children: [
+          {path: 'Info', component:DemandeInfoComponent,
+            canActivate: [AuthGuardService]}
         ]},
-      {path: 'DemandeReleveNotesList', component:DemandeReleveNotesListComponent, children: [
-          {path:'Informations', component:DemandeReleveNotesInfoComponent}
+      {path: 'DemandeReleveNotesList', component:DemandeReleveNotesListComponent,
+        canActivate: [AuthGuardService], children: [
+          {path:'Informations', component:DemandeReleveNotesInfoComponent,
+            canActivate: [AuthGuardService]}
         ]}
     ]},
 
   { path: 'Concours', component:ConcoursComponent,
+    canActivate: [AuthGuardService],
   children:[
-    { path: 'créationConcours', component:ConcoursCreateComponent},
-    { path: 'listeConcours', component:ConcoursListComponent},
-    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-    { path: 'listePostule', component:ListeDesPostuleComponent,children:[
-        { path: 'Info', component:CandidatInfoComponent}
+    { path: 'créationConcours', component:ConcoursCreateComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'listeConcours', component:ConcoursListComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'listePostule', component:ListeDesPostuleComponent,
+      canActivate: [AuthGuardService],children:[
+        { path: 'Info', component:CandidatInfoComponent,
+          canActivate: [AuthGuardService]}
       ]},
-    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent},
-    { path: 'listeOral', component:ListeDesRetenusOralComponent},
-    { path: 'listeAdmis', component:ListeDesAdmisComponent},
-    { path: 'GestionDesNotes', component:GestionDeNotesComponent},
-    { path: 'NoteOral', component:NoteOralComponent},
-    { path: 'NoteEcrit', component:NoteEcritComponent},
+    { path: 'listeEcrit', component:ListeDesRetenusEcritComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'listeOral', component:ListeDesRetenusOralComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'listeAdmis', component:ListeDesAdmisComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'GestionDesNotes', component:GestionDeNotesComponent,
+      canActivate: [AuthGuardService]},
+    { path: 'NoteOral', component:NoteOralComponent,
+      canActivate: [AuthGuardService]},
 
   ]},
 
 
-  { path: 'filiere', component:FiliereCreateComponent},
-  { path: 'note', component:NoteCreateComponent},
-  { path: 'pvs', component:PvsCreateComponent},
-  { path: 'modules', component:ModuleCreateComponent},
-  { path: 'etudiants', component:EtudiantCreateComponent},
+  { path: 'filiere', component:FiliereCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'note', component:NoteCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'pvs', component:PvsCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'modules', component:ModuleCreateComponent,
+    canActivate: [AuthGuardService]},
+  { path: 'etudiants', component:EtudiantCreateComponent,
+    canActivate: [AuthGuardService]},
 
 ];
 

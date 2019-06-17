@@ -1,7 +1,7 @@
 <mat-dialog-content style="max-height: 85vh;">
   <div class="container" style="padding: 1%">
     <div class="modal-header" style="margin-bottom: 2%; padding: 0% 0% 0.5% 0%; justify-content: space-between">
-      <div><h4>Liste des Notes du module: </h4></div>
+      <div><h4>Liste des Notes du Concours Oral </h4></div>
       <div class="col-sm-0">
         <button class="btn btn-outline">
           <span class="text-secondary" (click)="saveNotes()">Enregistrer ces notes dans votre Base de données</span>
@@ -17,9 +17,9 @@
 
           <button  class="btn btn-outline">
             <label for="uploadFile">
-            <input id="uploadFile" type="file"(change)="xlss($event)"hidden>
-            <span class="text-secondary">Importer Les notes depuis un fichier Excel </span>
-            <span style="color: dodgerblue" class="fa fa-upload"> </span>
+              <input id="uploadFile" type="file"(change)="xlss($event)"hidden>
+              <span class="text-secondary">Importer Les notes depuis un fichier Excel </span>
+              <span style="color: dodgerblue" class="fa fa-upload"> </span>
             </label>
           </button>
         </div>
@@ -71,7 +71,7 @@
             <!-- Symbol Column -->
             <ng-container matColumnDef="Note">
               <th mat-header-cell *matHeaderCellDef> note</th>
-              <td mat-cell *matCellDef="let element"> {{element.note}}</td>
+              <td mat-cell *matCellDef="let element"> {{element.noteOral}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

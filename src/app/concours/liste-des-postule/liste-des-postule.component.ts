@@ -6,14 +6,8 @@ import {ActivatedRoute} from "@angular/router";
 import {PreselectionComponent} from "../../admission/preselection/preselection.component";
 import {Candidat} from "../../controller/model/candidat.model";
 import {AdmissionService} from "../../controller/service/admission.service";
+import {Choix} from '../../controller/model/choix.model';
 
-export interface Dessert {
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
-}
 
 @Component({
   selector: 'app-liste-des-postule',
@@ -23,7 +17,7 @@ export interface Dessert {
 export class ListeDesPostuleComponent implements OnInit {
 public annee:number=0;
 
-  sortedData: Candidat[];
+  sortedData: Choix[];
 
   constructor(public  candidatService: CandidatService, public concoursService: ConcoursService,
               public dialog: MatDialog, public route: ActivatedRoute, public admissionService: AdmissionService) {
@@ -57,15 +51,15 @@ public annee:number=0;
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
         case 'cne':
-          return this.compare(a.cne, b.cne, isAsc);
+          return this.compare(a.etudiantConcoursVo.cne, b.etudiantConcoursVo.cne, isAsc);
         case 'cin':
-          return this.compare(a.cin, b.cin, isAsc);
+          return this.compare(a.etudiantConcoursVo.cin, b.etudiantConcoursVo.cin, isAsc);
         case 'nom':
-          return this.compare(a.nom, b.nom, isAsc);
+          return this.compare(a.etudiantConcoursVo.nom, b.etudiantConcoursVo.nom, isAsc);
         case 'prenom':
-          return this.compare(a.prenom, b.prenom, isAsc);
+          return this.compare(a.etudiantConcoursVo.prenom, b.etudiantConcoursVo.prenom, isAsc);
         case 'tel':
-          return this.compare(a.tel, b.tel, isAsc);
+          return this.compare(a.etudiantConcoursVo.tel, b.etudiantConcoursVo.tel, isAsc);
         default:
           return 0;
       }

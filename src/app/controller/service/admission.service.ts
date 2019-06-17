@@ -15,12 +15,16 @@ export class AdmissionService {
   public listCandidatsSelected: Array<RetenueEcrit> = [];
   public listRetenueInBd: Array<RetenueEcrit> = [];
   public filteredRetenueEcrit: Array<RetenueEcrit> = [];
-  public listRetenueOralInBd: Array<RetenueEcrit> = [];
+
+  //hadu dial modal
   public listRetenueOral: Array<RetenueEcrit> = [];
   public listRetenueOralSelected: Array<RetenueEcrit> = [];
 
   public findListeReteues(refence: string) {
+    this.listCandidats = [];
+    this.listCandidatsSelected = [];
     this.http.get<Array<RetenueEcrit>>(this.url + refence).subscribe(
+
       data => {
         console.log(refence);
         if (data == null) {
@@ -65,7 +69,7 @@ export class AdmissionService {
 
   public saveListeReteues(listeRetenue: Array<RetenueEcrit>, refConcours: string) {
     for (var i = 0; i < listeRetenue.length; i++) {
-      listeRetenue[i].refConcours=refConcours;
+      listeRetenue[i].refConcours= refConcours;
     }
     this.http.post(this.url + "preselection", listeRetenue).subscribe(
       data => {
@@ -75,7 +79,15 @@ export class AdmissionService {
       }
     )
   }
-
+  public saveListeReteuesOral(listeRetenue: Array<RetenueEcrit>) {
+    this.http.post(this.url + "retenue_oral/save", listeRetenue).subscribe(
+      data => {
+        console.log('haha');
+      }, error1 => {
+        console.log('hihi');
+      }
+    )
+  }
   applyFilter(refCandidat: string) {
     if (refCandidat == null) {
       this.filteredRetenueEcrit = this.listRetenueInBd;
@@ -92,7 +104,7 @@ export class AdmissionService {
       data => {
         this.filteredRetenueEcrit = data;
         this.listRetenueInBd = data;
-        console.log(data);
+          console.log(reference);
       }, error1 =>
         console.log(error1))
   }

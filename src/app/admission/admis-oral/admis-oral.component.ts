@@ -42,7 +42,7 @@ export class AdmisOralComponent implements OnInit {
   private refCandidat: string;
 
   public saveListeReteues() {
-    this.admissionService.saveListeReteues(this.selection.selected,"")
+    this.admissionService.saveListeReteuesOral(this.selection.selected)
   }
 
 }

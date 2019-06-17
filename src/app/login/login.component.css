@@ -3,13 +3,6 @@
   flex-flow: column;
   height: 100%;
 }
-/deep/.loginSwal{
-  color: white;
-  margin-top: 4%;
-}
-/deep/.loginErrorSwal{
-  color: white;
-}
 #inner_fixed {
   height: 100px;
   background-color: grey;

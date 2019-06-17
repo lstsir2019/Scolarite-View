@@ -58,23 +58,27 @@
       <th mat-sort-header="nom" scope="col">Nom</th>
       <th mat-sort-header="prenom" scope="col">Prenom</th>
       <th mat-sort-header="6" scope="col">Email</th>
-      <th mat-sort-header="tel" scope="col">Telephone</th>
+      <th mat-sort-header="tel" scope="col">Diplome</th>
+      <th mat-sort-header="numChoix" scope="col">choix</th>
+
       <th  mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
 
     </tr>
     </thead>
     <tbody>
     <tr class="list-group-item-action" *ngFor="let c of listCandidats">
-      <td>{{c.cne}}</td>
-      <td>{{c.cin}}</td>
-      <td>{{c.statue}}</td>
-      <td>{{c.nom}}</td>
-      <td>{{c.prenom}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.tel}}</td>
+      <td>{{c.etudiantConcoursVo.cne}}</td>
+      <td>{{c.etudiantConcoursVo.cin}}</td>
+      <td>{{c.etudiantConcoursVo.statue}}</td>
+      <td>{{c.etudiantConcoursVo.nom}}</td>
+      <td>{{c.etudiantConcoursVo.prenom}}</td>
+      <td>{{c.etudiantConcoursVo.email}}</td>
+      <td> {{c.etudiantConcoursVo.diplomeEtudiantVo.refDiplome}}</td>
+      <td >{{c.numChoix}}</td>
+
       <td>
 
-        <a (click)="findByCne(c.cne)"   routerLink="Info" style="border:0px solid transparent; "
+        <a (click)="findByCne(c.etudiantConcoursVo.cne)"   routerLink="Info" style="border:0px solid transparent; "
                 class="btn btn-outline-secondary btn-sm"
         ><span class="fa fa-plus"></span></a>
 

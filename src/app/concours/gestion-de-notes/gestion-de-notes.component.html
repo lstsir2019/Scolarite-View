@@ -67,17 +67,21 @@
     <thead class="thead-light">
     <tr>
       <th style="border-top-left-radius:10px; " scope="col">Cne</th>
+      <th scope="col">Statue</th>
       <th scope="col">Nom</th>
       <th scope="col">Prenom</th>
-      <th style="border-top-right-radius:10px; " scope="col">Note</th>
+      <th scope="col">Diplome</th>
+      <th style="border-top-right-radius:10px; " scope="col">Note du module</th>
 
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let n of listeNotesModuleConcoursInBd">
       <td>{{n.retenueEcritVo.refCandidat}}</td>
+      <td>{{n.etudiantConcoursVo.statue}}</td>
       <td>{{n.etudiantConcoursVo.nom}}</td>
       <td>{{n.etudiantConcoursVo.prenom}}</td>
+      <td>{{n.etudiantConcoursVo.diplomeEtudiantVo.refDiplome}}</td>
       <td>{{n.note}}</td>
     </tr>
     </tbody>

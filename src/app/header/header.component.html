@@ -8,8 +8,10 @@
   </button>
   <!-- Links -->
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0" >
+
+      <!--Drop down Tayha -->
       <li class="nav-item dropdown  ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Demandes</a>
@@ -19,9 +21,7 @@
           <a class="dropdown-item"   routerLink="releve">Demande de Releves de Notes</a>
           <a class="dropdown-item"   routerLink="liste">Liste des demandes</a>
         </div></li>
-
-
-      <!--Drop down Demandes -->
+      <!--Drop down nawnaw -->
       <li class="nav-item dropdown  ">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Scolarité</a>
@@ -33,10 +33,14 @@
           <a class="dropdown-item"   routerLink="etudiants">Etudiants</a>
         </div>
       </li>
-
+      <!--Drop down l3ibat diali ana w yahya -->
         <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="Concours">Concours</a></li>
-      <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="Inscription">Candidature</a></li>
+       <li class="nav-item" routerLinkActive="active"><a class="nav-link" routerLink="Inscription">Candidature</a></li>
+      <li class="nav-item" routerLinkActive=""><a class="nav-link" (click)="logOut()">
+        {{statue}}</a></li>
+
 
     </ul>
+
   </div>
 </nav>

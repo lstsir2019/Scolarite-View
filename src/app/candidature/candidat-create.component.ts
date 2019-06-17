@@ -32,6 +32,8 @@ export class CandidatCreateComponent implements OnInit {
   public listAvailable: Array<String>=["1","2","3","4"];
   public etudiant: Candidat = new Candidat('', '', '', '', '', '', '',"","","");
   public list: Array<NoteSemestre> = [];
+  public listDiplome: Array<string> = [];
+
   public choix: Choix = new Choix('', '');
   private c: number;
 
@@ -65,11 +67,13 @@ export class CandidatCreateComponent implements OnInit {
     if (this.etudiant.niveau == 'Bac+2') {
       this.list = [new NoteSemestre('Semestre 1', ''), new NoteSemestre('Semestre 2', '')
         , new NoteSemestre('Semestre 3', ''), new NoteSemestre('Semestre 4', '')];
+      this.listDiplome=["DUT","DEUG","DEUST","CPGE","BTS","AUTRE "]
     }
     else if (this.etudiant.niveau == 'Bac+3') {
       this.list = [new NoteSemestre('Semestre 1', ''), new NoteSemestre('Semestre 2', '')
         , new NoteSemestre('Semestre 3', ''), new NoteSemestre('Semestre 4', ''),
         new NoteSemestre('Semestre 5', ''), new NoteSemestre('Semestre 6', '')];
+      this.listDiplome=["LST SIR","LST MIASI","LST IEEA","AUTRE"]
     }
   }
 

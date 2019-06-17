@@ -1,0 +1,25 @@
+<mat-dialog-content style="max-height: 85vh;">
+  <div class="container">
+    <div class="row" style="justify-content: center"><img src="assets/logo.png">
+    </div>
+    <h5 style="text-align: center">Ajouter une note oral pour le {{data.concours}}</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        <label for="select">Cne du candidat</label><br>
+        <select class="form-control" id="select">
+          <option *ngFor="let c of ListCandidatOral">{{c.refCandidat}}</option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <label>Note du Module</label><br>
+        <input type="number" class="form-control">
+      </div>
+    </div>
+    <div class="row" style="justify-content: center;margin-top: 3% ">
+      <button class="btn btn-outline-success" style="margin-right: 1%">Ajouter</button>
+      <button class="btn btn-outline-secondary" (click)="closeDialog()">Annuler</button>
+
+    </div>
+  </div>
+
+</mat-dialog-content>

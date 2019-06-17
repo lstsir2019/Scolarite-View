@@ -1,9 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator, MatTableDataSource} from "@angular/material";
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatPaginator, MatTableDataSource} from '@angular/material';
 import {RetenueEcrit} from "../../controller/model/retenue-ecrit.model";
 import {SelectionModel} from "@angular/cdk/collections";
 import {CandidatService} from "../../controller/service/candidat.service";
 import {AdmissionService} from "../../controller/service/admission.service";
+import {RetenueOralServiceService} from '../../controller/service/retenue-oral-service.service';
 
 @Component({
   selector: 'app-admission-final',
@@ -12,11 +13,11 @@ import {AdmissionService} from "../../controller/service/admission.service";
 })
 export class AdmissionFinalComponent implements OnInit {
   displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol', 'mention'];
-  dataSource = new MatTableDataSource<RetenueEcrit>(this.admissionService.listCandidats);
-  selection = new SelectionModel<RetenueEcrit>(true, this.admissionService.listCandidatsSelected);
+  dataSource = new MatTableDataSource<RetenueEcrit>(this.retenueOralService.listeRetenueFinal);
+  selection = new SelectionModel<RetenueEcrit>(true, this.retenueOralService.listeRetenueFinalSelected);
   public filtered: Array<RetenueEcrit>;
 
-  constructor(public candiatService: CandidatService, public  admissionService: AdmissionService) {
+  constructor(public candiatService: CandidatService, public  retenueOralService: RetenueOralServiceService,@Inject(MAT_DIALOG_DATA) public data:any) {
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,15 +34,15 @@ export class AdmissionFinalComponent implements OnInit {
   }
 
   applyFilter() {
-    const filter = (note: RetenueEcrit[]) => this.admissionService.listCandidats.filter(retenue => retenue.refCandidat.match("^" + this.refCandidat + ".*$"));
-    this.filtered = filter(this.admissionService.listCandidats);
+    const filter = (note: RetenueEcrit[]) => this.retenueOralService.listeRetenueFinal.filter(retenue => retenue.refCandidat.match("^" + this.refCandidat + ".*$"));
+    this.filtered = filter(this.retenueOralService.listeRetenueFinal);
     this.dataSource.data = this.filtered;
 
   }
 
   private refCandidat: string;
+public saveListeReteuesFinal(){
+  return this.retenueOralService.saveListeReteuesFinal(this.selection.selected,this.data.concours)
+}
 
-  public saveListeReteues() {
-    this.admissionService.saveListeReteues(this.selection.selected,'')
-  }
 }

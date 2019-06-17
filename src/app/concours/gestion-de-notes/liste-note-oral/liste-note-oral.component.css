@@ -1,7 +1,9 @@
 td {
   width: 10%;
 }
-
+table {
+  width: 100%;
+}
 .list-group-item-action:hover {
   background-color: beige;
 }
@@ -28,3 +30,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/deep/.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: dodgerblue;
+}
+
+
+/deep/.custom-ripple .mat-ripple-element {
+  background-color: dodgerblue!important;
+}

@@ -8,9 +8,9 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Année</span>
         </div>
-        <select class="form-control form-control">
-          <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
-
+        <select class="form-control" (click)="findConcoursByAnee()" [(ngModel)]="annee">
+          <option>&#45;&#45;SELECT&#45;&#45;</option>
+          <option *ngFor="let a of anneeConcours">{{a}}</option>
         </select>
       </div>
 
@@ -21,12 +21,12 @@
           <span class="input-group-text">Concours</span>
         </div>
         <select [(ngModel)]="refConcours" class="form-control form-control">
-          <option value="{{cc.reference}}" *ngFor="let cc of concourss ">Concours {{cc.refFiliere}}</option>
+          <option value='{{cc.reference}}' *ngFor="let cc of concours ">Concours {{cc.refFiliere}}</option>
         </select>
       </div>
     </div>
     <div class="col-sm-0">
-      <button type="button" (click)="finByRefConcours();findListeReteues()" class="btn btn-outline-success"><span
+      <button type="button" (click)="findListeRetenueInBd()" class="btn btn-outline-success"><span
         class="fa fa-search"> Selectionner</span>
       </button>
     </div>
@@ -43,40 +43,41 @@
 
     <div class="col-lg" style="padding-top: 0.4%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
-      <input (keyup)="findInListByCne()" [(ngModel)]="cne" type="number" id="transparentInput" placeholder="cne">
+      <input (keyup)="filter()" [(ngModel)]="refCandidat" type="text" id="transparentInput" placeholder="cne">
     </div>
 
   </div>
   <table matSort (matSortChange)="sortData($event)" class="table table-sm table-borderless ">
     <thead class="thead-light">
+   <!-- <tr style="text-align: center"  >
+     <th style="text-align:center;border-top-left-radius:10px; " class="bg-white" colspan="5">Informations des candidats</th>
+      <th  style="text-align:center;border-top-right-radius:10px; " class="bg-white" colspan="3">Notes des candidats</th>
+    </tr>-->
     <tr>
-      <th mat-sort-header="cne" style="border-top-left-radius:10px; " scope="col">Cne</th>
-      <th mat-sort-header="cin" scope="col">Cin</th>
-      <th mat-sort-header="statue" scope="col">Statue</th>
-      <th mat-sort-header="nom" scope="col">Nom</th>
-      <th mat-sort-header="prenom" scope="col">Prenom</th>
-      <th mat-sort-header="6" scope="col">Email</th>
-      <th mat-sort-header="tel" scope="col">Telephone</th>
-      <th mat-sort-header="8" style="border-top-right-radius:10px; " scope="col">Info</th>
-
+      <th mat-sort-header="cne" style="text-align:center;border-top-left-radius:10px; "   scope="col">Cne</th>
+      <th mat-sort-header="cin" scope="col">Nom</th>
+      <th mat-sort-header="statue" scope="col">Prenom</th>
+      <th mat-sort-header="nom" scope="col">Diplome</th>
+      <th mat-sort-header="prenom" scope="col">Mention</th>
+      <th mat-sort-header="6" scope="col">Preselection</th>
+      <th mat-sort-header="tel" scope="col">Note ecrit</th>
+      <th mat-sort-header="8"  style="text-align:center;border-top-right-radius:10px; "scope="col">Note Oral</th>
     </tr>
+
+
+
     </thead>
     <tbody>
-    <tr class="list-group-item-action" *ngFor="let c of listCandidats">
-      <td>{{c.cne}}</td>
-      <td>{{c.cin}}</td>
-      <td>{{c.statue}}</td>
-      <td>{{c.nom}}</td>
-      <td>{{c.prenom}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.tel}}</td>
-      <td>
+    <tr class="list-group-item-action" *ngFor="let c of listeRetenueFinalInBd">
+      <td>{{c.etudiantConcoursVo.cne}}</td>
+      <td>{{c.etudiantConcoursVo.nom}}</td>
+      <td>{{c.etudiantConcoursVo.prenom}}</td>
+      <td>{{c.etudiantConcoursVo.diplomeEtudiantVo.refDiplome}}</td>
+      <td>{{c.etudiantConcoursVo.diplomeEtudiantVo.mention}}</td>
+      <td>{{c.etudiantConcoursVo.diplomeEtudiantVo.note}}</td>
+      <td>{{c.noteConcoursVo.noteEcrit}}</td>
+      <td>{{c.noteConcoursVo.noteOral}}</td>
 
-        <a (click)="findByCne(c.cne)" routerLink="Info" style="border:0px solid transparent; "
-           class="btn btn-outline-secondary btn-sm"
-        ><span class="fa fa-plus"></span></a>
-
-      </td>
     </tr>
     </tbody>
   </table>

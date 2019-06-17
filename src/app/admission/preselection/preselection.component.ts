@@ -16,7 +16,7 @@ import {NoteModuleConcours} from "../../controller/model/note-module-concours";
 
 
 export class PreselectionComponent implements OnInit {
-  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol', 'mention'];
+  displayedColumns: string[] = ['select', 'position', 'name', 'weight', 'symbol', 'mention','note'];
   dataSource = new MatTableDataSource<RetenueEcrit>(this.admissionService.listCandidats);
   selection = new SelectionModel<RetenueEcrit>(true, this.admissionService.listCandidatsSelected);
   public filtered: Array<RetenueEcrit>;

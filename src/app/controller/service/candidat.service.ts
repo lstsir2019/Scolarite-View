@@ -12,11 +12,10 @@ export class CandidatService {
   }
 
   public url: string = 'http://localhost:8099/inscription/etudiants/';
-  public listCandidats: Array<Candidat> = [];
-  public filtered: Array<Candidat> = [];
+  public listCandidats: Array<Choix> = [];
+  public filtered: Array<Choix> = [];
 
   public CondidatSelected=new Candidat("","","","","","","","","","");
-
 
   public print(reference:string):any{
     const httpOptions = {
@@ -33,9 +32,9 @@ export class CandidatService {
         console.log(etudiant.adressePersonnelle)
         if (data== 1){
           Swal.fire({
-            title: 'Création élément',
-            text: 'Création réussite',
-            type: 'success',
+            title: 'Postulation non valiée ',
+            text: "Veuillez vérifier vos informations",
+            type: 'error',
           });
         }else {
           Swal.fire({
@@ -54,7 +53,7 @@ public findInListByCne(reference:string,cne:String){
 this.finByRefConcours(reference);
   }else{
 
- const filter =(candidat: Candidat[])=>this.listCandidats.filter(candidat=> candidat.cne.match("^"+cne+".*$"));
+ const filter =(candidats: Choix[])=>this.listCandidats.filter(choix=> choix.etudiantConcoursVo.cne.match("^"+cne+".*$"));
     this.filtered=filter(this.listCandidats);
 
   }
@@ -82,7 +81,7 @@ this.finByRefConcours(reference);
   }
 
   public finByRefConcours(refence: string){
-    this.http.get<Array<Candidat>>(this.url+"/listePostule/refConcours/"+refence).subscribe(
+    this.http.get<Array<Choix>>(this.url+"/listeDesChoixs/refConcours/"+refence).subscribe(
       data => {
         console.log(data)
         this.listCandidats = data;

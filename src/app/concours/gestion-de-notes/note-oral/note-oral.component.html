@@ -1,3 +1,76 @@
-<p>
-  note-oral works!
-</p>
+<div class="container-fluid ">
+  <br>
+  <h5 style="margin-bottom:2% ">Selectionner un Concours Oral</h5>
+
+  <div class="row" style="justify-content: center">
+    <div class="col-sm-4">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Année</span>
+        </div>
+        <select (click)="findconcoursByAnnee()" [(ngModel)]="annee" class="form-control ">
+          <option value="1" selected disabled> Annee</option>
+          <option value="{{a}}" *ngFor="let a of anneeConcours">{{a}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="input-group input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Concours</span>
+        </div>
+        <select [(ngModel)]="refconcours" class="form-control ">
+          <option value="Concours" selected disabled>Concours</option>
+          <option *ngFor="let c of concoursByAnnee ">{{c.reference}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-0">
+      <button  (click)="findByRefConcours()" class="btn btn-outline-success"><span class="fa fa-search"></span></button>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <h5>Liste: </h5>
+  <div class="row" style="margin-left: 1%;margin-bottom: 1%">
+    <div class="col-sm-0">
+      <button (click)="openDialogUpload();" id="upload" class="btn btn-outline">
+        <span style="color: dodgerblue" class="fa fa-upload"> </span>
+        <span class="text-secondary"> importer un fichier excel </span>
+      </button>
+    </div>
+    <div class="col-sm-0">
+      <button style="" (click)="openDialog();"class="btn btn-outline text-secondary"><span class="fa text-primary fa-plus"></span>
+        Ajouter une note
+      </button>
+    </div>
+    <div class="col-lg" style="padding-top: 0.5%">
+      <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
+      <input type="text" (keyup)="findInListByCne()" [(ngModel)]="refCandidat" id="transparentInput"
+             placeholder="cne">
+    </div>
+
+  </div>
+  <table class="table table-sm table-borderless ">
+    <thead class="thead-light">
+    <tr>
+      <th style="border-top-left-radius:10px; " scope="col">Cne</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Prenom</th>
+      <th scope="col">Note Ecrit</th>
+      <th style="border-top-right-radius:10px; " scope="col">Note Oral</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let n of listeNotesConcoursInBd">
+      <td>{{n.retenueEcritVo.refCandidat}}</td>
+      <td>{{n.retenueEcritVo.etudiantConcoursVo.nom}}</td>
+      <td>{{n.retenueEcritVo.etudiantConcoursVo.prenom}}</td>
+      <td>{{n.noteEcrit}}</td>
+      <td>{{n.noteOral}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

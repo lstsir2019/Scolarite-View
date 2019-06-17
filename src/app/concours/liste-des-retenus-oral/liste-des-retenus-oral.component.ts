@@ -4,6 +4,10 @@ import {ConcoursService} from "../../controller/service/concours.service";
 import {MatDialog} from "@angular/material";
 import {AdmisOralComponent} from "../../admission/admis-oral/admis-oral.component";
 import {AdmissionFinalComponent} from "../../admission/admission-final/admission-final.component";
+import {RetenueOralServiceService} from '../../controller/service/retenue-oral-service.service';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-liste-des-retenus-oral',
@@ -11,17 +15,19 @@ import {AdmissionFinalComponent} from "../../admission/admission-final/admission
   styleUrls: ['./liste-des-retenus-oral.component.css']
 })
 export class ListeDesRetenusOralComponent implements OnInit {
-  constructor(public admissionService: AdmissionService, public concoursService: ConcoursService,   public dialog: MatDialog) {
+
+  constructor(public retenueOralService: RetenueOralServiceService, public concoursService: ConcoursService,   public dialog: MatDialog) {
   }
 
-  public get filteredRetenue() {
-    return this.admissionService.filteredRetenueEcrit;
+  public get filteredRetenueOral() {
+    return this.retenueOralService.filteredRetenueOral;
   }
 
   ngOnInit() {
-
     this.concoursService.findAll();
+
   }
+
   openDialog() {
     const dialogRef = this.dialog.open(AdmissionFinalComponent, {
       panelClass: 'custom-dialog-container',
@@ -36,21 +42,18 @@ export class ListeDesRetenusOralComponent implements OnInit {
   public refCandidat: string;
 
   public applyFilter() {
-    this.admissionService.applyFilter(this.refCandidat);
+    this.retenueOralService.applyFilter(this.refCandidat);
   }
 
-  public findRetenueByRefConcours() {
-
-    this.admissionService.findRetenueByRefConcours(this.refConcours);
-
+  public findRetenueOralByRefConcours() {
+    this.retenueOralService.findlisteRetenueInBd(this.refConcours);
+  }
+  public findRetenueFinal(){
+    this.retenueOralService.findListeReteuesFinal(this.refConcours);
   }
 
-  public printRetenueEcrit() {
-    return this.admissionService.print(this.refConcours);
-  }
-
-  public get retenueEcritBd() {
-    return this.admissionService.filteredRetenueEcrit;
+  public print() {
+    return this.retenueOralService.print(this.refConcours);
   }
 
   public findconcoursByAnnee() {
@@ -65,4 +68,5 @@ export class ListeDesRetenusOralComponent implements OnInit {
   public get anneeConcours() {
     return this.concoursService.listeDesAnnee;
   }
+
 }

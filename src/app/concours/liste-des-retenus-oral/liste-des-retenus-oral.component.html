@@ -8,8 +8,9 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Année</span>
         </div>
-        <select class="form-control form-control">
-          <option disabled value>&#45;&#45;SELECT&#45;&#45;</option>
+        <select (click)="findconcoursByAnnee()"[(ngModel)]="annee" class="form-control form-control">
+          <option  >&#45;&#45;SELECT&#45;&#45;</option>
+          <option *ngFor="let c of anneeConcours" >{{c}}</option>
 
         </select>
       </div>
@@ -21,12 +22,12 @@
           <span class="input-group-text">Concours</span>
         </div>
         <select [(ngModel)]="refConcours" class="form-control form-control">
-          <option value="{{cc.reference}}" *ngFor="let cc of concourss ">Concours {{cc.refFiliere}}</option>
+          <option value="{{cc.reference}}" *ngFor="let cc of concoursByAnnee ">Concours {{cc.refFiliere}}</option>
         </select>
       </div>
     </div>
     <div class="col-sm-0">
-      <button type="button" (click)="finByRefConcours();findListeReteues()" class="btn btn-outline-success"><span
+      <button type="button" (click)="findRetenueOralByRefConcours();findRetenueFinal()" class="btn btn-outline-success"><span
         class="fa fa-search"> Selectionner</span>
       </button>
     </div>
@@ -47,7 +48,7 @@
     </div>
     <div class="col-lg" style="padding-top: 0.5%">
       <span style="padding-top: 0.5%" class="text-secondary"><span class="fa text-primary fa-search"></span> Chercher un etudiant dans la liste:  </span>
-      <input (keyup)="findInListByCne()" [(ngModel)]="cne" type="number" id="transparentInput" placeholder="cne">
+      <input (keyup)="applyFilter()" [(ngModel)]="refCandidat" type="number" id="transparentInput" placeholder="cne">
     </div>
 
   </div>
@@ -66,14 +67,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="list-group-item-action" *ngFor="let c of listCandidats">
-      <td>{{c.cne}}</td>
-      <td>{{c.cin}}</td>
-      <td>{{c.statue}}</td>
-      <td>{{c.nom}}</td>
-      <td>{{c.prenom}}</td>
-      <td>{{c.email}}</td>
-      <td>{{c.tel}}</td>
+    <tr class="list-group-item-action" *ngFor="let c of filteredRetenueOral">
+      <td>{{c.etudiantConcoursVo.cne}}</td>
+      <td>{{c.etudiantConcoursVo.cin}}</td>
+      <td>{{c.etudiantConcoursVo.statue}}</td>
+      <td>{{c.etudiantConcoursVo.nom}}</td>
+      <td>{{c.etudiantConcoursVo.prenom}}</td>
+      <td>{{c.etudiantConcoursVo.email}}</td>
+      <td>{{c.etudiantConcoursVo.tel}}</td>
       <td>
 
         <a (click)="findByCne(c.cne)" routerLink="Info" style="border:0px solid transparent; "
@@ -84,6 +85,7 @@
     </tr>
     </tbody>
   </table>
+
 </div>
 
 <router-outlet></router-outlet>

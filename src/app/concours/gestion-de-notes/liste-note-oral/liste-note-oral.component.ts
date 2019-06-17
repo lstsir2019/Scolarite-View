@@ -1,18 +1,18 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {GestionNotesService} from "../../../controller/service/gestion-notes.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
-import {RetenueEcrit} from "../../../controller/model/retenue-ecrit.model";
-import {SelectionModel} from "@angular/cdk/collections";
-import {NoteModuleConcours} from "../../../controller/model/note-module-concours";
+import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {SelectionModel} from '@angular/cdk/collections';
+import {NoteModuleConcours} from '../../../controller/model/note-module-concours';
+import {GestionNotesService} from '../../../controller/service/gestion-notes.service';
+import {HttpClient} from '@angular/common/http';
+import {NoteConcours} from '../../../controller/model/note-concours.model';
 
 @Component({
-  selector: 'app-liste-notes',
-  templateUrl: './liste-notes.component.html',
-  styleUrls: ['./liste-notes.component.css']
+  selector: 'app-liste-note-oral',
+  templateUrl: './liste-note-oral.component.html',
+  styleUrls: ['./liste-note-oral.component.css']
 })
-export class ListeNotesComponent implements OnInit {
+export class ListeNoteOralComponent implements OnInit {
+
   displayedColumns: string[] = ['select', 'RefEtudiant', 'Nom', 'Prenom', 'Note'];
   dataSource: MatTableDataSource<any>;
   selection: SelectionModel<any>;
@@ -35,8 +35,8 @@ export class ListeNotesComponent implements OnInit {
     this.onFileUpload(event);
   }
 
-  public listeNote: Array<NoteModuleConcours> = [];
-  public filtered: Array<NoteModuleConcours> = [];
+  public listeNote: Array<NoteConcours> = [];
+  public filtered: Array<NoteConcours> = [];
 
   public get refModule() {
     return this.gestionDeNotes.refModule;
@@ -54,19 +54,19 @@ export class ListeNotesComponent implements OnInit {
     this.OnUploadFile();
   }
 
-  url: string = 'http://localhost:8091/admission/retenus/xls/';
+  url: string = 'http://localhost:8091/admission/retenus/xls/note_oral/';
 
   public show: boolean;
 
   OnUploadFile() {
     this.show = true;
-    this.http.post<Array<NoteModuleConcours>>(this.url, this.formData).subscribe(
+    this.http.post<Array<NoteConcours>>(this.url, this.formData).subscribe(
       data => {
         console.log(data);
         this.filtered=data;
         this.listeNote = data;
-        this.dataSource = new MatTableDataSource<NoteModuleConcours>(this.listeNote);
-        this.selection = new SelectionModel<NoteModuleConcours>(true, this.listeNote);
+        this.dataSource = new MatTableDataSource<NoteConcours>(this.listeNote);
+        this.selection = new SelectionModel<NoteConcours>(true, this.listeNote);
         this.dataSource.paginator = this.paginator;
 
         console.log(this.listeNote);
@@ -78,17 +78,14 @@ export class ListeNotesComponent implements OnInit {
   }
 
   applyFilter() {
-    const filter = (note: NoteModuleConcours[]) => this.listeNote.filter(
-      note => note.retenueEcritVo.refCandidat.match("^" + this.refCandidat + ".*$"));
+    const filter = (note: NoteConcours[]) => this.listeNote.filter(note => note.retenueEcritVo.refCandidat.match("^" + this.refCandidat + ".*$"));
     this.filtered=filter(this.listeNote);
     this.dataSource.data = this.filtered;
 
   }
 
   public saveNotes() {
-    for (let i = 0; i < this.selection.selected.length; i++) {
-      this.selection.selected[i].refModuleConcours = this.refModule;
-    }
-    return this.gestionDeNotes.saveNoteModuleConcours(this.selection.selected,this.refModule);
+
+    return this.gestionDeNotes.saveNoteConcoursOral(this.selection.selected);
   }
 }

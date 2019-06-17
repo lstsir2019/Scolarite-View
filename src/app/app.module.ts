@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {CandidatCreateComponent} from './candidature/candidat-create.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule, MatCheckboxModule, MatDialogModule,
   MatIconModule,
   MatInputModule, MatPaginator, MatPaginatorModule, MatProgressBar, MatSidenavModule,
@@ -12,55 +13,60 @@ import {
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HeaderComponent} from './header/header.component';
-import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from "./app-routing.module";
-import {DemandeListComponent} from "./demande/demande-list/demande-list.component";
-import {DemandeInscriptionCreateComponent} from "./demande/demande-inscription-create/demande-inscription-create.component";
-import {DemandeReleveNotesCreateComponent} from "./demande/demande-releve-notes-create/demande-releve-notes-create.component";
-import {DemandeScolariteCreateComponent} from "./demande/demande-scolarite-create/demande-scolarite-create.component";
-import {DemandeScolariteListComponent} from "./demande/demande-scolarite-list/demande-scolarite-list.component";
-import {DemandeInscriptionListComponent} from "./demande/demande-inscription-list/demande-inscription-list.component";
-import {DemandeReleveNotesListComponent} from "./demande/demande-releve-notes-list/demande-releve-notes-list.component";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
+import {DemandeListComponent} from './demande/demande-list/demande-list.component';
+import {DemandeInscriptionCreateComponent} from './demande/demande-inscription-create/demande-inscription-create.component';
+import {DemandeReleveNotesCreateComponent} from './demande/demande-releve-notes-create/demande-releve-notes-create.component';
+import {DemandeScolariteCreateComponent} from './demande/demande-scolarite-create/demande-scolarite-create.component';
+import {DemandeScolariteListComponent} from './demande/demande-scolarite-list/demande-scolarite-list.component';
+import {DemandeInscriptionListComponent} from './demande/demande-inscription-list/demande-inscription-list.component';
+import {DemandeReleveNotesListComponent} from './demande/demande-releve-notes-list/demande-releve-notes-list.component';
 import {ConcoursComponent} from './concours/concours.component';
 import {ListeDesPostuleComponent} from './concours/liste-des-postule/liste-des-postule.component';
 import {ListeDesRetenusEcritComponent} from './concours/liste-des-retenus-ecrit/liste-des-retenus-ecrit.component';
 import {ListeDesRetenusOralComponent} from './concours/liste-des-retenus-oral/liste-des-retenus-oral.component';
 import {ListeDesAdmisComponent} from './concours/liste-des-admis/liste-des-admis.component';
 import {ScolariteComponent} from './scolarite/scolarite.component';
-import {NoteCreateComponent} from "./scolarite/notes/note-create/note-create.component";
-import {FiliereCreateComponent} from "./scolarite/filieres/filiere-create/filiere-create.component";
-import {ModuleCreateComponent} from "./scolarite/modules/module-create/module-create.component";
-import {EtudiantCreateComponent} from "./scolarite/etudiants/etudiant-create/etudiant-create.component";
-import {NgxSpinnerModule} from "ngx-spinner";
+import {NoteCreateComponent} from './scolarite/notes/note-create/note-create.component';
+import {FiliereCreateComponent} from './scolarite/filieres/filiere-create/filiere-create.component';
+import {ModuleCreateComponent} from './scolarite/modules/module-create/module-create.component';
+import {EtudiantCreateComponent} from './scolarite/etudiants/etudiant-create/etudiant-create.component';
+import {NgxSpinnerModule} from 'ngx-spinner';
 import {MatTableModule} from '@angular/material/table';
 import {AdmissionComponent} from './admission/admission.component';
 import {PreselectionComponent} from './admission/preselection/preselection.component';
 import {MatSortModule} from '@angular/material/sort';
-import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
-import {DemandeReleveNotesInfoComponent} from "./demande/demande-releve-notes-info/demande-releve-notes-info.component";
-import {ConcoursCreateComponent} from "./concours/concours-create/concours-create.component";
-import {ConcoursListComponent} from "./concours/concours-list/concours-list.component";
-import {CandidatInfoComponent} from "./concours/candidat-info/candidat-info.component";
+import {PvsCreateComponent} from './scolarite/pvs/pvs-create/pvs-create.component';
+import {DemandeReleveNotesInfoComponent} from './demande/demande-releve-notes-info/demande-releve-notes-info.component';
+import {ConcoursCreateComponent} from './concours/concours-create/concours-create.component';
+import {ConcoursListComponent} from './concours/concours-list/concours-list.component';
+import {CandidatInfoComponent} from './concours/candidat-info/candidat-info.component';
 
-import { MultiSelectAllModule } from '@syncfusion/ej2-angular-dropdowns';
-import { DemandeScolariteInfoComponent } from './demande/demande-scolarite-info/demande-scolarite-info.component';
+import {MultiSelectAllModule} from '@syncfusion/ej2-angular-dropdowns';
+import {DemandeScolariteInfoComponent} from './demande/demande-scolarite-info/demande-scolarite-info.component';
 import {DemandeInfoComponent} from './demande/demande-inscription-info/demande-info.component';
 import {GestionDeNotesComponent} from './concours/gestion-de-notes/gestion-de-notes.component';
 import {ListeNotesComponent} from './concours/gestion-de-notes/liste-notes/liste-notes.component';
-import {DemandeComponent} from "./demande/demande.component";
+import {DemandeComponent} from './demande/demande.component';
 
 
-import {SelectionModel} from "@angular/cdk/collections";
+import {SelectionModel} from '@angular/cdk/collections';
 import {ConcoursInfoComponent} from './concours/concours-info/concours-info.component';
 import {ModuleConcoursUpdateComponent} from './concours/module-concours-update/module-concours-update.component';
 import {NoteOralComponent} from './concours/gestion-de-notes/note-oral/note-oral.component';
-import {NoteEcritComponent} from './concours/gestion-de-notes/note-ecrit/note-ecrit.component';
 import {AdmisOralComponent} from './admission/admis-oral/admis-oral.component';
 import {AdmissionFinalComponent} from './admission/admission-final/admission-final.component';
+import {ListeNoteOralComponent} from './concours/gestion-de-notes/liste-note-oral/liste-note-oral.component';
+import {EspaceEtudiantComponent} from './espace-etudiant/espace-etudiant.component';
+import {UneSeulNoteComponent} from './concours/gestion-de-notes/note-oral/une-seul-note/une-seul-note.component';
+import {LoginComponent} from './login/login.component';
+import {ErrorInterceptorService} from './controller/Auth/error-interceptor.service';
+import {JwtInterceptorService} from './controller/Auth/jwt-interceptor.service';
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
 
 
     AppComponent,
@@ -105,9 +111,12 @@ import {AdmissionFinalComponent} from './admission/admission-final/admission-fin
     ListeNotesComponent,
     MatProgressBar,
     NoteOralComponent,
-    NoteEcritComponent,
     AdmisOralComponent,
-    AdmissionFinalComponent
+    AdmissionFinalComponent,
+    ListeNoteOralComponent,
+    EspaceEtudiantComponent,
+    UneSeulNoteComponent,
+    LoginComponent
 
   ],
   imports: [
@@ -128,16 +137,21 @@ import {AdmissionFinalComponent} from './admission/admission-final/admission-fin
     MatSortModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    MultiSelectAllModule
+    MultiSelectAllModule,
+    MatAutocompleteModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},],
   bootstrap: [AppComponent],
   entryComponents: [PreselectionComponent,
     ConcoursInfoComponent,
     ModuleConcoursUpdateComponent,
     ListeNotesComponent,
     AdmisOralComponent,
-    AdmissionFinalComponent]
+    AdmissionFinalComponent,
+    ListeNoteOralComponent,
+  UneSeulNoteComponent,
+  ]
 })
 export class AppModule {
 }

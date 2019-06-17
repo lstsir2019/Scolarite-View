@@ -41,11 +41,26 @@
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
+                  <span class="input-group-text">statue</span>
+                </div>
+                <select [(ngModel)]="etudiant.statue"
+                        class="form-control form-control-sm">
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mme.">Mme.</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
                   <span class="input-group-text">Nom</span>
                 </div>
                 <input type="text" class="form-control" [(ngModel)]="etudiant.nom">
               </div>
             </div>
+
+          </div>
+          <div class="row">
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -54,8 +69,6 @@
                 <input type="text" class="form-control" [(ngModel)]="etudiant.prenom">
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -64,6 +77,9 @@
                 <input type="text" class="form-control" [(ngModel)]="etudiant.email">
               </div>
             </div>
+
+          </div>
+          <div class="row">
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -72,8 +88,6 @@
                 <input type="text" class="form-control"  [(ngModel)]="etudiant.tel">
               </div>
             </div>
-          </div>
-          <div class="row">
             <div class="col-sm-6">
               <div class="input-group input-group-sm mb-3">
                 <div class="input-group-prepend">
@@ -82,14 +96,7 @@
                 <input  [(ngModel)]="etudiant.dateNaissance"  type="date" class="form-control form-control-range">
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="input-group input-group-sm mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">statue</span>
-                </div>
-                <input  [(ngModel)]="etudiant.statue"  type="text" class="form-control">
-              </div>
-            </div>
+
           </div>
           <div class="row">
             <div class="col-sm-12">
@@ -134,10 +141,12 @@
           <div class="col-sm-6">
             <div class="input-group input-group-sm mb-3">
               <div class="input-group-prepend">
-                <span class="input-group-text">Type Diplome</span>
+                <span class="input-group-text">Diplome</span>
               </div>
               <select [(ngModel)]="etudiant.diplomeEtudiantVo.refDiplome" class="form-control form-control-sm">
-                <option> cccc</option>
+                <option *ngFor="let c of listDiplome">{{c}}</option>
+
+
               </select>
             </div>
 
@@ -166,6 +175,7 @@
               <select [(ngModel)]="etudiant.diplomeEtudiantVo.anneeObtention" class="form-control form-control-sm">
                 <option value="2017"> 2017</option>
                 <option value="2018"> 2018</option>
+                <option value="2018"> 2019</option>
 
               </select>
             </div>

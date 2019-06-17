@@ -71,6 +71,11 @@
               <th mat-header-cell *matHeaderCellDef> mention</th>
               <td mat-cell *matCellDef="let element"> {{element.etudiantConcoursVo.diplomeEtudiantVo.mention}}</td>
             </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="note">
+              <th mat-header-cell *matHeaderCellDef> Note</th>
+              <td mat-cell *matCellDef="let element"> {{element.etudiantConcoursVo.diplomeEtudiantVo.note}}</td>
+            </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"
