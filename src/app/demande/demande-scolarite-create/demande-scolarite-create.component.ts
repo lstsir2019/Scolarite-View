@@ -14,6 +14,7 @@ export class DemandeScolariteCreateComponent implements OnInit {
   constructor(public demandeScolariteService: DemandeScolariteService, public filiereService: FiliereService) { }
 
   ngOnInit() {
+    this.filiereService.findAll();
     this.demandeScolariteService.findAll();
 
   }

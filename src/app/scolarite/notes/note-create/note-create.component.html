@@ -1,93 +1,148 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="card">
-        <div class=" card-header card-text fa fa-pencil" align="center"><B>Upload des notes</B></div>
+<div class="container-fluid" style="background-color: darkslategrey">
+  <ngx-spinner
+    bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    type="ball-scale-multiple">
+    <p style="font-size: 20px; color: white"><b>Please wait..</b></p>
+  </ngx-spinner>
+  <div class="row" style="background-color: darkslategrey">
+    <div class="col-sm-4 " style="background-color: darkslategrey">
+      <div style="height: 100%" class="card">
+        <div class=" card-header card-text fa fa-pencil" align="center"><B>Import des notes</B></div>
         <div class="card-body">
-          <div class="form-group">
-            <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILE NAME</b></span>
-              </div>
-              <input type="file" class="form-control" placeholder="Path" [(ngModel)]="note.xpath"/>
+          <div class="input-group input-group-sm">
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>FICHIER</b></span></div>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" [(ngModel)]="note.xpath" (change)="checkType()" required/>
+              <label class="custom-file-label">{{note.xpath}}</label>
             </div>
           </div>
           <br>
           <div class="form-group">
             <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> START LINE </b></span>
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>FILIERE</b></span>
+              </div>
+              <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refFiliere"/>-->
+              <select [(ngModel)]="note.refFiliere" class="form-control form-control" (change)="initModules()">
+                <option>SIR</option>
+                <option>MIPC</option>
+                <option>BCG</option>
+                <option>MIP</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>MODULE</b></span>
+              </div>
+              <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refModule"/>-->
+              <select [(ngModel)]="note.refModule" class="form-control">
+                <option *ngFor="let m of Modules1" value="{{ m }}">{{ m }}</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>ANNEE</b></span>
+              </div>
+              <input type="number" min="2010" max="2030" step="1" class="form-control" placeholder="Année" [(ngModel)]="note.annee"/>
+            </div>
+          </div>
+          <br>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 120px"><b> LIGNE DEBUT </b></span>
               </div>
               <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
-                     [(ngModel)]="note.startLine"/>
+                     [(ngModel)]="note.startLine" [disabled]="checkBoxState == false"/>
             </div>
           </div>
           <br>
           <div class="form-group">
             <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> START COL </b></span>
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 120px"><b> COL DEBUT </b></span>
               </div>
               <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
-                     [(ngModel)]="note.startCol"/>
+                     [(ngModel)]="note.startCol" [disabled]="checkBoxState == false"/>
             </div>
           </div>
           <br>
           <div class="form-group">
             <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b> END COL </b></span>
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 120px"><b> COL FIN </b></span>
               </div>
               <input type="number" max="20" min="0" class="form-control" placeholder="Ligne de début"
-                     [(ngModel)]="note.endCol"/>
+                     [(ngModel)]="note.endCol" [disabled]="checkBoxState == false"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 120px"><b> ACTIVER </b></span>
+              </div>
+              <input type="checkbox" class="form-control" placeholder="ENABLE"
+                     [(ngModel)]="checkBoxState"/>
             </div>
           </div>
           <br>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-md fa fa-upload" (click)="check()"><b>Upload</b></button>
+            <button type="submit" class="btn btn-info btn-block fa fa-upload" (click)="check()"><b>Import</b></button>
+          </div>
+          <div class="col-sm-0">
+            <button id="download" (click)="save()" class="btn btn-outline">
+              <span style="color: dodgerblue" class="fa fa-save"> </span>
+              <span class="text-secondary"> Sauvegarder </span>
+            </button>
+          </div>
+          <div class="col-sm-0">
+            <button (click)="deleteAll()" style="" class="btn btn-outline text-secondary"><span
+              class="fa text-primary fa-trash-o"></span> Vider la liste
+            </button>
           </div>
         </div>
+        <!--HNA-->
       </div>
     </div>
-    <div class="col-md">
-      <div class="card">
+    <div class="col-md shadow p-3 mb-5 rounded" style="background-color: darkslategrey">
+      <div style="height: 100%" class="card">
         <div class="card-header card-text fa fa-list" align="center"><b> Liste des notes </b></div>
         <div class="card-body">
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table table-sm table-bordered table-hover table-striped mb-0">
-              <thead class="thead-light">
+            <table
+              class="table table-sm table-bordered table-hover shadow ">
+              <thead class="thead" style="background-color: teal">
               <tr>
-                <th scope="col">CNE</th>
-                <th scope="col">NOM</th>
-                <th scope="col">PRENOM</th>
-                <th scope="col">NOTE Av.Ratt</th>
-                <th scope="col">NOTE Ap.Ratt</th>
-                <th scope="col">NOTE FINALE</th>
-                <th scope="col">STATUT FINAL</th>
-                <th scope="col">ETAT</th>
-                <th scope="col">ACTIONS</th>
+                <th scope="col" style="text-align:center; color:white">CNE</th>
+                <th scope="col" style="text-align:center; color:white">NOM</th>
+                <th scope="col" style="text-align:center; color:white">PRENOM</th>
+                <th scope="col" style="text-align:center; color:white">NOTE Av.Ratt</th>
+                <th scope="col" style="text-align:center; color:white">NOTE Ap.Ratt</th>
+                <th scope="col" style="text-align:center; color:white">NOTE FINALE</th>
+                <th scope="col" style="text-align:center; color:white">STATUT FINAL</th>
+                <th scope="col" style="text-align:center; color:white">ETAT</th>
+                <th scope="col" style="text-align:center; color:white">ACTIONS</th>
               </tr>
               </thead>
-              <tbody *ngFor="let n of notesCheck"
-                     [ngClass]="{'negative': n.state == 'Good', 'noteorange': n.state == 'Pas de note finale', 'bdblue': n.state == 'Existant', 'cneyellow': n.state == 'Pas de CNE'}">
-              <tr>
-                <td>{{ n.refEtudiant }}</td>
+              <tbody>
+              <tr *ngFor="let n of notesCheck; let id = index"
+                  [ngClass]="{'negative': n.state == 'Good', 'noteorange': n.state == 'Pas de note finale', 'bdblue': n.state == 'Existant', 'cneyellow': n.state == 'Pas de CNE'}">
+                <td contenteditable="true" (keyup)="updateList(id, 'refEtudiant', $event)">{{ n.refEtudiant }}</td>
                 <td>{{ n.nom }}</td>
                 <td>{{ n.prenom }}</td>
-                <td>{{ n.noteAvantJury }}</td>
-                <td>{{ n.mentionApresJury }}</td>
-                <td>{{ n.mention }}</td>
-                <td>{{ n.etat }}</td>
+                <td contenteditable="true" (keyup)="updateList(id, 'noteAvantJury', $event)">{{ n.noteAvantJury }}</td>
+                <td contenteditable="true" (keyup)="updateList(id, 'mentionApresJury', $event)">{{ n.mentionApresJury }}</td>
+                <td contenteditable="true" (keyup)="updateList(id, 'mention', $event)">{{ n.mention }}</td>
+                <td contenteditable="true" (keyup)="updateList(id, 'etat', $event)">{{ n.etat }}</td>
                 <td>{{ n.state }}</td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-sm fa fa-edit" data-toggle="modal"
-                          data-target="#exampleModalCenter"></button>
                   <button type="button" class="btn btn-danger btn-sm fa fa-trash" (click)="deleteItem(n)"></button>
                 </td>
               </tr>
               </tbody>
             </table>
-          </div>
-          <div align="center">
-            <button type="button" class="btn btn-outline-success btn-md" (click)="save()"><B>Valider</B></button>
-            <button type="button" class="btn btn-outline-secondary btn-md" (click)="deleteAll()"><b> Clear</b>
-            </button>
           </div>
         </div>
       </div>

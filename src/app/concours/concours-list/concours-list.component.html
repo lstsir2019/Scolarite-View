@@ -1,50 +1,45 @@
 <div class="container-fluid" *ngIf="route.children.length===0 ">
-  <div class="card spacer">
-    <div align="center" class="card-header"><b>RECHERCHE</b></div>
-    <div class="card-body">
-      <div class="form-row">
-        <div class="input-group mb-3 col">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Reference</span>
-          </div>
-          <input type="text" class="form-control" [(ngModel)]="concoursSearched.reference">
-        </div>
-        <div class="input-group mb-3 col">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Année</span>
-          </div>
-          <input type="number" min="2019" class="form-control" [(ngModel)]="concoursSearched.anneeConcours">
-        </div>
-        <div class="input-group  mb-3 col">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Filière</span>
-          </div>
-          <select [(ngModel)]="concoursSearched.refFiliere" class="form-control ">
-            <option></option>
-            <option value="{{f.reference}}" *ngFor="let f of filieres">{{f.reference}}</option>
-          </select>
-        </div>
-        <div class=" col">
-          <button class="btn btn-block btn-outline-info " (click)="findByQuery()"> Recherche</button>
-        </div>
+  <br>
+  <h5 align="center">RECHERCHER UN CONCOURS</h5>
+  <br>
+  <div class="form-row">
+    <div class="input-group mb-3 col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Reference</span>
       </div>
+      <input type="text" class="form-control" [(ngModel)]="concoursSearched.reference">
+    </div>
+    <div class="input-group mb-3 col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Année</span>
+      </div>
+      <input type="number" min="2019" class="form-control" [(ngModel)]="concoursSearched.anneeConcours">
+    </div>
+    <div class="input-group  mb-3 col">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Filière</span>
+      </div>
+      <select [(ngModel)]="concoursSearched.refFiliere" class="form-control ">
+        <option></option>
+        <option value="{{f.abreviation}}" *ngFor="let f of filieres">{{f.abreviation}}</option>
+      </select>
+    </div>
+    <div class=" col">
+      <button class="btn btn-block btn-outline-info " (click)="findByQuery()"> Recherche</button>
     </div>
   </div>
   <br>
   <div class="container-fluid">
+    <div class="row" style="justify-content: center"><h5 align="center">LISTE DES CONCOURS</h5>
 
-
-    <div class="card spacer">
-      <div class="card-header" align="center"><b>LISTE DES CONCOURS</b></div>
-
-      <table class="table table-hover table-sm">
-        <thead class="thead-dark">
-        <th scope="col">REFERENCE</th>
+      <table class="table table-sm table-borderless">
+        <thead class="thead-light">
+        <th scope="col" style="border-top-left-radius:10px;">REFERENCE</th>
         <th scope="col">DATE C.Ecrit</th>
         <th scope="col">DATE C.Oral</th>
         <th scope="col">FILIERE</th>
         <th scope="col">NOMBRE DE PLACE</th>
-        <th scope="col">MODIFICATION</th>
+        <th scope="col" style="border-top-right-radius:10px;">MODIFICATION</th>
 
         </thead>
         <tbody>
@@ -55,11 +50,11 @@
           <td>{{con.refFiliere}}</td>
           <td>{{con.nbreplace}}</td>
           <td>
-            <button class="  btn btn-sm btn-outline-info fa fa-edit "
-                    (click)="findModuleConcoursByReferenceConcours(con)"></button>
-            <button class=" btn btn-sm btn-outline-danger fa fa-trash"
+            <button class="  btn btn-outline-info fa fa-edit " style= "border:0px solid transparent;"
+                    (click)="OpenupdateDialog(con)"></button>
+            <button class=" btn btn-outline-danger fa fa-trash" style= "border:0px solid transparent;"
                     (click)="deleteConcoursComplet(con)"></button>
-            <button class=" btn btn-sm btn-outline-info fa fa-plus "
+            <button class=" btn btn-outline-info fa fa-plus " style= "border:0px solid transparent;"
                     (click)="findModuleConcoursByReferenceConcours(con)" routerLink="ConcoursInfo"></button>
 
 

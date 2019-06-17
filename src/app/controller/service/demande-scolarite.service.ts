@@ -9,9 +9,9 @@ import {DemandeInscription} from '../model/demande-inscription.model';
 })
 export class DemandeScolariteService {
 
-  private _url:string="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/";
-  private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/refEtudiant/";
-  private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeScolarites/chercher";
+  private _url:string="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeScolarites/";
+  private _url2:string="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeScolarites/refEtudiant/";
+  private _url3:string ="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeScolarites/chercher";
 
 
   private _demandeScolariteSearch: DemandeScolarite = new DemandeScolarite("","","","","","");
@@ -33,60 +33,83 @@ export class DemandeScolariteService {
 
 
   public saveDemandeScolarite(){
-    this._http.post<number>(this._url, this._demandeScolariteCreate).subscribe(
-      data=>{
-        if (data == -1) {
-          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+    if(this._demandeScolariteCreate.email.includes("@")){
+      this._http.post<number>(this._url, this._demandeScolariteCreate).subscribe(
+        data=>{
+          if (data == -1) {
+            Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+          }
+          else if (data == -3) {
+            Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
+          }
+          else if (data == -4) {
+            Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
+          }
+          else if (data == -5) {
+            Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
+          }
+          else if (data == -6) {
+            Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
+          }
+          else if (data == -7) {
+            Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
+          }
+          else if (data == -2) {
+            Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
+          }
+          else { (data == 1)
+            Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+            this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "","");
+          }
+        } ,error=>{
+          console.log("error");
         }
-        else if (data == -3) {
-          Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
-        }
-        else if (data == -4) {
-          Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
-        }
-        else if (data == -5) {
-          Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
-        }
-        else if (data == -6) {
-          Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
-        }
-        else if (data == -7) {
-          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
-        }
-        else if (data == -2) {
-          Swal.fire('ERREUR !', 'Le champ "CNE" ne peut pas être vide !', 'error');
-        }
-        else { (data == 1)
-          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
-        }
-        console.log("ok");
-        this._demandeScolariteCreate = new DemandeScolarite("", "", "", "", "","");
-      } ,error=>{
-        console.log("error");
-      }
-    );
+      );
+    }else {
+      Swal.fire('ERREUR !', "Le champ 'EMAIL' n'est pas valide !", 'error');
+    }
+
   }
 
 
 
 public deleteDemandeScolarite(demandeScolarite: DemandeScolarite) {
-  this.demandeScolariteSelected = demandeScolarite;
-  if (this.demandeScolariteSelected != null) {
-    this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
-      error => {
-        console.log("deleted ...");
-        this.demandeScolariteSelected;
-      });
-    let index:number = this._demandeScolarites.indexOf(demandeScolarite);
-    this._demandeScolarites.splice(index,1);
-  }
-}
+  Swal.fire({
+    title: '',
+    text: 'Souhaitez-vous vraiment supprimer la demande ?',
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d6000a',
+    confirmButtonText: 'Supprimer',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.value) {
+      this.demandeScolariteSelected = demandeScolarite;
+      if (this.demandeScolariteSelected != null) {
+        this._http.delete<DemandeScolarite>(this._url2 + this._demandeScolariteSelected.refEtudiant).subscribe(
+          error => {
+            console.log("deleted ...");
+            this.demandeScolariteSelected;
+          });
+        let index:number = this._demandeScolarites.indexOf(demandeScolarite);
+        this._demandeScolarites.splice(index,1);
+      }
+      Swal.fire(
+        '',
+        'Supprimé !',
+        'success'
+      )
+    }
 
+
+},
+    )
+}
   public print(refEtudiant : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
     };
-    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeScolarites/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
+    return this.http.get("http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeScolarites/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
       var downloadURL = URL.createObjectURL(resultBlob);
       window.open(downloadURL);});
   }

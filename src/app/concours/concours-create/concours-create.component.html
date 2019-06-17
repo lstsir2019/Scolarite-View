@@ -34,7 +34,7 @@
                 <span class="input-group-text">Filière</span>
               </div>
               <select [(ngModel)]="concours.refFiliere" class="form-control form-control">
-                <option value="{{f.reference}}" *ngFor="let f of filieres">{{f.reference}}</option>
+                <option value="{{f.abreviation}}" *ngFor="let f of filieres">{{f.abreviation}}</option>
               </select>
             </div>
           </div>

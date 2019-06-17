@@ -7,5 +7,5 @@ export class Filiere {
   public moduless2 = new Array<Module>();
   public code: string;
   public filieres = new Array<Filiere>();
-  constructor(public libelle: string, public reference: string, public refDepartement: string) {}
+  constructor(public libelle: string, public abreviation: string, public objectif: string,public typeFiliere:string , public referenceEntiteAdministratif : string ) {}
 }

@@ -4,6 +4,7 @@ import {Concours} from '../model/concours.model';
 import Swal from 'sweetalert2';
 import {CoefModuleConcours} from '../model/coef-module-concours.model';
 import {ModuleConcours} from '../model/module-concours.model';
+import {Filiere} from '../model/filiere.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,18 +17,19 @@ export class ConcoursService {
 
   private _url: string = 'http://localhost:8090/concours-api/concours/';
   private _url1: string = 'http://localhost:8090/concours-api/concours/search';
-  private _url2: string = 'http://localhost:8090/concours-api/concours/update';
-  public listeDesAnnee= [];
-  public listeConcoursByAnnee=[];
-  public listeModuleConcours=[];
-  private _concoursCreate: Concours = new Concours('', '', '', '', '', '','','');
+  private _url2: string = 'http://localhost:8090/concours-api/concours/update/';
+  public listeDesAnnee = [];
+  public listeConcoursByAnnee = [];
+  public listeModuleConcours = [];
+  private _concoursCreate: Concours = new Concours('', '', '', '', '', '', '', '');
 
   private _coefmoduleConcours: CoefModuleConcours = new CoefModuleConcours('');
   private _moduleCreate: ModuleConcours = new ModuleConcours('', this._coefmoduleConcours, 0);
   private _listConcours: Array<Concours>;
   private _concoursSelected: Concours;
   private _moduleSelected: ModuleConcours;
-  private _concoursSearched: Concours = new Concours('', '', '', '', '', '','','');
+  private _concoursSearched: Concours = new Concours('', '', '', '', '', '', '', '');
+  private _filieres: Array<Filiere>;
 
   public addModuleConcours() {
     let coefModuleConcoursVoClone = new CoefModuleConcours(this._moduleCreate.coefModuleConcoursVo.coef);
@@ -49,7 +51,7 @@ export class ConcoursService {
           Swal.fire('SUCCES', 'Création réussite', 'success');
           console.log('ok');
           this.findAll();
-          this._concoursCreate = new Concours('', '', '', '', '', '','','');
+          this._concoursCreate = new Concours('', '', '', '', '', '', '', '');
         } else {
           Swal.fire('ERREUR !', 'Erreur !', 'error');
         }
@@ -138,19 +140,48 @@ export class ConcoursService {
     this._concoursSearched = value;
   }
 
+
+  get url2(): string {
+    return this._url2;
+  }
+
+  set url2(value: string) {
+    this._url2 = value;
+  }
+
+  get filieres(): Array<Filiere> {
+    return this._filieres;
+  }
+
+  set filieres(value: Array<Filiere>) {
+    this._filieres = value;
+  }
+
+  findfiliereByTypeFiliere() {
+    this.http.get<Array<Filiere>>(this._url + '/filiere/type/2').subscribe(
+      data => {
+        this.filieres = data;
+      }, error => {
+        console.log('error while loading filieres ...');
+      }
+    );
+  }
+
+
   findAll() {
     this.http.get<Array<Concours>>(this._url).subscribe(
       data => {
         this._listConcours = data;
-        for (let i=0;i<this.listConcours.length;i++) {
+        for (let i = 0; i < this.listConcours.length; i++) {
           this.listeDesAnnee.push(this.listConcours[i].anneeConcours);
-          this.listeDesAnnee=this.listeDesAnnee.filter((e1,i,a)=>i===a.indexOf(e1))
+          this.listeDesAnnee = this.listeDesAnnee.filter((e1, i, a) => i === a.indexOf(e1));
         }
       }, error => {
         console.log('error while loading concours ...');
       }
     );
   }
+
 
   public findModuleConcoursByReferenceConcours(concours: Concours) {
     this._concoursSelected = concours;
@@ -166,15 +197,30 @@ export class ConcoursService {
     }
   }
 
+  public refdaba: string;
+
   public findModuleConcoursByRefConcours(reference: string) {
-      this.http.get<Array<ModuleConcours>>(this._url + 'reference/' + reference + '/module-concours').subscribe(
-        data => {
-          this.listeModuleConcours=data;
-          console.log(this.listeModuleConcours);
-        }, error => {
-          console.log('error while loading Modules ...');
-        }
-      );
+    this.refdaba = reference;
+    this.http.get<Array<ModuleConcours>>(this._url + 'reference/' + reference + '/module-concours').subscribe(
+      data => {
+        this.listeModuleConcours = data;
+        console.log(this.listeModuleConcours);
+      }, error => {
+        console.log('error while loading Modules ...');
+      }
+    );
+
+  }
+
+  public findConcoursByRefConcours(reference: string) {
+    this.http.get<Array<Concours>>(this._url + 'reference/' + reference).subscribe(
+      data => {
+        this._listConcours = data;
+        console.log(this._listConcours);
+      }, error => {
+        console.log('error while loading Modules ...');
+      }
+    );
 
   }
 
@@ -194,24 +240,22 @@ export class ConcoursService {
 
   }
 
+
   public deleteModuleConcours(moduleConcours: ModuleConcours) {
     this.moduleSelected = moduleConcours;
     if (this.moduleSelected != null) {
       console.log(this.url + 'reference/' + this.moduleSelected.reference);
-      this.http.delete<ModuleConcours>(this.url + 'reference/' + this.concoursSelected.reference + '/module-concours/reference/' + this.moduleSelected.id).subscribe(error => {
-
-        console.log('Module Deleted with reference = ' + this.concoursSelected.reference + '' + error);
-        this.concoursSelected.moduleConcoursVo = new Array();
+      this.http.delete<ModuleConcours>(this.url + 'module-concours/reference/' + this.moduleSelected.id).subscribe(error => {
+        this.findModuleConcoursByReferenceConcours(this.concoursSelected);
       });
-      let index1: number = this.concoursCreate.moduleConcoursVo.indexOf(moduleConcours);
-      this.concoursCreate.moduleConcoursVo.splice(index1, 1);
+
     }
   }
 
-  public updateConcours(concoursupdated: Concours) {
-    if (concoursupdated != null) {
+  public updateConcours(concours: Concours) {
+
       console.log('koko');
-      this.http.put(this._url2, concoursupdated).subscribe(
+      this.http.put(this._url2,concours).subscribe(
         data => {
           if (data == -1) {
             Swal.fire({
@@ -242,54 +286,38 @@ export class ConcoursService {
           console.log(error);
         }
       );
-    }
+
   }
-  /*public updateModuleConcours(moduleupdated: ModuleConcours) {
-    if (moduleupdated != null) {
+
+  public updateModuleConcours(id: number,coef:string) {
+    this.findByRefModule(id);
+    this.moduleSelected.coefModuleConcoursVo.coef=coef;
       console.log('koko');
-      this.http.put(this._url2, concoursupdated).subscribe(
+      this.http.put('http://localhost:8090/concours-api/concours/module-concours/update/', this.moduleSelected).subscribe(
         data => {
-          if (data == -1) {
-            Swal.fire({
-              title: 'failed !',
-              text: 'déja accorder',
-              type: 'error',
-            });
-          }
-
-          if (data == -1) {
-            Swal.fire({
-              title: 'failed !',
-              text: 'qte non acceptable',
-              type: 'error',
-            });
-          }
-
-          if (data == 1) {
-            Swal.fire({
-              title: 'done !!',
-              text: 'une qte a été accorder',
-              type: 'success',
-            });
-          }
+          console.log(coef)
+          if (data == 1){
           console.log('Done ... !');
-        },
+        }},
         error => {
           console.log(error);
         }
       );
-    }
-  }*/
+
+
+  }
 
   public findByAnneeConcours(anneeConcours: number) {
     this.http.get<Array<Concours>>(this._url + "annee/" + anneeConcours).subscribe(
       data => {
+        this.listeConcoursByAnnee = data;
+        console.log(data);
         this.listeConcoursByAnnee=data;
         console.log(this.listeConcoursByAnnee);
       }, error1 => {
-        console.log("error Annee");
+        console.log('error Annee');
       }
-    )
+    );
 
   }
 
@@ -304,16 +332,17 @@ export class ConcoursService {
     );
   }
 
-  public findByRefModule(id:number){
-    this.http.get<ModuleConcours>(this.url+"module-concours/"+id).subscribe(
-      data=>{
-        this.moduleSelected=data;
-        console.log("ok"+ this.moduleSelected.id);
+  public findByRefModule(id: number) {
+    this.http.get<ModuleConcours>(this.url + 'module-concours/' + id).subscribe(
+      data => {
+        this.moduleSelected = data;
+        console.log('ok' + this.moduleSelected.id);
       }, error1 => {
-        console.log("eror");
+        console.log('eror');
       });
 
   }
+
   /*constructor(private http: HttpClient) { }
   public url:string="http://localhost:8092/concours-api/concours/reference";
 

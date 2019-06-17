@@ -3,6 +3,7 @@ import {PvService} from "../../../controller/service/pv.service";
 import {NoteEtudiantModule} from "../../../controller/model/noteetudiantmodule.model";
 import {Pv} from "../../../controller/model/pv.model";
 
+
 @Component({
   selector: 'app-pvs-create',
   templateUrl: './pvs-create.component.html',
@@ -18,6 +19,7 @@ export class PvsCreateComponent implements OnInit {
   }
 
 
+
   public get pvs() {
     return this.pvService.pvs;
   }
@@ -29,6 +31,9 @@ export class PvsCreateComponent implements OnInit {
 
   public create() {
     this.pvService.create();
+  }
+  public checkType() {
+    this.pvService.checkType();
   }
 
   public get pvCreate() {
@@ -44,8 +49,8 @@ export class PvsCreateComponent implements OnInit {
     this._pvService = value;
   }
 
-  public deleteItem(n: Pv) {
-    this.pvService.deleteItem(n);
+  public deleteItem(id : number) {
+    this.pvService.deleteItem(id);
   }
 
   public deleteAll() {
@@ -57,6 +62,16 @@ export class PvsCreateComponent implements OnInit {
   }
   public saveAll(){
    this.pvService.saveAll();
+  }
+  public changeValue(id: number, property: string, event: any) {
+    this.pvService.updateList(id,property,event);
+  }
+
+  public updateList(id: number, property: string, event: any) {
+    this.pvService.updateList(id,property,event);
+  }
+  public updateInternList(id: number, j: number, property: string, event: any) {
+    this.pvService.updateInternList(id,j,property,event);
   }
 
 }

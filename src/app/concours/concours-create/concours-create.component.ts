@@ -15,7 +15,7 @@ export class ConcoursCreateComponent implements OnInit {
   secondFormGroup: FormGroup;
 
 
-  constructor(private _formBuilder: FormBuilder, private concoursService: ConcoursService, private filiereService: FiliereService) {
+  constructor(private _formBuilder: FormBuilder, private concoursService: ConcoursService) {
   }
 
   ngOnInit() {
@@ -25,8 +25,7 @@ export class ConcoursCreateComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.filiereService.findAll();
-
+  this.concoursService.findfiliereByTypeFiliere();
   }
 
   public get concours() {
@@ -50,7 +49,7 @@ export class ConcoursCreateComponent implements OnInit {
   }
 
   public get filieres() {
-    return this.filiereService.filieres;
+    return this.concoursService.filieres;
   }
 
   /*public deleteD (moduleConcours:ModuleConcours){
