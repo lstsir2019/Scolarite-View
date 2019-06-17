@@ -40,7 +40,7 @@
               </div>
               <!--<input type="text" class="form-control" placeholder="Path" [(ngModel)]="note.refModule"/>-->
               <select [(ngModel)]="note.refModule" class="form-control">
-                <option *ngFor="let m of Modules1">{{ m }}</option>
+                <option *ngFor="let m of Modules1" value="{{ m }}">{{ m }}</option>
               </select>
             </div>
           </div>

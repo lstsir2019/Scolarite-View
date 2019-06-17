@@ -19,11 +19,12 @@
             <label class="input-group-text"><b>MODULE</b></label>
           </div>
           <select size="1" [(ngModel)]="notesListCreate.refModule" class="form-control form-control-sm">
-            <option *ngFor="let m of Modules2">{{m}}</option>
+            <option *ngFor="let m of Modules2" value="{{ m }}">{{m}}</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
-          <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>ANNEE</b></span>
+          <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                 style="width: 90px"><b>ANNEE</b></span>
           </div>
           <input type="number" min="2010" max="2030" step="1" [(ngModel)]="notesListCreate.annee" class="form-control"/>
         </div>
@@ -39,10 +40,10 @@
     <div class="card-header">
       <div class="row">
         <!--<div class="col-sm-0">-->
-          <!--<button id="download" (click)="print()" class="btn btn-outline">-->
-            <!--<span style="color: dodgerblue" class="fa fa-download"> </span>-->
-            <!--<span class="text-secondary"> Exporter sous format PDF </span>-->
-          <!--</button>-->
+        <!--<button id="download" (click)="print()" class="btn btn-outline">-->
+        <!--<span style="color: dodgerblue" class="fa fa-download"> </span>-->
+        <!--<span class="text-secondary"> Exporter sous format PDF </span>-->
+        <!--</button>-->
         <!--</div>-->
         <div class="col-sm-0">
           <button (click)="deleteListAll()" style="" class="btn btn-outline text-secondary"><span
@@ -83,7 +84,8 @@
           <td style="text-align:center" class="something">{{c.etat}}</td>
           <td style="text-align:center">
             <button class="btn btn-primary btn-sm"
-                    (click)="findNote(c.refEtudiant,c.refFiliere,c.refModule,c.annee)" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-edit"></i>
+                    (click)="findNote(c.refEtudiant,c.refFiliere,c.refModule,c.annee)" data-toggle="modal"
+                    data-target="#exampleModalCenter"><i class="fa fa-edit"></i>
             </button>
             <button class="btn btn-danger btn-sm" (click)="delete(c)"><i class="fa fa-trash"></i></button>
           </td>
@@ -96,7 +98,8 @@
   <br>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -108,7 +111,8 @@
       <div class="modal-body">
         <div class="form-group">
           <div class="input-group input-group-sm">
-            <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>CNE</b></span>
+            <div class="input-group-prepend"><span align="center" class="input-group-text"
+                                                   style="width: 90px"><b>CNE</b></span>
             </div>
             <label class="form-control">{{noteSelected1.refEtudiant}}</label>
           </div>
