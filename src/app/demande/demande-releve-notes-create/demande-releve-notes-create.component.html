@@ -59,7 +59,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" style="width: 90px"><b>EMAIL</b></span>
                 </div>
-                <input  [(ngModel)]="demandeReleveNotes.email"   class="form-control form-control-sm" >
+                <input type="email"   [(ngModel)]="demandeReleveNotes.email"   class="form-control form-control-sm" email>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" style="width: 90px"><b>Année</b></span>
                 </div>
-                <input  [(ngModel)]="demandeReleveNotes.annee"   class="form-control form-control-sm" >
+                <input type="number" min="2015" max="2019" step="1" [(ngModel)]="demandeReleveNotes.annee"   class="form-control form-control-sm" >
               </div>
             </div>
           </div>

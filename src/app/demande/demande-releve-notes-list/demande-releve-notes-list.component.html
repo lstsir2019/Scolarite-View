@@ -14,6 +14,7 @@
           <label class="input-group-text"><b>Filiere</b></label>
         </div>
         <select size="1" [(ngModel)]="demandeReleveNotesSearch.refFiliere" class="form-control form-control-sm">
+          <option></option>
           <option value="{{f.libelle}}" *ngFor="let f of filieres "> {{f.libelle}}</option>
         </select>
       </div>
@@ -22,6 +23,7 @@
           <label class="input-group-text"><b>Semestre</b></label>
         </div>
         <select size="1" [(ngModel)]="demandeReleveNotesSearch.refSemestre" class="form-control form-control-sm">
+          <option></option>
           <option value="{{s.libelle}}" *ngFor="let s of semestres "> {{s.libelle}}</option>
         </select>
       </div>

@@ -35,6 +35,7 @@ export class DemandeReleveNotesCreateComponent implements OnInit {
 
   ngOnInit() {
     this.semestreService.findAll();
+    this.filiereService.findAll();
     this.demandeReleveNotesService.findAllSemestres();
     this.demandeReleveNotesService.findAll();
   }
