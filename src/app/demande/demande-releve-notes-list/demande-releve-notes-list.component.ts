@@ -41,8 +41,8 @@ export class DemandeReleveNotesListComponent implements OnInit {
 
   }
 
-  public findByRefEtudiant(refEtudiant : string) {
-    return this.demandeReleveNotesService.findByRefEtudiant(refEtudiant);
+  public findByRefEtudiant(refEtudiant : string, refSemestre : string) {
+    return this.demandeReleveNotesService.findByRefEtudiant(refEtudiant, refSemestre);
   }
 
   public get filieres(){

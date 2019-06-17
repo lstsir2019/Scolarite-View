@@ -5,8 +5,15 @@
          routerLinkActive="router-link-active">Création Concours</a>
       <a class="nav-item nav-link list-group-item-action " routerLink="listeConcours"
          routerLinkActive="router-link-active">Liste Des Concours</a>
-      <a class="nav-item nav-link list-group-item-action  " routerLink="GestionDesNotes"
-         routerLinkActive="router-link-active">Gestion des notes</a>
+      <div class="hoverWrapper  list-group-item-action " routerLinkActive="router-link-active">
+        <div class="nav-item nav-link" >Gestion des notes</div>
+        <div  id="hoverShow1">
+          <a   class="nav-item nav-link list-group-item-action" routerLink="GestionDesNotes"
+             routerLinkActive="router-link-active2">   + Concours Ecrit </a>
+          <a  class="border-bottom nav-item nav-link list-group-item-action " routerLink="NoteOral"
+              routerLinkActive="router-link-active2" >  + Concours Oral </a></div>
+      </div>
+
       <a class="nav-item nav-link list-group-item-action  " routerLink="listePostule"
          routerLinkActive="router-link-active">Liste Des Postulés</a>
       <a class="nav-item nav-link list-group-item-action " routerLink="listeEcrit"
@@ -15,9 +22,12 @@
          routerLinkActive="router-link-active">Liste Retenus oral</a>
       <a class="nav-item nav-link list-group-item-action " routerLink="listeAdmis"
          routerLinkActive="router-link-active">Liste Admis</a>
+
     </nav>
+
   </mat-drawer>
   <mat-drawer-content>
+
     <div class="tab-content" id="nav-tabContent">
       <router-outlet></router-outlet>
     </div>

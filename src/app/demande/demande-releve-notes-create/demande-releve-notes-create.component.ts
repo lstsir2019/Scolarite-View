@@ -14,7 +14,7 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 export class DemandeReleveNotesCreateComponent implements OnInit {
 
-  masterSelected:boolean;
+  // masterSelected:boolean;
   checkedList:any;
 
 
@@ -23,8 +23,8 @@ export class DemandeReleveNotesCreateComponent implements OnInit {
   // selection = new SelectionModel<Semestre>(true, this.demandeReleveNotesService.semestresSelected);
   constructor(public demandeReleveNotesService: DemandeReleveNotesService, public filiereService: FiliereService, public semestreService : SemestreService) {
 
-    this.masterSelected = false;
-    this.demandeReleveNotesService.semestres = [];
+    // this.masterSelected = false;
+    // this.demandeReleveNotesService.semestres = [];
     // this.getCheckedItemList();
   }
 
@@ -35,14 +35,16 @@ export class DemandeReleveNotesCreateComponent implements OnInit {
 
   ngOnInit() {
     this.semestreService.findAll();
+    this.filiereService.findAll();
+    this.demandeReleveNotesService.findAllSemestres();
     this.demandeReleveNotesService.findAll();
   }
 
-  isAllSelected() {
-    this.masterSelected = this.semestres.every(function(item:any) {
-      return item.isSelected == true;
-    })
-  }
+  // isAllSelected() {
+  //   this.masterSelected = this.semestres.every(function(item:any) {
+  //     return item.isSelected == true;
+  //   })
+  // }
 
   // getCheckedItemList(){
   //   this.checkedList = [];
@@ -61,12 +63,24 @@ export class DemandeReleveNotesCreateComponent implements OnInit {
     return this.demandeReleveNotesService.demandeReleveNotesList;
   }
 
+  public createList(){
+    this.demandeReleveNotesService.createList();
+  }
+
   public addDemandeReleveNotes(){
     this.demandeReleveNotesService.addDemandeReleveNotes();
   }
 
   public saveDemandeReleveNotes(){
     this.demandeReleveNotesService.saveDemandeReleveNotes();
+  }
+
+  public findAllSemestres(){
+    this.demandeReleveNotesService.findAllSemestres();
+  }
+
+  public get semestress(){
+    return this.demandeReleveNotesService.semestress;
   }
 
   // public addReleveNotes(){

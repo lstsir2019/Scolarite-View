@@ -21,22 +21,31 @@ export interface Dessert {
   styleUrls: ['./liste-des-postule.component.css']
 })
 export class ListeDesPostuleComponent implements OnInit {
-
+public annee:number=0;
 
   sortedData: Candidat[];
 
   constructor(public  candidatService: CandidatService, public concoursService: ConcoursService,
-              public dialog: MatDialog, public route: ActivatedRoute,public admissionService:AdmissionService) {
+              public dialog: MatDialog, public route: ActivatedRoute, public admissionService: AdmissionService) {
   }
 
-
-
+  public findconcoursByAnnee() {
+    return this.concoursService.findByAnneeConcours(this.annee);
+  }
   public cne: string
+  public get concoursByAnnee() {
+    return this.concoursService.listeConcoursByAnnee;
+
+  }
+  public get anneeConcours() {
+    return this.concoursService.listeDesAnnee;
+  }
 
   ngOnInit() {
 
     this.concoursService.findAll();
   }
+
   sortData(sort: Sort) {
     const data = this.listCandidats;
     if (!sort.active || sort.direction === '') {
@@ -47,15 +56,22 @@ export class ListeDesPostuleComponent implements OnInit {
     this.sortedData = data.sort((a, b) => {
       const isAsc = sort.direction === 'asc';
       switch (sort.active) {
-        case 'cne': return this.compare(a.cne, b.cne, isAsc);
-        case 'cin': return this.compare(a.cin, b.cin, isAsc);
-        case 'nom': return this.compare(a.nom, b.nom, isAsc);
-        case 'prenom': return this.compare(a.prenom, b.prenom, isAsc);
-        case 'tel': return this.compare(a.tel, b.tel, isAsc);
-        default: return 0;
+        case 'cne':
+          return this.compare(a.cne, b.cne, isAsc);
+        case 'cin':
+          return this.compare(a.cin, b.cin, isAsc);
+        case 'nom':
+          return this.compare(a.nom, b.nom, isAsc);
+        case 'prenom':
+          return this.compare(a.prenom, b.prenom, isAsc);
+        case 'tel':
+          return this.compare(a.tel, b.tel, isAsc);
+        default:
+          return 0;
       }
     });
   }
+
   compare(a: string, b: string, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
@@ -96,7 +112,8 @@ export class ListeDesPostuleComponent implements OnInit {
   public findByCne(cne: string) {
     this.candidatService.finByCne(cne);
   }
-  public findListeReteues(){
+
+  public findListeReteues() {
     this.admissionService.findListeReteues(this.refConcours);
   }
 }

@@ -1,6 +1,6 @@
 .my-custom-scrollbar {
   position: relative;
-  height: 500px;
+  height: 650px;
   overflow: auto;
 }
 .table-wrapper-scroll-y {
@@ -19,14 +19,14 @@
 }
 
 .negative {
-  background-color: #C2E1D1;
+  background-color: #cce5e5;
 }
 .noteorange {
-  background-color: #F9A11C;
+  background-color: #4ca6a6;
 }
 .bdblue {
   background-color: #14B1F4;
 }
 .cneyellow {
-  background-color: #CBCBCB;
+  background-color:#4ca6a6;
 }

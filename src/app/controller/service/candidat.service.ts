@@ -53,7 +53,6 @@ public findInListByCne(reference:string,cne:String){
   if(cne == null){
 this.finByRefConcours(reference);
   }else{
-
  const filter =(candidat: Candidat[])=>this.listCandidats.filter(candidat=> candidat.cne.match("^"+cne+".*$"));
     this.filtered=filter(this.listCandidats);
 

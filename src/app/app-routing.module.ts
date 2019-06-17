@@ -30,6 +30,10 @@ import {ConcoursInfoComponent} from './concours/concours-info/concours-info.comp
 
 import {GestionDeNotesComponent} from "./concours/gestion-de-notes/gestion-de-notes.component";
 import {PvsCreateComponent} from "./scolarite/pvs/pvs-create/pvs-create.component";
+import {NoteOralComponent} from "./concours/gestion-de-notes/note-oral/note-oral.component";
+import {NoteEcritComponent} from "./concours/gestion-de-notes/note-ecrit/note-ecrit.component";
+import {PvsListComponent} from "./scolarite/pvs/pvs-list/pvs-list.component";
+import {NotesListComponent} from "./scolarite/notes/notes-list/notes-list.component";
 
 const routes: Routes = [
   { path: 'Inscription', component:CandidatCreateComponent},
@@ -86,6 +90,8 @@ const routes: Routes = [
     { path: 'listeOral', component:ListeDesRetenusOralComponent},
     { path: 'listeAdmis', component:ListeDesAdmisComponent},
     { path: 'GestionDesNotes', component:GestionDeNotesComponent},
+    { path: 'NoteOral', component:NoteOralComponent},
+    { path: 'NoteEcrit', component:NoteEcritComponent},
 
   ]},
 
@@ -93,6 +99,8 @@ const routes: Routes = [
   { path: 'filiere', component:FiliereCreateComponent},
   { path: 'note', component:NoteCreateComponent},
   { path: 'pvs', component:PvsCreateComponent},
+  { path: 'pvsList', component:PvsListComponent},
+  { path: 'notesList', component:NotesListComponent},
   { path: 'modules', component:ModuleCreateComponent},
   { path: 'etudiants', component:EtudiantCreateComponent},
 

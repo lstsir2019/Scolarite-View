@@ -10,9 +10,9 @@ import {DemandeScolarite} from '../model/demande-scolarite.model';
 })
 export class DemandeInscriptionService {
 
-  private _url:string="http://localhost:8099/simple-faculte-scolarite/demandeInscriptions/";
-  private _url2:string="http://localhost:8099/simple-faculte-scolarite/demandeInscriptions/refEtudiant/";
-  private _url3:string ="http://localhost:8099/simple-faculte-scolarite/demandeInscriptions/chercher";
+  private _url:string="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeInscriptions/";
+  private _url2:string="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeInscriptions/refEtudiant/";
+  private _url3:string ="http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeInscriptions/chercher";
 
 
 
@@ -34,41 +34,45 @@ export class DemandeInscriptionService {
 
 
   public saveDemandeInscription(){
-    this._http.post<number>(this._url, this._demandeInscriptionCreate).subscribe(
+    if(this._demandeInscriptionCreate.email.includes("@")){
+      this._http.post<number>(this._url, this._demandeInscriptionCreate).subscribe(
 
-      data=>{
-        if (data == -1) {
-          Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
-        }
-        else if (data == -3) {
-          Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
-        }
-        else if (data == -4) {
-          Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
-        }
-        else if (data == -5) {
-          Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
-        }
-        else if (data == -6) {
-          Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
-        }
+        data=>{
+          if (data == -1) {
+            Swal.fire('ERREUR !', 'LE CNE a été déjà utilisé !', 'error');
+          }
+          else if (data == -3) {
+            Swal.fire('ERREUR !', 'Le champ "NOM" ne peut pas être vide !', 'error');
+          }
+          else if (data == -4) {
+            Swal.fire('ERREUR !', 'Le champ "PRENOM" ne peut pas être vide !', 'error');
+          }
+          else if (data == -5) {
+            Swal.fire('ERREUR !', 'Le champ "EMAIL" ne peut pas être vide !', 'error');
+          }
+          else if (data == -6) {
+            Swal.fire('ERREUR !', 'Le champ "FILIERE" ne peut pas être vide !', 'error');
+          }
 
-        else if (data == -7) {
-          Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
-        }
+          else if (data == -7) {
+            Swal.fire('ERREUR !', 'Le champ "CIN" ne peut pas être vide !', 'error');
+          }
 
-        else if (data == -2) {
-          Swal.fire('ERREUR !', 'La champ "CNE" ne peut pas être vide !', 'error');
+          else if (data == -2) {
+            Swal.fire('ERREUR !', 'La champ "CNE" ne peut pas être vide !', 'error');
+          }
+          else { (data == 1)
+            Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
+            this._demandeInscriptionCreate = new DemandeInscription("", "","","","", "");
+          }
+        } ,error=>{
+          console.log("error");
         }
-        else { (data == 1)
-          Swal.fire('SUCCES !', 'La demande a été effectuée aves succès !', 'success');
-        }
-        console.log("ok");
-        this._demandeInscriptionCreate = new DemandeInscription("", "","","","", "");
-      } ,error=>{
-        console.log("error");
-      }
-    );
+      );
+    } else {
+      Swal.fire('ERREUR !', "Le champ 'EMAIL' n'est pas valide !", 'error');
+    }
+
   }
 
 
@@ -77,6 +81,16 @@ export class DemandeInscriptionService {
 
 
   public deleteDemandeInscription(demandeInscription: DemandeInscription) {
+    Swal.fire({
+      title: '',
+      text: 'Souhaitez-vous vraiment supprimer la demande ?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d6000a',
+      confirmButtonText: 'Supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.value) {
     this.demandeInscriptionSelected = demandeInscription;
     if (this.demandeInscriptionSelected != null) {
       this._http.delete<DemandeInscription>(this._url2 + this._demandeInscriptionSelected.refEtudiant).subscribe(
@@ -87,14 +101,22 @@ export class DemandeInscriptionService {
       let index:number = this._demandeInscriptions.indexOf(demandeInscription);
       this._demandeInscriptions.splice(index,1);
     }
+        Swal.fire(
+          '',
+          'Supprimé !',
+          'success'
+        )
+  }
+      },
+    )
   }
 
 
-  public print():any{
+  public print(refEtudiant : string){
     const httpOptions = {
       responseType : 'blob' as 'json' //This also worked
     };
-    return this.http.get("http://localhost:8099/simple-faculte-scolarite/demandeInscriptions/pdf",httpOptions).subscribe((resultBlob: Blob) => {
+    return this.http.get("http://localhost:9004/microservice1-demande/simple-faculte-scolarite/demandeInscriptions/pdf/refEtudiant/"+refEtudiant,httpOptions).subscribe((resultBlob: Blob) => {
       var downloadURL = URL.createObjectURL(resultBlob);
       window.open(downloadURL);});
   }

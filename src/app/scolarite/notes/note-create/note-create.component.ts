@@ -10,11 +10,16 @@ import {NoteEtudiantModule} from '../../../controller/model/noteetudiantmodule.m
 })
 export class NoteCreateComponent implements OnInit {
 
+  public checkBoxState:boolean = false;
   public userFile: any = File;
+  public cne: string;
+  editField: string;
   public showSpinner: boolean = true;
 
-  constructor(private noteService: NoteService) {
+  constructor(private _noteService: NoteService) {
   }
+
+
 
   ngOnInit() {
     // this.noteService.findAll();
@@ -22,35 +27,44 @@ export class NoteCreateComponent implements OnInit {
 
 
   public get notesExited() {
-    return this.noteService.notesExisted;
+    return this._noteService.notesExisted;
   }
 
   public get note() {
-    return this.noteService.noteCreate;
+    return this._noteService.noteCreate;
+  }
+  public get Modules1(){
+    return this._noteService.Modules1;
   }
 
   public get note1() {
-    return this.noteService.note1;
+    return this._noteService.note1;
   }
 
   public get notess() {
-    return this.noteService.notess;
+    return this._noteService.notess;
   }
 
   public get firstline() {
-    return this.noteService.firstline;
+    return this._noteService.firstline;
   }
 
   public get notesExisted() {
-    return this.noteService.notesExisted;
+    return this._noteService.notesExisted;
+  }
+  public  findItem(n: NoteEtudiantModule) {
+    return this._noteService.findItem(n);
+  }
+  public  findInList(n: string) {
+    return this._noteService.findInList(n);
   }
 
   public get notesCheck() {
-    return this.noteService.notesCheck;
+    return this._noteService.notesCheck;
   }
 
   public get noteClone() {
-    return this.noteService.noteClone;
+    return this._noteService.noteClone;
   }
 
 
@@ -63,18 +77,39 @@ export class NoteCreateComponent implements OnInit {
   //    this.noteService.addNote();
   // }
   public save() {
-    this.noteService.save();
+    this._noteService.save();
+  }
+  public checkType() {
+    this.noteService.checkType();
+  }
+  public initModules() {
+    this.noteService.initModules();
   }
 
   public check() {
-    this.noteService.check();
+    this._noteService.check();
   }
 
   public deleteAll() {
-    this.noteService.deleteAll();
+    this._noteService.deleteAll();
   }
 
   public deleteItem(n: NoteEtudiantModule) {
-    this.noteService.deleteItem(n);
+    this._noteService.deleteItem(n);
+  }
+
+  get noteService(): NoteService {
+    return this._noteService;
+  }
+
+  set noteService(value: NoteService) {
+    this._noteService = value;
+  }
+  public changeValue(id: number, property: string, event: any) {
+    this.noteService.updateList(id,property,event);
+  }
+
+  public updateList(id: number, property: string, event: any) {
+    this.noteService.updateList(id,property,event);
   }
 }

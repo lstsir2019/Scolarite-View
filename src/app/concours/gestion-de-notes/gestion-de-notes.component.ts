@@ -53,7 +53,7 @@ export class GestionDeNotesComponent implements OnInit {
       Swal.fire({
         title: 'Module Invalide',
         text: 'veuillez selectionner un Module',
-        type: 'warning',
+        type: 'error',
       });
     } else {
       const dialogRef = this.dialog.open(ListeNotesComponent, {
