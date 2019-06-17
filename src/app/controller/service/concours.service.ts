@@ -17,7 +17,7 @@ export class ConcoursService {
 
   private _url: string = 'http://localhost:8090/concours-api/concours/';
   private _url1: string = 'http://localhost:8090/concours-api/concours/search';
-  private _url2: string = 'http://localhost:8090/concours-api/concours/update';
+  private _url2: string = 'http://localhost:8090/concours-api/concours/update/';
   public listeDesAnnee = [];
   public listeConcoursByAnnee = [];
   public listeModuleConcours = [];
@@ -252,10 +252,10 @@ export class ConcoursService {
     }
   }
 
-  public updateConcours(concoursupdated: Concours) {
-    if (concoursupdated != null) {
+  public updateConcours(concours: Concours) {
+
       console.log('koko');
-      this.http.put(this._url2, concoursupdated).subscribe(
+      this.http.put(this._url2,concours).subscribe(
         data => {
           if (data == -1) {
             Swal.fire({
@@ -286,14 +286,16 @@ export class ConcoursService {
           console.log(error);
         }
       );
-    }
+
   }
 
-  public updateModuleConcours(moduleUpdated: ModuleConcours) {
-    if (moduleUpdated != null) {
+  public updateModuleConcours(id: number,coef:string) {
+    this.findByRefModule(id);
+    this.moduleSelected.coefModuleConcoursVo.coef=coef;
       console.log('koko');
-      this.http.put('http://localhost:8090/concours-api/concours/module-concours/update/', moduleUpdated).subscribe(
+      this.http.put('http://localhost:8090/concours-api/concours/module-concours/update/', this.moduleSelected).subscribe(
         data => {
+          console.log(coef)
           if (data == 1){
           console.log('Done ... !');
         }},
@@ -301,7 +303,8 @@ export class ConcoursService {
           console.log(error);
         }
       );
-    }
+
+
   }
 
   public findByAnneeConcours(anneeConcours: number) {

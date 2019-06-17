@@ -15,6 +15,7 @@ export class ConcoursUpdateComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
+concours:Concours=this.data.c;
   ngOnInit() {
     // this.concoursService.findConcoursByRefConcours(this.concoursSelected.reference);
     this.concoursService.concoursSelected;
@@ -28,7 +29,7 @@ export class ConcoursUpdateComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  public updateConcours(concoursUpdated: Concours) {
-    this.concoursService.updateConcours(this.data);
+  public updateConcours() {
+    this.concoursService.updateConcours(this.concours);
   }
 }

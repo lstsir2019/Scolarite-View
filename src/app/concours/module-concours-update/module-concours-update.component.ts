@@ -20,6 +20,8 @@ export class ModuleConcoursUpdateComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  coef: string="";
+
   ngOnInit() {
     this.concoursService.findByRefModule(this.data.module.id);
     this.concoursService.moduleSelected;
@@ -29,8 +31,7 @@ export class ModuleConcoursUpdateComponent implements OnInit {
     return this.concoursService.moduleSelected;
   }
 
-  public updateModuleConcours(moduleUpdated: ModuleConcours) {
-    // this.concoursService.updateModuleConcours(this.data.module.id);
-    this.concoursService.updateModuleConcours(moduleUpdated);
+  public updateModuleConcours() {
+    this.concoursService.updateModuleConcours(this.data.module.id, this.coef);
   }
 }
