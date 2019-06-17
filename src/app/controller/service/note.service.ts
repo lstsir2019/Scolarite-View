@@ -63,7 +63,7 @@ export class NoteService {
     this.spinner.show();
     if (this.notesCheck.length !== 0) {
       this.spinner.hide();
-      Swal.fire('Error!!!', 'La liste nest pas vide', 'error');
+      Swal.fire('Erreur!', "La liste n'est pas vide", 'error');
     } else {
       if (this.noteCreate.xpath !== '') {
         this.path = this.noteCreate.xpath.replace("C:\\fakepath\\", "");
@@ -76,12 +76,12 @@ export class NoteService {
             this.notesCheck = data;
           }, error => {
             this.spinner.hide();
-            Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+            Swal.fire('Erreur!', 'Veuillez insérer un lien valide!', 'error');
           }
         );
       } else {
         this.spinner.hide();
-        Swal.fire('Error!!!', 'please enter file name!', 'error');
+        Swal.fire('Erreur!', 'Veuillez sélectionner un fichier EXCEL!', 'error');
         console.log(this.noteCreate.xpath);
       }
     }
@@ -114,21 +114,21 @@ export class NoteService {
     this.spinner.show();
     if (this.notesCheck.length == 0) {
       this.spinner.hide();
-      Swal.fire('erreur', 'la liste est vide', 'warning');
+      Swal.fire('Erreur!', 'La liste est vide!', 'warning');
     } else {
       this._http.post<number>(this.url1, this.notesCheck).subscribe(
         data => {
           if (data == 1) {
             this.spinner.hide();
-            Swal.fire('Done', 'Success', 'success');
+            Swal.fire('OK!', 'Validé!', 'success');
             this.deleteAll();
           } else if (data == -2) {
             this.spinner.hide();
-            Swal.fire('erreur', 'des etudiats nont pas de cne!', 'warning');
+            Swal.fire('erreur', "Des étudiants n'ont pas de CNE!", 'warning');
           }
         }, error => {
           this.spinner.hide();
-          Swal.fire('Error!!!', 'Error', 'error');
+          Swal.fire('Erreur!', 'Erreur!', 'error');
         }
       );
     }
@@ -136,7 +136,7 @@ export class NoteService {
 
   public deleteItem(n: NoteEtudiantModule) {
     Swal.fire({
-      title: 'etes vous sure??',
+      title: 'Etes-vous sûr?',
       text: "C'est irreversible",
       type: 'warning',
       showCancelButton: true,
@@ -148,7 +148,7 @@ export class NoteService {
         this.notesCheck.splice(id, 1);
         Swal.fire(
           'Supprimé!',
-          'La note supprimé avec succes.',
+          'La note a été supprimée avec succès!',
           'success'
         )
       }
@@ -225,9 +225,9 @@ export class NoteService {
       data => {
         console.log(data);
         this.findNotesList();
-        Swal.fire('Done','updated.','success');
+        Swal.fire('OK!','Mise à jour faite avec succès!','success');
       }, error => {
-        Swal.fire('error','erreur','warning');
+        Swal.fire('Erreur!','erreur','warning');
 
         console.log('error while...');
       }
@@ -245,7 +245,7 @@ export class NoteService {
         }
       );
     } else if (this.noteListCreate.refFiliere == '' || this.noteListCreate.refModule == '' || this.noteListCreate.annee == '') {
-      Swal.fire('Champs non remplis', 'Veullier remplire tout les champs', 'info');
+      Swal.fire('Champs non remplis!', 'Veuillez remplir tous les champs!', 'info');
     }
   }
 
@@ -259,14 +259,25 @@ export class NoteService {
   }
 
   public delete(noteM: NoteEtudiantModule) {
-    this._http.delete<number>(this.url1+'deleteModualire/refEtudiant/'+noteM.refEtudiant+'/refFiliere/'+noteM.refFiliere+'/refModule/'+noteM.refModule+'/annee/'+noteM.annee).subscribe(
-      data => {
-        this.findNotesList();
-        Swal.fire('Done','deleted.','success');
-      }, error => {
-        Swal.fire('error','erreur','warning');
+    Swal.fire({
+      title: 'Etes-vous sûr?',
+      text: "C'est irreversible",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Supprimer'
+    }).then((result) => {
+      if (result.value) {
+        this._http.delete<number>(this.url1+'deleteModualire/refEtudiant/'+noteM.refEtudiant+'/refFiliere/'+noteM.refFiliere+'/refModule/'+noteM.refModule+'/annee/'+noteM.annee).subscribe(
+          data => {
+            this.findNotesList();
+            Swal.fire('OK!','Supprimé!','success');
+          }, error => {
+            Swal.fire('error','erreur','warning');
+          }
+        );
       }
-    );
+    })
   }
   public checkType(){
     if(!this.noteCreate.xpath.endsWith(".xls")){

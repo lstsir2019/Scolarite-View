@@ -49,18 +49,18 @@ export class PvService {
             data => {
               this._modules = data;
             }, error => {
-              Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+              Swal.fire('Error!!!', 'Veuillez insérer un lien valide !', 'error');
             }
           );
           this._pvs = data;
         }, error => {
           this.spinner.hide();
           console.log(error);
-          Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+          Swal.fire('Error!!!', 'Veuillez insérer un lien valide !', 'error');
         }
       );
     } else {
-      Swal.fire('Error!!!', 'please enter a valid file name!', 'error');
+      Swal.fire('Error!!!', 'Veuillez insérer un lien valide !', 'error');
       this.spinner.hide();
     }
   }
@@ -72,14 +72,14 @@ export class PvService {
         this.spinner.hide();
         console.log(data);
         if (data == 1) {
-          Swal.fire('done', 'Liste Sauvgardee avec succes', 'success');
+          Swal.fire('OK!', 'Liste Sauvgardée avec succès', 'success');
           this.deleteAll();
         }else if(data == -2){
-          Swal.fire('Error!!!', 'you have some errors', 'error');
+          Swal.fire('Erreur!', 'Veuillez corriger les erreurs!', 'error');
         }
       }, error => {
         this.spinner.hide();
-        Swal.fire('Error!!!', 'Error', 'error');
+        Swal.fire('Erreur!', 'Erreur!', 'error');
       }
     );
   }
@@ -107,7 +107,7 @@ export class PvService {
           this.modulesList.reverse();
 
         }, error => {
-          Swal.fire('Error!!!', 'erreur!', 'error');
+          Swal.fire('Error!!!', 'Erreur!', 'error');
         }
       );
     }
@@ -138,7 +138,7 @@ export class PvService {
 
   public deleteItem(id: number) {
     Swal.fire({
-      title: 'etes vous sure??',
+      title: 'Etes-vous sûr?',
       text: "C'est irreversible",
       type: 'warning',
       showCancelButton: true,
@@ -149,7 +149,7 @@ export class PvService {
         this.pvs.splice(id, 1);
         Swal.fire(
           'Supprimé!',
-          'La note supprimé avec succes.',
+          'La note a été supprimée avec succès!',
           'success'
         )
       }
@@ -181,9 +181,9 @@ export class PvService {
     this._http.put<Pv>('http://localhost:8097/efaculte-api-notes/notes/editNoteSemestre/', this._noteSemSelected).subscribe(
       data => {
         this.findByCriteria();
-        Swal.fire('Done','updated.','success');
+        Swal.fire('OK!','Mise à jour faite avec succès!','success');
       }, error => {
-        Swal.fire('error','erreur','warning');
+        Swal.fire('error','Erreur !','warning');
         console.log('error while...');
       }
     );
@@ -192,9 +192,9 @@ export class PvService {
     this._http.delete<number>(this.url+'/deleteNoteSemestre/refEtudiant/'+noteS.refEtudiant+'/refFiliere/'+noteS.refFiliere+'/refSemestre/'+noteS.refSemestre+'/annee/'+noteS.annee).subscribe(
       data => {
         this.deleteListItem(noteS);
-        Swal.fire('Done','updated.','success');
+        Swal.fire('OK!','Mise à jour faite avec succès !','success');
       }, error => {
-        Swal.fire('error','erreur','warning');
+        Swal.fire('error','Erreur!','warning');
         console.log('error while...');
       }
     );
