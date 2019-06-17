@@ -1,14 +1,17 @@
 <div class="container-fluid" style="background-color: darkslategrey">
   <div class="card shadow p-3 mb-5" style="background-color: lightgray">
     <div class="card-body" style="background-color: lightgray">
-      <h1 align="center" style="font-family: 'Adobe Caslon Pro'">LISTE DES PV'S</h1> <br><br><br>
+      <h1 align="center" style="font-family: 'Adobe Caslon Pro'">LISTES DES PV</h1> <br><br><br>
       <div class="d-flex justify-content-sm-between">
         <div class="input-group">
           <div class="input-group-prepend">
             <label class="input-group-text"><b>FILIERE</b></label>
           </div>
           <select [(ngModel)]="pvListCreate.refFiliere" class="form-control form-control">
+            <option>SIR</option>
             <option>MIPC</option>
+            <option>BCG</option>
+            <option>MIP</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
@@ -16,17 +19,18 @@
             <label class="input-group-text"><b>SEMESTRE</b></label>
           </div>
           <select size="1" [(ngModel)]="pvListCreate.refSemestre" class="form-control form-control-sm">
-            <option> S1</option>
-            <option> S2</option>
+            <option>S1</option>
+            <option>S2</option>
+            <option>S3</option>
+            <option>S4</option>
+            <option>S5</option>
+            <option>S6</option>
           </select>
         </div>
         <div class="input-group mx-sm-3">
-          <div class="input-group-prepend">
-            <label class="input-group-text"><b>ANNEE</b></label>
+          <div class="input-group-prepend"><span align="center" class="input-group-text" style="width: 90px"><b>ANNEE</b></span>
           </div>
-          <select size="1" [(ngModel)]="pvListCreate.annee" class="form-control form-control-sm">
-            <option> 2019</option>
-          </select>
+          <input type="number" min="2010" max="2030" [(ngModel)]="pvListCreate.annee" class="form-control"/>
         </div>
         <div class="input-group">
           <button class="btn btn-info btn-block" (click)="findByCriteria()"><i class="fa fa-search"></i> <b>
@@ -97,7 +101,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let c of filtred">
+        <tr *ngFor="let c of filtred; let i = index;">
           <td style="text-align:center" class="something">{{c.refEtudiant}}</td>
           <ng-container *ngFor="let m of c.noteModulaireVos">
             <td>{{ m.ptJury }}</td>
@@ -185,8 +189,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="edit()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Fermer </button>
+        <button type="button" class="btn btn-primary" (click)="edit()"> Sauvegarder </button>
       </div>
     </div>
   </div>

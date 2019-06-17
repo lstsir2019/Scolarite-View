@@ -104,6 +104,8 @@ export class PvService {
           for (let i = 0; i <= 5; i++) {
             this.modulesList.push(this.pvList[0].noteModulaireVos[i].refModule);
           }
+          this.modulesList.reverse();
+
         }, error => {
           Swal.fire('Error!!!', 'erreur!', 'error');
         }
@@ -134,9 +136,25 @@ export class PvService {
     }
   }
 
-  public deleteItem(n: Pv) {
-    const id: number = this.pvs.indexOf(n);
-    this.pvs.splice(id, 1);
+  public deleteItem(id: number) {
+    Swal.fire({
+      title: 'etes vous sure??',
+      text: "C'est irreversible",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Supprimer'
+    }).then((result) => {
+      if (result.value) {
+        this.pvs.splice(id, 1);
+        Swal.fire(
+          'Supprimé!',
+          'La note supprimé avec succes.',
+          'success'
+        )
+      }
+    })
+
   }
   public deleteListItem(n: Pv) {
     const i: number = this.filtered.indexOf(n);
@@ -180,6 +198,12 @@ export class PvService {
         console.log('error while...');
       }
     );
+  }
+  public checkType(){
+    if(!this.pvCreate.path.endsWith(".xls")){
+      Swal.fire('Type non compatible','Veuiller choisir un fichier .xls','warning');
+      this.pvCreate.path = "";
+    }
   }
 
 

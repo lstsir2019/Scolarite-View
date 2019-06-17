@@ -46,6 +46,9 @@ export class NoteService {
   private _notesList: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _filtred: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
   private _notesss: Array<NoteEtudiantModule> = new Array<NoteEtudiantModule>();
+  private _Modules1 = Array<string>();
+  private _Modules2 = Array<string>();
+  private _Filiere = Array<string>();
 
 
   constructor(private _http: HttpClient, private _spinner: NgxSpinnerService) {
@@ -132,8 +135,24 @@ export class NoteService {
   }
 
   public deleteItem(n: NoteEtudiantModule) {
-    const id: number = this.notesCheck.indexOf(n);
-    this.notesCheck.splice(id, 1);
+    Swal.fire({
+      title: 'etes vous sure??',
+      text: "C'est irreversible",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      confirmButtonText: 'Supprimer'
+    }).then((result) => {
+      if (result.value) {
+        const id: number = this.notesCheck.indexOf(n);
+        this.notesCheck.splice(id, 1);
+        Swal.fire(
+          'Supprimé!',
+          'La note supprimé avec succes.',
+          'success'
+        )
+      }
+    })
   }
 
   public findItem(n: NoteEtudiantModule): NoteEtudiantModule {
@@ -204,6 +223,7 @@ export class NoteService {
   public edit() {
     this._http.put<NoteEtudiantModule>('http://localhost:8097/efaculte-api-notes/notes/editNoteModulaire/', this.noteSelected1).subscribe(
       data => {
+        console.log(data);
         this.findNotesList();
         Swal.fire('Done','updated.','success');
       }, error => {
@@ -236,19 +256,6 @@ export class NoteService {
   public updateList(id: number, property: string, event: any) {
     const editField = event.target.textContent;
     this.notesCheck[id][property] = editField;
-    if (property == 'refEtudiant' && this.notesCheck[id].refEtudiant != '') {
-      this.notesCheck[id].state = 'good';
-    } else if (property == 'mention' && this.notesCheck[id].mention != '') {
-      var y = +this.notesCheck[id].mention;
-      this.notesCheck[id].state = 'good';
-      if (y < 10) {
-        this.notesCheck[id].etat = 'NV';
-      } else if (y >= 10) {
-        this.notesCheck[id].etat = 'V';
-      }
-    } else {
-      this.notesCheck[id].state = 'error';
-    }
   }
 
   public delete(noteM: NoteEtudiantModule) {
@@ -260,6 +267,50 @@ export class NoteService {
         Swal.fire('error','erreur','warning');
       }
     );
+  }
+  public checkType(){
+    if(!this.noteCreate.xpath.endsWith(".xls")){
+      Swal.fire('Type non compatible','Veuiller choisir un fichier .xls','warning');
+      this.noteCreate.xpath = "";
+    }
+  }
+  public initModules(){
+    console.log(this.noteCreate.refFiliere);
+    if(this.noteCreate.refFiliere == "MIPC"){
+      if(this._Modules1.length != 0){
+        this._Modules1.splice(0,this._Modules1.length);
+      }
+      this._Modules1.push("ALGEBRE1","ANALYSE1","ALGO1","MECANIQUE DU PT", "TEC", "THERMODYNAMIQUE","ANALYSE2","ALGEBRE2");
+    }else if(this.noteCreate.refFiliere == "SIR"){
+      if(this._Modules1.length != 0){
+        this._Modules1.splice(0,this._Modules1.length);
+      }
+      this._Modules1.push("PROG WEB","SGBD","UML","JAVA", "JEE","Sys DEXPLOITATIONS", "RESEAUX","SGBDR","IHM");
+    }else if(this.noteCreate.refFiliere == "BCG"){
+      if(this._Modules1.length != 0){
+        this._Modules1.splice(0,this._Modules1.length);
+      }
+      this._Modules1.push("OPTIQUE","ALGEBRE1","ANALYSE1","GEO INTERNE", "BIO VEGETALE");
+    }
+  }
+  public initModules2(){
+    console.log(this.noteListCreate.refFiliere);
+    if(this.noteListCreate.refFiliere == "MIPC"){
+      if(this._Modules2.length != 0){
+        this._Modules2.splice(0,this._Modules2.length);
+      }
+      this._Modules2.push("ALGEBRE1","ANALYSE1","ALGO1","MECANIQUE DU PT", "TEC", "THERMODYNAMIQUE","ANALYSE2","ALGEBRE2");
+    }else if(this.noteListCreate.refFiliere == "SIR"){
+      if(this._Modules2.length != 0){
+        this._Modules2.splice(0,this._Modules2.length);
+      }
+      this._Modules2.push("PROG WEB","SGBD","UML","JAVA", "JEE","Sys DEXPLOITATIONS", "RESEAUX","SGBDR","IHM");
+    }else if(this.noteListCreate.refFiliere == "BCG"){
+      if(this._Modules2.length != 0){
+        this._Modules2.splice(0,this._Modules2.length);
+      }
+      this._Modules2.push("OPTIQUE","ALGEBRE1","ANALYSE1","GEO INTERNE", "BIO VEGETALE");
+    }
   }
 
   // saveFile() {
@@ -424,4 +475,27 @@ export class NoteService {
   }
 
 
+  get Modules1(): string[] {
+    return this._Modules1;
+  }
+
+  set Modules1(value: string[]) {
+    this._Modules1 = value;
+  }
+
+  get Filiere(): string[] {
+    return this._Filiere;
+  }
+
+  set Filiere(value: string[]) {
+    this._Filiere = value;
+  }
+
+  get Modules2(): string[] {
+    return this._Modules2;
+  }
+
+  set Modules2(value: string[]) {
+    this._Modules2 = value;
+  }
 }
